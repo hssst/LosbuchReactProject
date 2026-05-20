@@ -1,0 +1,15 @@
+.question-select {
+  margin-top: 2rem;
+}
+
+.question-select__button {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.question-select__button--active {
+  font-weight: bold;
+  border: 2px solid #1e1e1e;
+}

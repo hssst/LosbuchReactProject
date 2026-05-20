@@ -1,0 +1,15 @@
+.name-input {
+  margin-top: 2rem;
+}
+
+.name-input input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 250px;
+}
+
+.name-input__error {
+  margin-top: 0.5rem;
+  color: darkred;
+  font-weight: bold;
+}

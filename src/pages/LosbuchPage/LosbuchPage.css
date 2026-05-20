@@ -1,0 +1,16 @@
+.losbuch-page {
+  padding: 2rem;
+}
+
+.losbuch-page__content {
+  max-width: 700px;
+}
+
+.losbuch-page__actions {
+  margin-top: 2rem;
+}
+
+.losbuch-page__actions button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

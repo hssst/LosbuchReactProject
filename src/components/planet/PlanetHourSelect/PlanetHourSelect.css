@@ -1,0 +1,15 @@
+.planet-hour-select {
+  margin-top: 2rem;
+}
+
+.planet-hour-select label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.planet-hour-select select {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 250px;
+}

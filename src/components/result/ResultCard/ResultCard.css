@@ -1,0 +1,20 @@
+.result-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #1e1e1e;
+  max-width: 600px;
+  background-color: white;
+}
+
+.result-card h2 {
+  margin-bottom: 1.5rem;
+}
+
+.result-card p {
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+.result-card__section {
+  margin-top: 1.5rem;
+}

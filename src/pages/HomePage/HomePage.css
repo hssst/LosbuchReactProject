@@ -1,0 +1,17 @@
+.home-page {
+  padding: 2rem;
+}
+
+.home-page__intro {
+  max-width: 600px;
+}
+
+.home-page__intro p {
+  margin-top: 1rem;
+}
+
+.home-page__intro button {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
