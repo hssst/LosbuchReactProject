@@ -1,4 +1,6 @@
-import { useState } from "react";
+﻿import { useState } from "react";
+
+import "./App.css";
 
 import AppLayout from "./components/layout/AppLayout/AppLayout";
 import Header from "./components/layout/Header/Header";
@@ -18,7 +20,8 @@ function App() {
   }
 
   function handleRestart() {
-    setCurrentPage("home");
+    setLosbuchResult(null);
+    setCurrentPage("losbuch");
   }
 
   return (
@@ -33,11 +36,15 @@ function App() {
       />
 
       {currentPage === "home" && (
-        <HomePage onStart={() => setCurrentPage("losbuch")} />
+        <HomePage
+          onStart={() => setCurrentPage("losbuch")}
+        />
       )}
 
       {currentPage === "losbuch" && (
-        <LosbuchPage onFinish={handleFinish} />
+        <LosbuchPage
+          onFinish={handleFinish}
+        />
       )}
 
       {currentPage === "result" && (

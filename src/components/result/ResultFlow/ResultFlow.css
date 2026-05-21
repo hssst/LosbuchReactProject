@@ -1,0 +1,26 @@
+﻿.result-flow {
+  margin-top: 1.5rem;
+}
+
+.result-flow__progress {
+  font-weight: bold;
+}
+
+.result-flow__title {
+  margin-top: 0.75rem;
+}
+
+.result-flow__content {
+  margin-top: 1rem;
+}
+
+.result-flow__actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.result-flow__actions button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

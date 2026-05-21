@@ -1,4 +1,4 @@
-import { questions } from "../data/questions";
+import { questions } from "../data/questions/questions";
 
 export function getQuestionById(questionId) {
   return questions.find(

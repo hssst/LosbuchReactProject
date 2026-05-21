@@ -1,0 +1,21 @@
+﻿.planet-reveal {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid #1e1e1e;
+  background-color: #f5f0e8;
+}
+
+.planet-reveal__eyebrow {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.planet-reveal h3 {
+  margin-top: 0.75rem;
+}
+
+.planet-reveal p {
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}

@@ -1,0 +1,27 @@
+﻿.progress-indicator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.progress-indicator__item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  opacity: 0.5;
+}
+
+.progress-indicator__item--active {
+  opacity: 1;
+  font-weight: bold;
+}
+
+.progress-indicator__item--completed {
+  opacity: 1;
+}
+
+.progress-indicator__circle {
+  font-size: 1rem;
+}

@@ -1,4 +1,4 @@
-import "./ResultPage.css";
+﻿import "./ResultPage.css";
 
 import ResultCard from "../../components/result/ResultCard/ResultCard";
 
@@ -8,16 +8,10 @@ function ResultPage({
 }) {
   return (
     <main className="result-page">
-      <h1>Ergebnis-Seite</h1>
-
-      <ResultCard losbuchResult={losbuchResult} />
-
-      <button
-        type="button"
-        onClick={onRestart}
-      >
-        Neues Los starten
-      </button>
+      <ResultCard
+        losbuchResult={losbuchResult}
+        onRestart={onRestart}
+      />
     </main>
   );
 }

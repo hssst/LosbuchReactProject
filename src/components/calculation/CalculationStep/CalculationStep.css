@@ -1,0 +1,17 @@
+﻿.calculation-step {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #1e1e1e;
+  background-color: #f5f0e8;
+}
+
+.calculation-step__label {
+  font-weight: bold;
+}
+
+.calculation-step__value {
+  text-align: right;
+}

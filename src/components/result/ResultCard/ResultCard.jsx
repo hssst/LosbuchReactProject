@@ -1,9 +1,11 @@
-import "./ResultCard.css";
+﻿import "./ResultCard.css";
 
-import ResultSummary from "../ResultSummary/ResultSummary";
-import ResultInterpretation from "../ResultInterpretation/ResultInterpretation";
+import ResultFlow from "../ResultFlow/ResultFlow";
 
-function ResultCard({ losbuchResult }) {
+function ResultCard({
+  losbuchResult,
+  onRestart
+}) {
   if (!losbuchResult) {
     return (
       <section className="result-card">
@@ -12,20 +14,26 @@ function ResultCard({ losbuchResult }) {
         <p>
           Starte zuerst einen Losbuch-Durchlauf.
         </p>
+
+        <div className="result-card__section">
+          <button
+            type="button"
+            onClick={onRestart}
+          >
+            Zum Losbuch
+          </button>
+        </div>
       </section>
     );
   }
 
   return (
     <section className="result-card">
-      <h2>Dein Losspruch</h2>
+      <h2>Deine Reise durch das Losbuch</h2>
 
-      <ResultSummary
+      <ResultFlow
         losbuchResult={losbuchResult}
-      />
-
-      <ResultInterpretation
-        result={losbuchResult.result}
+        onRestart={onRestart}
       />
     </section>
   );

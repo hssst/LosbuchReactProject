@@ -1,4 +1,4 @@
-import { calculateNameValue } from "./calculateNameValue";
+﻿import { calculateNameValue } from "./calculateNameValue";
 import { calculatePlanet } from "./calculatePlanet";
 import { calculateResultNumber } from "./calculateResultNumber";
 
@@ -37,6 +37,9 @@ export function getLosbuchResult({
   return {
     question,
     name,
+    weekday,
+    dayPhase,
+    hour,
     planet,
     nameValue,
     planetValue,

@@ -1,0 +1,16 @@
+﻿.name-value-breakdown {
+  margin-top: 1rem;
+  border: 1px solid #1e1e1e;
+  background-color: #ffffff;
+}
+
+.name-value-breakdown__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.name-value-breakdown__row:last-child {
+  border-bottom: none;
+}
