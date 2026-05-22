@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useRef, useState } from "react";
 
 import "./LosbuchPage.css";
 
@@ -16,6 +16,17 @@ function LosbuchPage({ onFinish }) {
   const [hour, setHour] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const errorMessageRef = useRef(null);
+
+  function scrollToErrorMessage() {
+    setTimeout(() => {
+      errorMessageRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 0);
+  }
+
   function handleNameChange(newName) {
     setName(newName);
 
@@ -26,11 +37,13 @@ function LosbuchPage({ onFinish }) {
 
   function handleInvalidCharacter() {
     setErrorMessage("Bitte verwende nur Buchstaben und Leerzeichen.");
+    scrollToErrorMessage();
   }
 
   function handleShowResult() {
     if (name.trim() === "") {
       setErrorMessage("Bitte gib zuerst deinen Namen ein.");
+      scrollToErrorMessage();
       return;
     }
 
@@ -57,12 +70,14 @@ function LosbuchPage({ onFinish }) {
           onSelectQuestion={setSelectedQuestionId}
         />
 
-        <NameInput
-          name={name}
-          onNameChange={handleNameChange}
-          errorMessage={errorMessage}
-          onInvalidCharacter={handleInvalidCharacter}
-        />
+        <div ref={errorMessageRef}>
+          <NameInput
+            name={name}
+            onNameChange={handleNameChange}
+            errorMessage={errorMessage}
+            onInvalidCharacter={handleInvalidCharacter}
+          />
+        </div>
 
         <PlanetHourSelect
           weekday={weekday}

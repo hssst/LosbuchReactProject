@@ -12,6 +12,12 @@ function KingReveal({ losbuchResult }) {
       </h3>
 
       <p>
+        Historisch im Losbuch:
+        {" "}
+        <strong>{losbuchResult.result?.historicalKing}</strong>
+      </p>
+
+      <p>
         Dieser König öffnet den Losspruch für deine Frage.
       </p>
     </section>

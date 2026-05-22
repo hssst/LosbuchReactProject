@@ -1,4 +1,4 @@
-import { letterValues } from "../data/letterValues";
+﻿import { letterValues } from "../data/letters/letterValues";
 import { normalizeName } from "../utils/normalizeName";
 
 export function calculateNameValue(name) {

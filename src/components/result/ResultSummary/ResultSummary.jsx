@@ -1,6 +1,6 @@
 ﻿import "./ResultSummary.css";
 
-import { planetLabels } from "../../../data/planetLabels";
+import { planetLabels } from "../../../data/planets/planetLabels";
 
 function ResultSummary({ losbuchResult }) {
   const planetLabel =

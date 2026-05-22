@@ -1,0 +1,18 @@
+﻿export const pathways = {
+  AE: { 1:{section:7, verse:8}, 2:{section:1, verse:12}, 3:{section:8, verse:10}, 4:{section:6, verse:2}, 5:{section:3, verse:1}, 6:{section:1, verse:1}, 7:{section:6, verse:8}, 8:{section:8, verse:9}, 9:{section:1, verse:2} },
+  AR: { 1:{section:1, verse:10}, 2:{section:7, verse:7}, 3:{section:3, verse:2}, 4:{section:1, verse:9}, 5:{section:6, verse:5}, 6:{section:8, verse:3}, 7:{section:1, verse:11}, 8:{section:6, verse:11}, 9:{section:4, verse:12} },
+  AT: { 1:{section:7, verse:6}, 2:{section:6, verse:3}, 3:{section:1, verse:7}, 4:{section:8, verse:1}, 5:{section:2, verse:2}, 6:{section:1, verse:8}, 7:{section:2, verse:9}, 8:{section:1, verse:6}, 9:{section:3, verse:5} },
+  GT: { 1:{section:3, verse:4}, 2:{section:10, verse:12}, 3:{section:8, verse:4}, 4:{section:10, verse:7}, 5:{section:7, verse:2}, 6:{section:2, verse:12}, 7:{section:6, verse:6}, 8:{section:10, verse:11}, 9:{section:4, verse:11} },
+  AO: { 1:{section:4, verse:4}, 2:{section:10, verse:2}, 3:{section:6, verse:9}, 4:{section:2, verse:11}, 5:{section:1, verse:3}, 6:{section:3, verse:12}, 7:{section:8, verse:5}, 8:{section:6, verse:7}, 9:{section:1, verse:5} },
+  GO: { 1:{section:10, verse:5}, 2:{section:8, verse:2}, 3:{section:4, verse:2}, 4:{section:6, verse:12}, 5:{section:2, verse:10}, 6:{section:10, verse:9}, 7:{section:2, verse:8}, 8:{section:7, verse:12}, 9:{section:10, verse:4} },
+  GE: { 1:{section:1, verse:4}, 2:{section:7, verse:10}, 3:{section:10, verse:8}, 4:{section:6, verse:6}, 5:{section:8, verse:11}, 6:{section:10, verse:3}, 7:{section:4, verse:3}, 8:{section:3, verse:10}, 9:{section:8, verse:7} },
+  BE: { 1:{section:12, verse:8}, 2:{section:8, verse:8}, 3:{section:12, verse:9}, 4:{section:5, verse:4}, 5:{section:9, verse:5}, 6:{section:12, verse:10}, 7:{section:5, verse:8}, 8:{section:9, verse:2}, 9:{section:2, verse:3} },
+  GR: { 1:{section:8, verse:12}, 2:{section:10, verse:10}, 3:{section:6, verse:1}, 4:{section:10, verse:11}, 5:{section:4, verse:1}, 6:{section:7, verse:11}, 7:{section:6, verse:10}, 8:{section:10, verse:1}, 9:{section:6, verse:4} },
+  BR: { 1:{section:4, verse:5}, 2:{section:9, verse:7}, 3:{section:9, verse:6}, 4:{section:12, verse:6}, 5:{section:4, verse:7}, 6:{section:2, verse:5}, 7:{section:12, verse:11}, 8:{section:3, verse:3}, 9:{section:12, verse:7} },
+  BT: { 1:{section:12, verse:2}, 2:{section:5, verse:12}, 3:{section:12, verse:1}, 4:{section:2, verse:6}, 5:{section:9, verse:4}, 6:{section:12, verse:12}, 7:{section:5, verse:9}, 8:{section:9, verse:9}, 9:{section:5, verse:5} },
+  DR: { 1:{section:7, verse:4}, 2:{section:5, verse:10}, 3:{section:3, verse:9}, 4:{section:11, verse:3}, 5:{section:8, verse:6}, 6:{section:11, verse:4}, 7:{section:3, verse:7}, 8:{section:11, verse:5}, 9:{section:9, verse:11} },
+  BO: { 1:{section:3, verse:11}, 2:{section:12, verse:4}, 3:{section:5, verse:7}, 4:{section:9, verse:8}, 5:{section:12, verse:3}, 6:{section:5, verse:3}, 7:{section:9, verse:3}, 8:{section:12, verse:5}, 9:{section:4, verse:9} },
+  DT: { 1:{section:9, verse:1}, 2:{section:11, verse:12}, 3:{section:4, verse:10}, 4:{section:11, verse:11}, 5:{section:3, verse:6}, 6:{section:11, verse:10}, 7:{section:5, verse:1}, 8:{section:7, verse:1}, 9:{section:2, verse:1} },
+  DE: { 1:{section:2, verse:7}, 2:{section:4, verse:6}, 3:{section:7, verse:5}, 4:{section:5, verse:2}, 5:{section:11, verse:6}, 6:{section:9, verse:10}, 7:{section:11, verse:7}, 8:{section:4, verse:8}, 9:{section:11, verse:8} },
+  DO: { 1:{section:5, verse:10}, 2:{section:7, verse:3}, 3:{section:1, verse:9}, 4:{section:9, verse:12}, 5:{section:11, verse:1}, 6:{section:2, verse:4}, 7:{section:11, verse:2}, 8:{section:3, verse:8}, 9:{section:5, verse:6} }
+};

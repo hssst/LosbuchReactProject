@@ -1,6 +1,6 @@
 ﻿import "./NameValueBreakdown.css";
 
-import { letterValues } from "../../../data/letterValues";
+import { letterValues } from "../../../data/letters/letterValues";
 import { normalizeName } from "../../../utils/normalizeName";
 
 function NameValueBreakdown({ name }) {

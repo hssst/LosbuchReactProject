@@ -12,12 +12,11 @@ function JourneyReveal({ losbuchResult }) {
       </h3>
 
       <p>
-        Das Losbuch führt dich weiter durch seine Tafeln.
+        Das Losbuch folgt seiner verborgenen Ordnung und führt dich weiter.
       </p>
 
       <p>
-        Am Ende wartet:{" "}
-        <strong>{losbuchResult.result?.king}</strong>.
+        Hinter den Tafeln wartet die letzte Station deiner Weissagung.
       </p>
     </section>
   );

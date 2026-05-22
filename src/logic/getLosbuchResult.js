@@ -1,11 +1,10 @@
 ﻿import { calculateNameValue } from "./calculateNameValue";
 import { calculatePlanet } from "./calculatePlanet";
 import { calculateResultNumber } from "./calculateResultNumber";
-
-import { planetValues } from "../data/planetValues";
-import { losbuchResults } from "../data/losbuchResults";
-
 import { getQuestionById } from "./getQuestionById";
+import { resolveHistoricalLosbuchResult } from "./resolveHistoricalLosbuchResult";
+
+import { planetValues } from "../data/planets/planetValues";
 
 export function getLosbuchResult({
   questionId,
@@ -31,8 +30,10 @@ export function getLosbuchResult({
     planetValue
   );
 
-  const result =
-    losbuchResults[questionId]?.[resultNumber];
+  const result = resolveHistoricalLosbuchResult(
+    question,
+    resultNumber
+  );
 
   return {
     question,
