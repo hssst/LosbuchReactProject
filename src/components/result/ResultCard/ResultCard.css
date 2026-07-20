@@ -18,3 +18,25 @@
 .result-card__section {
   margin-top: 1.5rem;
 }
+
+.result-back-button {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  background-color: #1e1e1e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.result-back-button:hover {
+  background-color: #444;
+  transform: translateY(-2px);
+}
+
+.result-back-button:active {
+  transform: translateY(0);
+}

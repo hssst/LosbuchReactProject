@@ -6,6 +6,7 @@ function ResultCard({
   losbuchResult,
   onRestart
 }) {
+
   if (!losbuchResult) {
     return (
       <section className="result-card">
@@ -35,6 +36,15 @@ function ResultCard({
         losbuchResult={losbuchResult}
         onRestart={onRestart}
       />
+
+    <button
+      className="result-back-button"
+      type="button"
+      onClick={onRestart}
+    >
+      Zurück zum Losbuch
+    </button>
+
     </section>
   );
 }

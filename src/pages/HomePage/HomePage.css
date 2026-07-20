@@ -50,7 +50,7 @@
 .text_openBook{
   position:absolute;
   left:50%;
-  bottom:20%;
+  bottom:30%;
   transform:translateX(-50%);
   z-index: 2;
   cursor: pointer;
