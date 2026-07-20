@@ -5,7 +5,7 @@ function ResultInterpretation({ result }) {
     return (
       <div className="result-interpretation">
         <p>
-          Für diese Kombination ist noch kein Losspruch eingetragen.
+          Fï¿½r diese Kombination ist noch kein Losspruch eingetragen.
         </p>
       </div>
     );
@@ -14,7 +14,7 @@ function ResultInterpretation({ result }) {
   return (
     <div className="result-interpretation">
       <p>
-        <strong>König:</strong>{" "}
+        <strong>KÃ¶nig:</strong>{" "}
         {result.king}
       </p>
 

@@ -67,6 +67,7 @@ function App() {
       {currentPage === "losbuch" && (
         <LosbuchPage
           onFinish={handleFinish}
+          onGoHome={() => setCurrentPage("home")}
         />
       )}
 

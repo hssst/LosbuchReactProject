@@ -5,7 +5,7 @@ import { questions } from "../../../data/questions/questions";
 function QuestionSelect({ selectedQuestionId, onSelectQuestion }) {
   return (
     <section className="question-select">
-      <h2>Frage ausw�hlen</h2>
+      <h2>Frage auswählen</h2>
 
       {questions.map((question) => (
         <button

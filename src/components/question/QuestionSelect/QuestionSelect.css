@@ -1,5 +1,8 @@
 .question-select {
   margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px 24px; 
 }
 
 .question-select__button {

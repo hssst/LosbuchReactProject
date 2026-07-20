@@ -5,10 +5,12 @@ import "./LosbuchPage.css";
 import QuestionSelect from "../../components/question/QuestionSelect/QuestionSelect";
 import NameInput from "../../components/name/NameInput/NameInput";
 import PlanetHourSelect from "../../components/planet/PlanetHourSelect/PlanetHourSelect";
+import book from "../../assets/LosbuchSeite/book.png";
+import paper from "../../assets/LosbuchSeite/paper.png";
 
 import { getLosbuchResult } from "../../logic/getLosbuchResult";
 
-function LosbuchPage({ onFinish }) {
+function LosbuchPage({ onFinish, onGoHome }) {
   const [selectedQuestionId, setSelectedQuestionId] = useState("thoughts");
   const [name, setName] = useState("");
   const [weekday, setWeekday] = useState("Sonntag");
@@ -62,38 +64,59 @@ function LosbuchPage({ onFinish }) {
 
   return (
     <main className="losbuch-page">
-      <div className="losbuch-page__content">
-        <h1>Losbuch-Seite</h1>
+  
+      <div className="losbuch-page__book">
+        <img className="book" src={book} alt="Losbuch"/>
+  
+        <div className="losbuch-page__left">
+          <QuestionSelect
+            selectedQuestionId={selectedQuestionId}
+            onSelectQuestion={setSelectedQuestionId}
+          />
+  
+        </div>
+  
+  
+        <div className="losbuch-page__right">
 
-        <QuestionSelect
-          selectedQuestionId={selectedQuestionId}
-          onSelectQuestion={setSelectedQuestionId}
-        />
-
-        <div ref={errorMessageRef}>
-          <NameInput
+        <NameInput
             name={name}
             onNameChange={handleNameChange}
             errorMessage={errorMessage}
             onInvalidCharacter={handleInvalidCharacter}
           />
-        </div>
 
-        <PlanetHourSelect
-          weekday={weekday}
-          dayPhase={dayPhase}
-          hour={hour}
-          onWeekdayChange={setWeekday}
-          onDayPhaseChange={setDayPhase}
-          onHourChange={setHour}
-        />
-
-        <div className="losbuch-page__actions">
-          <button type="button" onClick={handleShowResult}>
+          <PlanetHourSelect
+            weekday={weekday}
+            dayPhase={dayPhase}
+            hour={hour}
+            onWeekdayChange={setWeekday}
+            onDayPhaseChange={setDayPhase}
+            onHourChange={setHour}
+          />
+  
+  
+          <button
+            type="button"
+            onClick={handleShowResult}
+            className="losbuch-page__button"
+          >
             Ergebnis anzeigen
           </button>
+  
         </div>
+  
       </div>
+      
+      <img className="paper" src={paper} alt="Papier"/>
+
+      <button
+        className="home-button"
+        onClick={onGoHome}
+      >
+        ← Zur Startseite
+      </button>
+
     </main>
   );
 }

@@ -6,7 +6,7 @@ function Navigation({
   onGoLosbuch,
   onGoResult
 }) {
-  return (
+  /*return (
     <nav className="navigation">
       <button
         type="button"
@@ -32,7 +32,7 @@ function Navigation({
         Ergebnis
       </button>
     </nav>
-  );
+  );*/
 }
 
 export default Navigation;

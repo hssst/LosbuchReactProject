@@ -1,16 +1,98 @@
 .losbuch-page {
-  padding: 2rem;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("../../assets/LosbuchSeite/table.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "PT Serif", serif;
 }
 
-.losbuch-page__content {
-  max-width: 700px;
+.book-image {
+  position: absolute;
+  width: 900px;
+  left: 50%;
+  top: 50%;
+  transform:
+    translate(-50%, -50%);
+  z-index: 0;
 }
 
-.losbuch-page__actions {
-  margin-top: 2rem;
+.losbuch-page__book {
+  position: absolute;
+  width: 1200px;
+  height: 1000px;
+  left: 16%;
 }
 
-.losbuch-page__actions button {
-  padding: 0.5rem 1rem;
+.losbuch-page__left,
+.losbuch-page__right {
+  position: absolute;
+  width: 350px;
+  z-index: 1;
+}
+
+.losbuch-page__left {
+  position: absolute;
+  left: 220px;
+  top: 80px;
+}
+
+.losbuch-page__right {
+  right: 140px;
+  top: 85px;
+}
+
+.losbuch-page__button {
+  margin-top: 40px;
+  background: transparent;
+  border: 2px solid #4b2b18;
+  padding: 12px 30px;
+  font-family: "PT Serif", serif;
+  font-size: 1.2rem;
   cursor: pointer;
+}
+
+.book{
+  width: 1350px;
+}
+
+.paper{
+  position: absolute;
+  top: 0%;
+  right: 0%
+}
+
+.home-button {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  padding: 12px 24px;
+  background: rgba(245, 236, 220, 0.9);
+  border: 2px solid #5f4329;
+  border-radius: 10px;
+  color: #4a2e1d;
+  font-family: "PT Serif", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,.25);
+  z-index: 20;
+}
+
+.home-button:hover {
+  background: #f9f1e2;
+  transform: translateY(-2px);
+}
+
+.home-button:active {
+  transform: translateY(1px);
 }
