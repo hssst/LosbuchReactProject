@@ -1,6 +1,7 @@
 ﻿import { useState } from "react";
 
 import "./App.css";
+import TransitionPage from "./pages/TransitionPage/TransitionPage";
 
 import AppLayout from "./components/layout/AppLayout/AppLayout";
 import Header from "./components/layout/Header/Header";
@@ -13,6 +14,8 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [losbuchResult, setLosbuchResult] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionOut, setTransitionOut] = useState(false);
 
   function handleFinish(result) {
     setLosbuchResult(result);
@@ -24,6 +27,21 @@ function App() {
     setCurrentPage("losbuch");
   }
 
+  function goToLosbuch() {
+    setIsTransitioning(true);
+    setTransitionOut(false);
+  
+    setTimeout(() => {
+      setCurrentPage("losbuch");
+      setTransitionOut(true);
+    }, 8000);
+  
+    setTimeout(() => {
+      setIsTransitioning(false);
+      setTransitionOut(false);
+    }, 9500);
+  }
+
   return (
     <AppLayout>
       <Header />
@@ -31,14 +49,18 @@ function App() {
       <Navigation
         currentPage={currentPage}
         onGoHome={() => setCurrentPage("home")}
-        onGoLosbuch={() => setCurrentPage("losbuch")}
+        onGoLosbuch={goToLosbuch}
         onGoResult={() => setCurrentPage("result")}
       />
+      
+      {isTransitioning && (
+        <TransitionPage transitionOut={transitionOut} />
+    )}
 
       {currentPage === "home" && (
         <HomePage
           onStart={() => setCurrentPage("losbuch")}
-          onGoLosbuch={() => setCurrentPage("losbuch")}
+          onGoLosbuch={goToLosbuch}
         />
       )}
 

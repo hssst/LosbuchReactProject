@@ -1,0 +1,108 @@
+.transition-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .transition-fleck {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+  
+    width: 250px;
+  
+    z-index: 2;
+  
+    animation: fleckGrow 1s ease-out forwards;
+  }
+  
+  
+  @keyframes fleckGrow {
+    from {
+      transform: translateX(-50%) scale(1);
+    }
+    to {
+      transform: translateX(-50%) scale(1.5);
+    }
+  }
+  
+  .transition-black {
+    position: absolute;
+    inset: 0;
+  
+    background: black;
+  
+    clip-path: circle(0% at 50% 100%);
+  
+    animation: expandBlack 2s ease-out 0.8s forwards;
+  
+    z-index: 1;
+  }
+  
+  
+  @keyframes expandBlack {
+  
+    from {
+      clip-path: circle(0% at 50% 100%);
+    }
+    to {
+      clip-path: circle(150% at 50% 100%);
+    }
+  
+  }
+  
+  .text {
+    position: absolute;
+  
+    top: 50%;
+    left: 50%;
+  
+    transform: translate(-50%, -50%);
+  
+    width: 80%;
+    max-width: 800px;
+  
+    color: white;
+  
+    text-align: center;
+  
+    font-family: "PT Serif", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.5;
+  
+    z-index: 3;
+  
+    opacity: 0;
+  
+    animation: textAppear 1s ease forwards;
+    animation-delay: 2s;
+  }
+  
+  
+  @keyframes textAppear {
+  
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  
+  }
+  /* Übergang zur nächsten Seite */
+  .fade-out {
+    animation: fadeOut 1.5s forwards;
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+
+  }
