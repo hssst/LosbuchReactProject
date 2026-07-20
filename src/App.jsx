@@ -38,6 +38,7 @@ function App() {
       {currentPage === "home" && (
         <HomePage
           onStart={() => setCurrentPage("losbuch")}
+          onGoLosbuch={() => setCurrentPage("losbuch")}
         />
       )}
 
