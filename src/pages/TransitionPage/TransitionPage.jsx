@@ -11,8 +11,11 @@ function TransitionPage({ transitionOut }) {
         <div className="transition-black"></div>
 
 
-        <div className="text">Aus Zahlen entstehen Zeichen, aus Zeichen eine Deutung. Im Zusammenspiel von Zeit, 
-            Zufall und den Einflüssen der Planeten offenbart das Geomantie-Losbuch eine Antwort auf deine Frage.</div>
+        <div className="text">Wie die Sterne am Himmel stehen und die Zeiten sich wandeln, 
+                              so wendet der Zufall die Zeichen. Betrachte nicht allein die Zahl,
+                              sondern schaue das Verborgene dahinter. Denn nicht das Buch 
+                              entscheidet dein Schicksal, sondern der Geist, der die Zeichen zu 
+                              deuten weiß.   <p>- Heinrich Cornelius Agrippa.</p></div>
       </div>
     );
   }
