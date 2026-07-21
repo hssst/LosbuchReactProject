@@ -14,9 +14,6 @@ function PageTurnAnimation({ onFinished }) {
   useEffect(() => {
     let isCancelled = false;
 
-    // Falls die Bilder aus irgendeinem Grund nicht rechtzeitig laden,
-    // starten wir die Animation trotzdem nach kurzer Zeit, statt hängen
-    // zu bleiben.
     const safetyTimeout = setTimeout(() => {
       if (!isCancelled) {
         setIsReady(true);

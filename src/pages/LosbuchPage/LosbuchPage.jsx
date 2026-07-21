@@ -108,8 +108,8 @@ function LosbuchPage({ onFinish, onGoHome }) {
   
       </div>
       
-      <img className="paper" src={paper} alt="Papier"/>
-
+      {/*<img className="paper" src={paper} alt="Papier"/>*/}
+      
       <button
         className="home-button"
         onClick={onGoHome}

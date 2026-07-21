@@ -6,6 +6,7 @@ import ResultCard from "../../components/result/ResultCard/ResultCard";
 import PageTurnAnimation from "../../components/PageTurnAnimation/PageTurnAnimation";
 import { preloadPageTurnImages } from "../../utils/preloadPageTurnImages";
 import book from "../../assets/LosbuchSeite/book.png";
+import paper from "../../assets/LosbuchSeite/paper.png";
 
 function ResultPage({
   losbuchResult,
@@ -50,6 +51,8 @@ function ResultPage({
     >
       Zurück zum Losbuch
     </button>
+
+    {/*<img className="paper" src={paper} alt="Papier"/>*/}
 
     </main>
   );
