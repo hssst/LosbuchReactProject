@@ -4,7 +4,11 @@ import ResultFlow from "../ResultFlow/ResultFlow";
 
 function ResultCard({
   losbuchResult,
-  onRestart
+  onRestart,
+  currentStep,
+  setCurrentStep,
+  isTurning,
+  setIsTurning
 }) {
 
   if (!losbuchResult) {
@@ -28,6 +32,10 @@ function ResultCard({
     );
   }
 
+  if (isTurning) {
+    return null;
+  }
+
   return (
     <section className="result-card">
       <h2>Deine Reise durch das Losbuch</h2>
@@ -35,15 +43,11 @@ function ResultCard({
       <ResultFlow
         losbuchResult={losbuchResult}
         onRestart={onRestart}
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        isTurning={isTurning}
+        setIsTurning={setIsTurning}
       />
-
-    <button
-      className="result-back-button"
-      type="button"
-      onClick={onRestart}
-    >
-      Zurück zum Losbuch
-    </button>
 
     </section>
   );

@@ -1,8 +1,4 @@
-﻿import { useState } from "react";
-
-import "./ResultFlow.css";
-
-import PlanetReveal from "../../reveal/PlanetReveal/PlanetReveal";
+﻿import PlanetReveal from "../../reveal/PlanetReveal/PlanetReveal";
 import CalculationView from "../../calculation/CalculationView/CalculationView";
 import JourneyReveal from "../../reveal/JourneyReveal/JourneyReveal";
 import KingReveal from "../../reveal/KingReveal/KingReveal";
@@ -10,11 +6,16 @@ import ResultInterpretation from "../ResultInterpretation/ResultInterpretation";
 import ResultSummary from "../ResultSummary/ResultSummary";
 import ProgressIndicator from "../ProgressIndicator/ProgressIndicator";
 
+import "./ResultFlow.css";
+
 function ResultFlow({
   losbuchResult,
-  onRestart
+  onRestart,
+  currentStep,
+  setCurrentStep,
+  isTurning,
+  setIsTurning
 }) {
-  const [currentStep, setCurrentStep] = useState(0);
 
   const steps = [
     {
@@ -66,7 +67,7 @@ function ResultFlow({
 
   function handleNextStep() {
     if (!isLastStep) {
-      setCurrentStep(currentStep + 1);
+      setIsTurning(true);
     }
   }
 
@@ -77,53 +78,60 @@ function ResultFlow({
   }
 
   return (
-    <div className="result-flow">
-      <ProgressIndicator
-        steps={steps}
-        currentStep={currentStep}
-      />
+    <>
+      {!isTurning && (
+        <div className="result-flow">
+          <ProgressIndicator
+            steps={steps}
+            currentStep={currentStep}
+          />
+          <p className="result-flow__progress">
+            Schritt {currentStep + 1} von {steps.length}
+          </p>
 
-      <p className="result-flow__progress">
-        Schritt {currentStep + 1} von {steps.length}
-      </p>
+          <h3 className="result-flow__title">
+            {currentStepData.title}
+          </h3>
+          
+          <div className="result-flow__content">
+            {currentStepData.content}
+          </div>
+  
+          <div className="result-flow__actions">
+  
+            {currentStep > 0 && (
+              <button
+                type="button"
+                onClick={handlePreviousStep}
+              >
+                Zurück
+              </button>
+            )}
+  
+            {!isLastStep && (
+              <button
+                type="button"
+                onClick={handleNextStep}
+              >
+                {currentStepData.nextButtonLabel}
+              </button>
+            )}
+  
+            {isLastStep && (
+              <button
+                type="button"
+                onClick={onRestart}
+              >
+                Neue Frage stellen
+              </button>
+            )}
 
-      <h3 className="result-flow__title">
-        {currentStepData.title}
-      </h3>
+          </div>
 
-      <div className="result-flow__content">
-        {currentStepData.content}
-      </div>
+        </div>
 
-      <div className="result-flow__actions">
-        {currentStep > 0 && (
-          <button
-            type="button"
-            onClick={handlePreviousStep}
-          >
-            Zurück
-          </button>
-        )}
-
-        {!isLastStep && (
-          <button
-            type="button"
-            onClick={handleNextStep}
-          >
-            {currentStepData.nextButtonLabel}
-          </button>
-        )}
-
-        {isLastStep && (
-          <button
-            type="button"
-            onClick={onRestart}
-          >
-            Neue Frage stellen
-          </button>
-        )}
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
