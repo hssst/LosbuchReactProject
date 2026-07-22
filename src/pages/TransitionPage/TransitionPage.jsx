@@ -15,8 +15,15 @@ function TransitionPage({ transitionOut }) {
                               so wendet der Zufall die Zeichen. Betrachte nicht allein die Zahl,
                               sondern schaue das Verborgene dahinter. Denn nicht das Buch 
                               entscheidet dein Schicksal, sondern der Geist, der die Zeichen zu 
-                              deuten weiß.   <p>- Heinrich Cornelius Agrippa.</p></div>
+                              deuten weiß.   
+        </div>
+
+        <div className="zitat">- Heinrich Cornelius Agrippa von Nettersheim
+        </div>
+
       </div>
+
+      
     );
   }
   

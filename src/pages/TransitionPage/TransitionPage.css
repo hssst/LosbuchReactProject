@@ -17,6 +17,29 @@
   
     animation: fleckGrow 1s ease-out forwards;
   }
+
+  .zitat{
+    font-family: PT Serif;
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    position: absolute;
+    top: 60%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    color: white;
+    text-align: left;
+    z-index: 3;
+  
+    opacity: 0;
+  
+    animation: textAppear 1s ease forwards;
+    animation-delay: 2s;
+  }
   
   
   @keyframes fleckGrow {
