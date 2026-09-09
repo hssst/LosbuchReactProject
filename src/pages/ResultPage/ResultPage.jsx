@@ -14,6 +14,8 @@ import sonne from "../../assets/ResultPage/sonne.png";
 import venus from "../../assets/ResultPage/venus.png";
 import mond from "../../assets/ResultPage/mond.png";
 
+import map from "../../assets/ResultPage/map.svg";
+
 
 const planetImages = {
   Sun: sonne,
@@ -33,11 +35,6 @@ function ResultPage({
 
   const [currentStep, setCurrentStep] = useState(0);
 
-
-  /*
-    Werte aus getLosbuchResult()
-  */
-
   const name =
     losbuchResult?.name ?? "";
 
@@ -54,22 +51,22 @@ function ResultPage({
     planetImages[planetKey];
 
 
-  return (
-    <main className="result-page">
+    return (
+    <main
+      className={`result-page ${
+        currentStep === 1
+          ? "result-page--map"
+          : ""
+      }`}
+    >
 
-      {/* ================================= */}
-      {/* STEP 1                            */}
-      {/* NAME / PLANET / ERGEBNISZAHL      */}
-      {/* ================================= */}
+      {/* ============================== */}
+      {/* STEP 1                         */}
+      {/* ============================== */}
 
       {currentStep === 0 && (
 
         <section className="result-overview">
-
-
-          {/* ============================= */}
-          {/* NAME                          */}
-          {/* ============================= */}
 
           <div className="result-panel result-panel--name">
 
@@ -87,10 +84,6 @@ function ResultPage({
 
           </div>
 
-
-          {/* ============================= */}
-          {/* PLANET                        */}
-          {/* ============================= */}
 
           <div className="result-panel result-panel--planet">
 
@@ -117,14 +110,10 @@ function ResultPage({
           </div>
 
 
-          {/* ============================= */}
-          {/* BERECHNETER WERT              */}
-          {/* ============================= */}
-
           <div className="result-panel result-panel--hour">
 
             <span className="result-panel__title">
-              Deine Ergebniszahl
+              Deine Planetenstunde
             </span>
 
             <div className="result-panel__content">
@@ -137,10 +126,6 @@ function ResultPage({
 
           </div>
 
-
-          {/* ============================= */}
-          {/* WEITER                        */}
-          {/* ============================= */}
 
           <button
             type="button"
@@ -155,25 +140,33 @@ function ResultPage({
       )}
 
 
-      {/* ================================= */}
-      {/* WEITERE RESULT-STEPS              */}
-      {/* ================================= */}
+      {/* ============================== */}
+      {/* STEP 2                         */}
+      {/* ============================== */}
 
-      {currentStep > 0 && (
+      {currentStep === 1 && (
 
-        <ResultCard
-          losbuchResult={losbuchResult}
-          onRestart={onRestart}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-        />
+        <section className="result-map-step">
+
+          <img
+            className="result-map"
+            src={map}
+            alt="Losbuch Karte"
+          />
+
+
+          <button
+            type="button"
+            className="result-map-back-button"
+            onClick={() => setCurrentStep(0)}
+          >
+            ← Zurück
+          </button>
+
+        </section>
 
       )}
 
-
-      {/* ================================= */}
-      {/* ZURÜCK                            */}
-      {/* ================================= */}
 
       <button
         className="result-back-button"

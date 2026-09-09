@@ -505,6 +505,134 @@
     translateY(0);
 }
 
+.result-page--map {
+  background-image:
+    linear-gradient(
+      rgba(8, 6, 5, 0.45),
+      rgba(8, 6, 5, 0.45)
+    ),
+    url("../../assets/LosbuchSeite/background.svg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ======================================== */
+/* STEP 2 - MAP                             */
+/* ======================================== */
+
+.result-map-step {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation:
+    resultMapFadeIn
+    0.8s ease
+    forwards;
+}
+
+
+@keyframes resultMapFadeIn {
+
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+/* ======================================== */
+/* MAP                                      */
+/* ======================================== */
+
+.result-map {
+  display: block;
+
+  width: min(900px, 72vw);
+  height: auto;
+
+  max-height: 76vh;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 12px 22px
+      rgba(0, 0, 0, 0.55)
+    );
+}
+
+.result-map-back-button {
+  position: absolute;
+
+  left: 8%;
+  bottom: 8%;
+
+  padding: 10px 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(92, 59, 31, 0.9),
+      rgba(54, 33, 19, 0.94)
+    );
+
+  border:
+    1px solid
+    rgba(157, 112, 65, 0.85);
+
+  border-radius: 3px;
+
+  color: #f1dfbe;
+
+  font-family: "PT Serif", serif;
+  font-size: 1rem;
+
+  letter-spacing: 0.03em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 8px
+    rgba(0, 0, 0, 0.3),
+
+    inset 0 0 8px
+    rgba(255, 230, 180, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.result-map-back-button:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(205, 157, 96, 0.95);
+
+  box-shadow:
+    0 5px 10px
+    rgba(0, 0, 0, 0.35),
+
+    0 0 9px
+    rgba(220, 170, 95, 0.2);
+}
+
 
 /* ======================================== */
 /* RESPONSIVE                               */
