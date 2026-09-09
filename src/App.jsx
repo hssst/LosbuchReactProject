@@ -16,6 +16,7 @@ function App() {
   const [losbuchResult, setLosbuchResult] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionOut, setTransitionOut] = useState(false);
+  const [homeLeaving, setHomeLeaving] = useState(false);
 
   function handleFinish(result) {
     setLosbuchResult(result);
@@ -28,18 +29,27 @@ function App() {
   }
 
   function goToLosbuch() {
-    setIsTransitioning(true);
-    setTransitionOut(false);
-  
+    // 1. Homepage-Inhalt ausblenden
+    setHomeLeaving(true);
+
+    // 2. Nach dem Fade die Transition anzeigen
+    setTimeout(() => {
+      setIsTransitioning(true);
+      setTransitionOut(false);
+    }, 800);
+
+    // 3. Nach der Transition Losbuch anzeigen
     setTimeout(() => {
       setCurrentPage("losbuch");
       setTransitionOut(true);
-    }, 8000);
-  
+    }, 8800);
+
+    // 4. Transition vollständig entfernen
     setTimeout(() => {
       setIsTransitioning(false);
       setTransitionOut(false);
-    }, 9500);
+      setHomeLeaving(false);
+    }, 10300);
   }
 
   return (
@@ -61,6 +71,7 @@ function App() {
         <HomePage
           onStart={() => setCurrentPage("losbuch")}
           onGoLosbuch={goToLosbuch}
+          isLeaving={homeLeaving}
         />
       )}
 

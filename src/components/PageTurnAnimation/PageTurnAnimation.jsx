@@ -2,64 +2,90 @@ import { useEffect, useState } from "react";
 
 import "./PageTurnAnimation.css";
 
-import {
-  pageTurnImages as pages,
-  preloadPageTurnImages
-} from "../../utils/preloadPageTurnImages";
+import page1 from "../../assets/Buchseiten/Buchseite1.png";
+import page2 from "../../assets/Buchseiten/Buchseite2.png";
+import page3 from "../../assets/Buchseiten/Buchseite3.png";
+import page4 from "../../assets/Buchseiten/Buchseite4.png";
+import page5 from "../../assets/Buchseiten/Buchseite5.png";
+import page6 from "../../assets/Buchseiten/Buchseite6.png";
+import page7 from "../../assets/Buchseiten/Buchseite7.png";
+
+
+const frames = [
+  page1,
+  page2,
+  page3,
+  page4,
+  page5,
+  page6,
+  page7
+];
+
 
 function PageTurnAnimation({ onFinished }) {
-  const [currentFrame, setCurrentFrame] = useState(0);
-  const [isReady, setIsReady] = useState(false);
+
+  const [frameIndex, setFrameIndex] = useState(0);
+
 
   useEffect(() => {
-    let isCancelled = false;
 
-    const safetyTimeout = setTimeout(() => {
-      if (!isCancelled) {
-        setIsReady(true);
-      }
-    }, 400);
+    /*
+      Geschwindigkeit pro Bild.
 
-    preloadPageTurnImages().then(() => {
-      if (!isCancelled) {
-        clearTimeout(safetyTimeout);
-        setIsReady(true);
-      }
-    });
+      150 ms × 7 Bilder
+      = ungefähr 1 Sekunde Animation
+    */
+    const FRAME_DURATION = 150;
+
+
+    const timer = setInterval(() => {
+
+      setFrameIndex((currentFrame) => {
+
+        /*
+          Letztes Bild erreicht
+        */
+        if (currentFrame >= frames.length - 1) {
+
+          clearInterval(timer);
+
+          /*
+            Letzten Frame noch kurz sichtbar lassen
+          */
+          setTimeout(() => {
+            onFinished?.();
+          }, FRAME_DURATION);
+
+          return currentFrame;
+        }
+
+
+        return currentFrame + 1;
+
+      });
+
+    }, FRAME_DURATION);
+
 
     return () => {
-      isCancelled = true;
-      clearTimeout(safetyTimeout);
+      clearInterval(timer);
     };
-  }, []);
 
-  useEffect(() => {
-    if (!isReady) {
-      return;
-    }
+  }, [onFinished]);
 
-    if (currentFrame >= pages.length - 1) {
-      const timeout = setTimeout(() => {
-        onFinished();
-      }, 120);
-      return () => clearTimeout(timeout);
-    }
-
-    const timeout = setTimeout(() => {
-      setCurrentFrame(currentFrame + 1);
-    }, 110);
-    return () => clearTimeout(timeout);
-  }, [currentFrame, isReady, onFinished]);
 
   return (
     <div className="page-turn-animation">
+
       <img
-        src={pages[currentFrame]}
+        className="page-turn-animation__image"
+        src={frames[frameIndex]}
         alt=""
-        className="page-turn-image"
       />
+
     </div>
   );
 }
+
 
 export default PageTurnAnimation;

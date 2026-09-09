@@ -1,15 +1,138 @@
 .name-input {
-  margin-top: 2rem;
+  width: 100%;
+
+  margin: 0 0 38px 0;
+
+  color: #342216;
+
+  font-family: "PT Serif", serif;
 }
 
-.name-input input {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  width: 250px;
+
+/* ========================= */
+/* ÜBERSCHRIFT               */
+/* ========================= */
+
+.name-input__title {
+  margin: 0 0 18px 0;
+
+  color: #382519;
+
+  font-family: "PT Serif", serif;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
 }
+
+
+/* ========================= */
+/* EINGABEBEREICH            */
+/* ========================= */
+
+.name-input__field-wrapper {
+  position: relative;
+  width: 90%;
+}
+
+
+/* ========================= */
+/* INPUT                     */
+/* ========================= */
+
+.name-input__field {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  padding:
+    9px 5px 8px 5px;
+
+  background:
+    transparent;
+
+  border: none;
+
+  border-bottom:
+    1.5px solid
+    rgba(76, 47, 27, 0.72);
+
+  border-radius: 0;
+
+  outline: none;
+
+  color: #2d1d13;
+
+  font-family: "PT Serif", serif;
+
+  font-size: 1.05rem;
+
+  letter-spacing: 0.02em;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* ========================= */
+/* PLACEHOLDER               */
+/* ========================= */
+
+.name-input__field::placeholder {
+  color:
+    rgba(73, 48, 31, 0.46);
+
+  font-style: italic;
+}
+
+
+/* ========================= */
+/* HOVER                     */
+/* ========================= */
+
+.name-input__field:hover {
+  border-bottom-color:
+    #6f4528;
+}
+
+
+/* ========================= */
+/* FOKUS                     */
+/* ========================= */
+
+.name-input__field:focus {
+  border-bottom-color:
+    #4d2e1a;
+
+  box-shadow:
+    0 4px 5px -5px
+    rgba(67, 38, 18, 0.85);
+}
+
+
+/* ========================= */
+/* FEHLERMELDUNG             */
+/* ========================= */
 
 .name-input__error {
-  margin-top: 0.5rem;
-  color: darkred;
-  font-weight: bold;
+  margin:
+    9px 0 0 0;
+
+  color:
+    #79291f;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    0.84rem;
+
+  font-weight:
+    600;
+
+  font-style:
+    italic;
 }

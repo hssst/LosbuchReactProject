@@ -6,9 +6,13 @@ function NameInput({
   errorMessage,
   onInvalidCharacter
 }) {
+
   function handleChange(event) {
+
     const newValue = event.target.value;
-    const allowedPattern = /^[a-zA-Z‰ˆ¸ƒ÷‹ﬂ\s]*$/;
+
+    const allowedPattern =
+      /^[a-zA-Z√§√∂√º√Ñ√ñ√ú√ü\s]*$/;
 
     if (allowedPattern.test(newValue)) {
       onNameChange(newValue);
@@ -18,22 +22,34 @@ function NameInput({
     onInvalidCharacter();
   }
 
+
   return (
     <section className="name-input">
-      <h2>Name eingeben</h2>
 
-      <input
-        type="text"
-        placeholder="Dein Name"
-        value={name}
-        onChange={handleChange}
-      />
+      <h2 className="name-input__title">
+        Wie lautet dein Name?
+      </h2>
+
+      <div className="name-input__field-wrapper">
+
+        <input
+          className="name-input__field"
+          type="text"
+          placeholder="Dein Name"
+          value={name}
+          onChange={handleChange}
+          autoComplete="off"
+        />
+
+      </div>
+
 
       {errorMessage && (
         <p className="name-input__error">
           {errorMessage}
         </p>
       )}
+
     </section>
   );
 }

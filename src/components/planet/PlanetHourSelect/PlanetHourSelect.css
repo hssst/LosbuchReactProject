@@ -1,15 +1,186 @@
 .planet-hour-select {
-  margin-top: 2rem;
+  width: 100%;
+
+  margin-top: 30px;
+
+  color: #342216;
+
+  font-family: "PT Serif", serif;
 }
 
-.planet-hour-select label {
-  display: block;
-  margin-top: 1rem;
+
+/* ========================= */
+/* ÜBERSCHRIFT               */
+/* ========================= */
+
+.planet-hour-select__title {
+  margin: 0 0 22px 0;
+
+  color: #382519;
+
+  font-family: "PT Serif", serif;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
 }
+
+
+/* ========================= */
+/* EINZELNE ZEILE            */
+/* ========================= */
+
+.planet-hour-select__field {
+  display: grid;
+
+  grid-template-columns: 95px 180px;
+
+  align-items: center;
+
+  column-gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+
+/* ========================= */
+/* BESCHRIFTUNG              */
+/* ========================= */
+
+.planet-hour-select__field label {
+  color: #47301f;
+
+  font-family: "PT Serif", serif;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  letter-spacing: 0.01em;
+}
+
+
+/* ========================= */
+/* SELECT WRAPPER            */
+/* ========================= */
+
+.planet-hour-select__select-wrapper {
+  position: relative;
+
+  width: 180px;
+}
+
+
+/* eigener Pfeil */
+
+.planet-hour-select__select-wrapper::after {
+  content: "▼";
+
+  position: absolute;
+
+  right: 11px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #604024;
+
+  font-size: 0.58rem;
+
+  pointer-events: none;
+}
+
+
+/* ========================= */
+/* SELECT                    */
+/* ========================= */
 
 .planet-hour-select select {
-  display: block;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  width: 250px;
+  box-sizing: border-box;
+
+  width: 100%;
+
+  padding:
+    8px 30px
+    8px 11px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(241, 218, 174, 0.42),
+      rgba(189, 145, 88, 0.18)
+    );
+
+  border:
+    1px solid
+    rgba(83, 52, 29, 0.6);
+
+  border-radius: 2px;
+
+  outline: none;
+
+  color: #302016;
+
+  font-family: "PT Serif", serif;
+
+  font-size: 0.92rem;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 8px
+    rgba(255, 241, 210, 0.15);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* ========================= */
+/* HOVER                     */
+/* ========================= */
+
+.planet-hour-select select:hover {
+  border-color: #79502e;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(247, 225, 181, 0.52),
+      rgba(198, 153, 91, 0.24)
+    );
+}
+
+
+/* ========================= */
+/* FOKUS                     */
+/* ========================= */
+
+.planet-hour-select select:focus {
+  border-color: #4d2e1a;
+
+  box-shadow:
+    inset 0 0 8px
+    rgba(255, 241, 210, 0.16),
+
+    0 0 5px
+    rgba(91, 53, 27, 0.2);
+}
+
+
+/* ========================= */
+/* DROPDOWN OPTIONEN         */
+/* ========================= */
+
+.planet-hour-select option {
+  background: #e3c995;
+
+  color: #302016;
+
+  font-family: "PT Serif", serif;
 }

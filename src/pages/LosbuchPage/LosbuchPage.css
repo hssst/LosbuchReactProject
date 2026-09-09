@@ -1,98 +1,837 @@
 .losbuch-page {
-  height: 100vh;
+  position: relative;
+
   width: 100vw;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: url("../../assets/LosbuchSeite/table.png");
+  height: 100vh;
+
+  overflow: hidden;
+
+  background-image:
+    url("../../assets/LosbuchSeite/background.svg");
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   font-family: "PT Serif", serif;
 }
 
-.book-image {
+
+/* Hintergrund abdunkeln */
+
+.losbuch-page::before {
+  content: "";
+
   position: absolute;
-  width: 900px;
-  left: 50%;
-  top: 50%;
-  transform:
-    translate(-50%, -50%);
+
+  inset: 0;
+
+  background:
+    rgba(8, 6, 5, 0.84);
+
+  pointer-events: none;
+
   z-index: 0;
 }
 
-.losbuch-page__book {
-  position: absolute;
-  width: 1200px;
-  height: 1000px;
-  left: 16%;
-}
 
-.losbuch-page__left,
-.losbuch-page__right {
-  position: absolute;
-  width: 350px;
+/* ========================= */
+/* BUCH                      */
+/* ========================= */
+
+.losbuch-page__book {
+  position: relative;
+
+  width: min(1350px, 88vw);
+
+  flex-shrink: 0;
+
   z-index: 1;
 }
 
-.losbuch-page__left {
-  position: absolute;
-  left: 220px;
-  top: 80px;
+
+.book {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  z-index: 1;
+
+  filter:
+    brightness(0.97)
+    sepia(0.18)
+    saturate(1.18)
+    drop-shadow(
+      0 12px 22px
+      rgba(0, 0, 0, 0.65)
+    );
 }
 
-.losbuch-page__right {
-  right: 140px;
-  top: 85px;
+
+/* ========================= */
+/* KERZENLICHT               */
+/* ========================= */
+
+.losbuch-page__candle-light {
+  position: absolute;
+
+  width: 115%;
+  height: 120%;
+
+  left: -7%;
+  top: -10%;
+
+  background:
+    radial-gradient(
+      ellipse at 33% 61%,
+      rgba(255, 225, 160, 0.23) 0%,
+      rgba(255, 177, 88, 0.10) 34%,
+      rgba(255, 128, 50, 0.035) 53%,
+      transparent 68%
+    ),
+
+    radial-gradient(
+      ellipse at 48% 48%,
+      rgba(255, 238, 190, 0.10) 0%,
+      rgba(255, 184, 95, 0.04) 32%,
+      transparent 58%
+    );
+
+  filter: blur(22px);
+
+  mix-blend-mode: screen;
+
+  pointer-events: none;
+
+  z-index: 60;
+
+  animation:
+    candleLight 3.2s ease-in-out infinite;
 }
+
+@keyframes candleLight {
+
+  0% {
+    opacity: 0.78;
+
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  18% {
+    opacity: 0.9;
+
+    transform:
+      translate(3px, -2px)
+      scale(1.01);
+  }
+
+  32% {
+    opacity: 0.74;
+
+    transform:
+      translate(-2px, 1px)
+      scale(0.995);
+  }
+
+  48% {
+    opacity: 0.96;
+
+    transform:
+      translate(2px, 2px)
+      scale(1.015);
+  }
+
+  63% {
+    opacity: 0.82;
+
+    transform:
+      translate(-3px, -1px)
+      scale(1.005);
+  }
+
+  79% {
+    opacity: 0.92;
+
+    transform:
+      translate(1px, -2px)
+      scale(1.01);
+  }
+
+  100% {
+    opacity: 0.78;
+
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+}
+
+
+/* ========================= */
+/* FRAGEN                    */
+/* ========================= */
+
+.losbuch-page__questions {
+  position: absolute;
+
+  left: 17%;
+  right: 17%;
+
+  top: 12%;
+  bottom: 10%;
+
+  width: auto;
+
+  z-index: 5;
+
+  transition:
+    opacity 0.2s ease;
+}
+
+
+.losbuch-page__content--turning {
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* ========================= */
+/* WEITERBLÄTTERN            */
+/* ========================= */
+
+.losbuch-page__next-button {
+  display: block;
+
+  width: fit-content;
+
+  /* Position auf der rechten Buchseite */
+  margin-top: 35px;
+  margin-left: 600px;
+  margin-right: 18%;
+
+  padding: 10px 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(92, 59, 31, 0.9),
+      rgba(54, 33, 19, 0.94)
+    );
+
+  border: 1px solid rgba(157, 112, 65, 0.85);
+  border-radius: 3px;
+
+  color: #f1dfbe;
+
+  font-family: "PT Serif", serif;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 0 8px rgba(255, 230, 180, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.losbuch-page__next-button:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(205, 157, 96, 0.95);
+
+  box-shadow:
+    0 5px 10px rgba(0, 0, 0, 0.35),
+    0 0 9px rgba(220, 170, 95, 0.2);
+}
+
+/* ========================= */
+/* ZURÜCKBLÄTTERN            */
+/* ========================= */
+
+.losbuch-page__previous-button {
+  position: absolute;
+
+  /* unterer Bereich der linken Buchseite */
+  left: 23%;
+  bottom: 24%;
+
+  transform: translateX(-50%);
+
+  padding: 10px 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(92, 59, 31, 0.9),
+      rgba(54, 33, 19, 0.94)
+    );
+
+  border:
+    1px solid rgba(157, 112, 65, 0.85);
+
+  border-radius: 3px;
+
+  color: #f1dfbe;
+
+  font-family: "PT Serif", serif;
+  font-size: 1rem;
+
+  letter-spacing: 0.03em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 0 8px rgba(255, 230, 180, 0.08);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.losbuch-page__previous-button:hover {
+  border-color:
+    rgba(205, 157, 96, 0.95);
+
+  box-shadow:
+    0 5px 10px rgba(0, 0, 0, 0.35),
+    0 0 9px rgba(220, 170, 95, 0.2);
+}
+
+/* ========================= */
+/* DETAILS                   */
+/* ========================= */
+
+.losbuch-page__details {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  animation:
+    detailsAppear 0.45s ease forwards;
+}
+
+
+@keyframes detailsAppear {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+.losbuch-page__details-left {
+  position: absolute;
+
+  left: 16%;
+  top: 16%;
+
+  width: 30%;
+}
+
+
+.losbuch-page__details-right {
+  position: absolute;
+
+  left: 56%;
+  top: 14%;
+
+  width: 29%;
+}
+
+
+/* ========================= */
+/* DETAIL-TEXT               */
+/* ========================= */
+
+.losbuch-page__detail-intro {
+  color: #362317;
+}
+
+
+.losbuch-page__detail-intro h2 {
+  margin:
+    0 0 18px;
+
+  font-size:
+    1.7rem;
+
+  font-weight: 700;
+}
+
+
+.losbuch-page__detail-intro p {
+  margin: 0;
+
+  font-size:
+    1rem;
+
+  line-height:
+    1.65;
+}
+
+/* ========================= */
+/* ERGEBNIS ANZEIGEN         */
+/* ========================= */
 
 .losbuch-page__button {
-  margin-top: 40px;
-  background: transparent;
-  border: 2px solid #4b2b18;
-  padding: 12px 30px;
-  font-family: "PT Serif", serif;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.book{
-  width: 1350px;
-}
-
-.paper{
   position: absolute;
-  top: 0%;
-  right: 0%
+
+  /* unten rechts auf der rechten Buchseite */
+  right: 12%;
+  bottom: -86%;
+
+  width: fit-content;
+
+  padding: 10px 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(92, 59, 31, 0.9),
+      rgba(54, 33, 19, 0.94)
+    );
+
+  border:
+    1px solid rgba(157, 112, 65, 0.85);
+
+  border-radius: 3px;
+
+  color: #f1dfbe;
+
+  font-family: "PT Serif", serif;
+  font-size: 1rem;
+
+  letter-spacing: 0.03em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 0 8px rgba(255, 230, 180, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  z-index: 10;
 }
+
+
+/* ========================= */
+/* HOVER                     */
+/* ========================= */
+
+.losbuch-page__button:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(205, 157, 96, 0.95);
+
+  box-shadow:
+    0 5px 10px rgba(0, 0, 0, 0.35),
+    0 0 9px rgba(220, 170, 95, 0.2);
+}
+
+
+/* ========================= */
+/* KLICK                     */
+/* ========================= */
+
+.losbuch-page__button:active {
+  transform: translateY(0);
+}
+
+
+/* ========================= */
+/* STARTSEITE BUTTON         */
+/* ========================= */
 
 .home-button {
   position: absolute;
-  top: 40px;
-  left: 40px;
-  padding: 12px 24px;
-  background: rgba(245, 236, 220, 0.9);
-  border: 2px solid #5f4329;
-  border-radius: 10px;
-  color: #4a2e1d;
-  font-family: "PT Serif", serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
+
+  top: 38px;
+  left: 38px;
+
+  padding:
+    10px 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(42, 31, 25, 0.92),
+      rgba(24, 18, 16, 0.95)
+    );
+
+  border:
+    1px solid
+    rgba(201, 169, 112, 0.65);
+
+  border-radius:
+    4px;
+
+  color:
+    #eadfca;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.03em;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 3px 10px
+      rgba(0, 0, 0, 0.45),
+
+    inset 0 0 8px
+      rgba(255, 235, 190, 0.06);
+
+  text-shadow:
+    0 0 5px
+      rgba(255, 230, 180, 0.18);
+
   transition:
     transform 0.2s ease,
-    background-color 0.2s ease,
-    box-shadow 0.2s ease;
-  box-shadow: 0 3px 10px rgba(0,0,0,.25);
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+
+  z-index: 30;
+}
+
+
+.home-button:hover {
+  transform:
+    translateY(-2px);
+
+  color:
+    #fff3d8;
+
+  border-color:
+    rgba(232, 204, 151, 0.95);
+
+  box-shadow:
+    0 5px 14px
+      rgba(0, 0, 0, 0.5),
+
+    0 0 10px
+      rgba(232, 204, 151, 0.18),
+
+    inset 0 0 10px
+      rgba(255, 235, 190, 0.08);
+}
+
+
+.home-button:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ========================= */
+/* KLEINERE BILDSCHIRME      */
+/* ========================= */
+
+@media (max-width: 1200px) {
+
+  .losbuch-page__book {
+    width: 94vw;
+  }
+
+}
+
+/* ======================================== */
+/* ATMOSPHÄRE: RAUCH / NEBEL                */
+/* ======================================== */
+
+.losbuch-page__smoke {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
   z-index: 20;
 }
 
-.home-button:hover {
-  background: #f9f1e2;
-  transform: translateY(-2px);
+
+.smoke {
+  position: absolute;
+
+  width: 650px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(145, 137, 126, 0.09) 0%,
+      rgba(105, 100, 94, 0.05) 40%,
+      transparent 72%
+    );
+
+  filter: blur(45px);
+
+  opacity: 0;
 }
 
-.home-button:active {
-  transform: translateY(1px);
+
+/* Nebel 1 */
+
+.smoke--1 {
+  left: -500px;
+  top: 15%;
+
+  animation:
+    smokeDrift 18s linear infinite;
+}
+
+
+/* Nebel 2 */
+
+.smoke--2 {
+  left: -700px;
+  top: 48%;
+
+  animation:
+    smokeDrift 24s linear 6s infinite;
+}
+
+
+/* Nebel 3 */
+
+.smoke--3 {
+  left: -600px;
+  top: 70%;
+
+  animation:
+    smokeDrift 21s linear 12s infinite;
+}
+
+
+@keyframes smokeDrift {
+
+  0% {
+    transform:
+      translateX(0)
+      translateY(30px)
+      scale(0.8);
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.6;
+  }
+
+  50% {
+    transform:
+      translateX(110vw)
+      translateY(-30px)
+      scale(1.15);
+
+    opacity: 0.45;
+  }
+
+  85% {
+    opacity: 0.35;
+  }
+
+  100% {
+    transform:
+      translateX(calc(100vw + 800px))
+      translateY(-80px)
+      scale(1.35);
+
+    opacity: 0;
+  }
+}
+
+/* ======================================== */
+/* RUSSPARTIKEL                             */
+/* ======================================== */
+
+.losbuch-page__particles {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 21;
+}
+
+
+.soot {
+  position: absolute;
+
+  left: -20px;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(20, 17, 14, 0.7);
+
+  filter: blur(0.4px);
+
+  opacity: 0;
+
+  animation:
+    sootDrift 14s linear infinite;
+}
+
+
+@keyframes sootDrift {
+
+  0% {
+    transform:
+      translateX(-30px)
+      translateY(0);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.65;
+  }
+
+  35% {
+    transform:
+      translateX(35vw)
+      translateY(-35px);
+  }
+
+  65% {
+    transform:
+      translateX(70vw)
+      translateY(20px);
+
+    opacity: 0.45;
+  }
+
+  90% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform:
+      translateX(105vw)
+      translateY(-50px);
+
+    opacity: 0;
+  }
+}
+
+.soot--1 {
+  top: 12%;
+  animation-duration: 13s;
+  animation-delay: -2s;
+}
+
+.soot--2 {
+  top: 23%;
+  width: 3px;
+  height: 3px;
+  animation-duration: 17s;
+  animation-delay: -8s;
+}
+
+.soot--3 {
+  top: 37%;
+  width: 5px;
+  height: 5px;
+  animation-duration: 19s;
+  animation-delay: -4s;
+}
+
+.soot--4 {
+  top: 52%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 12s;
+  animation-delay: -7s;
+}
+
+.soot--5 {
+  top: 68%;
+  animation-duration: 16s;
+  animation-delay: -11s;
+}
+
+.soot--6 {
+  top: 81%;
+  width: 3px;
+  height: 3px;
+  animation-duration: 20s;
+  animation-delay: -3s;
+}
+
+.soot--7 {
+  top: 44%;
+  width: 6px;
+  height: 6px;
+  animation-duration: 22s;
+  animation-delay: -15s;
+}
+
+.soot--8 {
+  top: 75%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 15s;
+  animation-delay: -5s;
+}
+
+.soot--9 {
+  top: 30%;
+  width: 3px;
+  height: 3px;
+  animation-duration: 18s;
+  animation-delay: -13s;
+}
+
+.soot--10 {
+  top: 59%;
+  width: 4px;
+  height: 4px;
+  animation-duration: 21s;
+  animation-delay: -9s;
 }

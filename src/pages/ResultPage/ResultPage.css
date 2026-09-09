@@ -1,61 +1,541 @@
+/* ======================================== */
+/* RESULT PAGE                              */
+/* ======================================== */
+
 .result-page {
-  height: 100vh;
+  position: relative;
+
   width: 100vw;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: url("../../assets/LosbuchSeite/table.png");
+  height: 100vh;
+
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(
+      rgba(12, 8, 16, 0.42),
+      rgba(12, 8, 16, 0.42)
+    ),
+    url("../../assets/HomePage/background.svg");
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: #1a141f;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   font-family: "PT Serif", serif;
 }
 
-.result-back-button {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  padding: 12px 24px;
-  background: rgba(245, 236, 220, 0.9);
-  border: 2px solid #5f4329;
-  border-radius: 10px;
-  color: #4a2e1d;
-  font-family: "PT Serif", serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
+
+/* ======================================== */
+/* DREI RESULT-SPALTEN                      */
+/* ======================================== */
+
+.result-overview {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 32px;
+
+  width: min(1180px, 86vw);
+
+  height: 65vh;
+}
+
+
+/* ======================================== */
+/* EINZELNE KARTE                           */
+/* ======================================== */
+
+.result-panel {
+  position: relative;
+
+  min-width: 0;
+
+  padding:
+    28px 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  border:
+    1px solid
+    rgba(224, 215, 198, 0.68);
+
+  background:
+    rgba(15, 12, 20, 0.16);
+
+  box-shadow:
+    0 0 8px
+    rgba(255, 241, 215, 0.22),
+
+    inset 0 0 14px
+    rgba(255, 241, 215, 0.04);
+
+  opacity: 0;
+
+  transform:
+    translateY(15px);
+
+  animation:
+    resultFadeIn
+    0.9s ease
+    forwards;
+}
+
+
+/* ======================================== */
+/* ZEITVERSETZTES EINBLENDEN                */
+/* ======================================== */
+
+.result-panel--name {
+  animation-delay:
+    0.2s;
+}
+
+.result-panel--planet {
+  animation-delay:
+    0.75s;
+}
+
+.result-panel--hour {
+  animation-delay:
+    1.3s;
+}
+
+
+@keyframes resultFadeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* ======================================== */
+/* ÜBERSCHRIFT                              */
+/* ======================================== */
+
+.result-panel__title {
+  color:
+    rgba(239, 228, 211, 0.9);
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    0.9rem;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.08em;
+
+  text-align:
+    center;
+}
+
+
+/* ======================================== */
+/* MITTLERER INHALT                         */
+/* ======================================== */
+
+.result-panel__content {
+  flex: 1;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* ======================================== */
+/* NAME                                     */
+/* ======================================== */
+
+.result-name {
+  color:
+    #f4e8cc;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    clamp(2rem, 3vw, 3.4rem);
+
+  font-weight:
+    700;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.04em;
+
+  text-align:
+    center;
+
+  text-shadow:
+    0 0 8px
+    rgba(255, 228, 174, 0.35);
+}
+
+
+/* ======================================== */
+/* PLANET                                   */
+/* ======================================== */
+
+.result-planet {
+  width:
+    min(78%, 270px);
+
+  height:
+    auto;
+
+  object-fit:
+    contain;
+
+  filter:
+    drop-shadow(
+      0 0 20px
+      rgba(225, 127, 78, 0.45)
+    );
+
+  animation:
+    planetFloat
+    5s ease-in-out
+    infinite;
+}
+
+
+@keyframes planetFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-7px);
+  }
+
+}
+
+
+.result-planet__name {
+  margin-bottom:
+    5px;
+
+  color:
+    #f4e8cc;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    1.35rem;
+
+  font-weight:
+    700;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.06em;
+
+  text-shadow:
+    0 0 8px
+    rgba(255, 228, 174, 0.28);
+}
+
+
+/* ======================================== */
+/* ERGEBNISZAHL                             */
+/* ======================================== */
+
+.result-hour {
+  color:
+    #f4e8cc;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    clamp(6rem, 11vw, 10rem);
+
+  font-weight:
+    700;
+
+  line-height:
+    1;
+
+  text-shadow:
+    0 0 15px
+    rgba(255, 231, 184, 0.32);
+}
+
+
+/* ======================================== */
+/* WEITER                                   */
+/* ======================================== */
+
+.result-next-button {
+  position:
+    absolute;
+
+  right:
+    0;
+
+  bottom:
+    -70px;
+
+  padding:
+    10px 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(92, 59, 31, 0.9),
+      rgba(54, 33, 19, 0.94)
+    );
+
+  border:
+    1px solid
+    rgba(157, 112, 65, 0.85);
+
+  border-radius:
+    3px;
+
+  color:
+    #f1dfbe;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    1rem;
+
+  letter-spacing:
+    0.03em;
+
+  cursor:
+    pointer;
+
+  opacity:
+    0;
+
+  animation:
+    resultButtonFadeIn
+    0.7s ease
+    2s forwards;
+
+  box-shadow:
+    0 3px 8px
+    rgba(0, 0, 0, 0.3),
+
+    inset 0 0 8px
+    rgba(255, 230, 180, 0.08);
+
   transition:
     transform 0.2s ease,
-    background-color 0.2s ease,
+    border-color 0.2s ease,
     box-shadow 0.2s ease;
-  box-shadow: 0 3px 10px rgba(0,0,0,.25);
-  z-index: 20;
 }
+
+
+@keyframes resultButtonFadeIn {
+
+  from {
+    opacity:
+      0;
+  }
+
+  to {
+    opacity:
+      1;
+  }
+
+}
+
+
+.result-next-button:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(205, 157, 96, 0.95);
+
+  box-shadow:
+    0 5px 10px
+    rgba(0, 0, 0, 0.35),
+
+    0 0 9px
+    rgba(220, 170, 95, 0.2);
+}
+
+
+.result-next-button:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ======================================== */
+/* ZURÜCK ZUM LOSBUCH                       */
+/* ======================================== */
+
+.result-back-button {
+  position:
+    absolute;
+
+  top:
+    38px;
+
+  left:
+    38px;
+
+  padding:
+    10px 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(42, 31, 25, 0.92),
+      rgba(24, 18, 16, 0.95)
+    );
+
+  border:
+    1px solid
+    rgba(201, 169, 112, 0.65);
+
+  border-radius:
+    4px;
+
+  color:
+    #eadfca;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.03em;
+
+  cursor:
+    pointer;
+
+  z-index:
+    30;
+
+  box-shadow:
+    0 3px 10px
+    rgba(0, 0, 0, 0.45),
+
+    inset 0 0 8px
+    rgba(255, 235, 190, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
 
 .result-back-button:hover {
-  background: #f9f1e2;
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
+
+  color:
+    #fff3d8;
+
+  border-color:
+    rgba(232, 204, 151, 0.95);
+
+  box-shadow:
+    0 5px 14px
+    rgba(0, 0, 0, 0.5),
+
+    0 0 10px
+    rgba(232, 204, 151, 0.18);
 }
+
 
 .result-back-button:active {
-  transform: translateY(1px);
+  transform:
+    translateY(0);
 }
 
-.result-page__book {
-  position: absolute;
-  width: 1350px;
-  height: 938px;
-  left: 16%;
-}
 
-.result-page__book-image {
-  display: block;
-  width: 100%;
-}
+/* ======================================== */
+/* RESPONSIVE                               */
+/* ======================================== */
 
-.paper{
-  position: absolute;
-  top: 0%;
-  right: 0%
+@media (max-width: 1000px) {
+
+  .result-overview {
+    width:
+      92vw;
+
+    gap:
+      18px;
+  }
+
+
+  .result-panel {
+    padding:
+      22px 16px;
+  }
+
+
+  .result-panel__title {
+    font-size:
+      0.75rem;
+  }
+
+
+  .result-planet {
+    width:
+      min(80%, 220px);
+  }
+
 }
