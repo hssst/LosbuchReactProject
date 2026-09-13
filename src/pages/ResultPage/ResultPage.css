@@ -1,7 +1,3 @@
-/* ======================================== */
-/* RESULT PAGE                              */
-/* ======================================== */
-
 .result-page {
   position: relative;
 
@@ -30,11 +26,6 @@
   font-family: "PT Serif", serif;
 }
 
-
-/* ======================================== */
-/* DREI RESULT-SPALTEN                      */
-/* ======================================== */
-
 .result-overview {
   position: relative;
 
@@ -49,11 +40,6 @@
 
   height: 65vh;
 }
-
-
-/* ======================================== */
-/* EINZELNE KARTE                           */
-/* ======================================== */
 
 .result-panel {
   position: relative;
@@ -93,10 +79,7 @@
     forwards;
 }
 
-
-/* ======================================== */
-/* ZEITVERSETZTES EINBLENDEN                */
-/* ======================================== */
+/* ZEITVERSETZTES EINBLENDEN */
 
 .result-panel--name {
   animation-delay:
@@ -113,7 +96,6 @@
     1.3s;
 }
 
-
 @keyframes resultFadeIn {
 
   from {
@@ -129,13 +111,7 @@
     transform:
       translateY(0);
   }
-
 }
-
-
-/* ======================================== */
-/* ÜBERSCHRIFT                              */
-/* ======================================== */
 
 .result-panel__title {
   color:
@@ -158,11 +134,6 @@
     center;
 }
 
-
-/* ======================================== */
-/* MITTLERER INHALT                         */
-/* ======================================== */
-
 .result-panel__content {
   flex: 1;
 
@@ -174,10 +145,7 @@
   align-items: center;
 }
 
-
-/* ======================================== */
-/* NAME                                     */
-/* ======================================== */
+/* NAME */
 
 .result-name {
   color:
@@ -207,10 +175,7 @@
     rgba(255, 228, 174, 0.35);
 }
 
-
-/* ======================================== */
-/* PLANET                                   */
-/* ======================================== */
+/* PLANET */
 
 .result-planet {
   width:
@@ -234,7 +199,6 @@
     infinite;
 }
 
-
 @keyframes planetFloat {
 
   0%,
@@ -247,7 +211,6 @@
     transform:
       translateY(-7px);
   }
-
 }
 
 
@@ -279,10 +242,7 @@
     rgba(255, 228, 174, 0.28);
 }
 
-
-/* ======================================== */
-/* ERGEBNISZAHL                             */
-/* ======================================== */
+/* ERGEBNISZAHL */
 
 .result-hour {
   color:
@@ -306,10 +266,7 @@
     rgba(255, 231, 184, 0.32);
 }
 
-
-/* ======================================== */
-/* WEITER                                   */
-/* ======================================== */
+/* WEITER */
 
 .result-next-button {
   position: absolute;
@@ -337,7 +294,6 @@
     transform 0.2s ease;
 }
 
-
 .result-next-button__image {
   display: block;
 
@@ -347,13 +303,11 @@
   pointer-events: none;
 }
 
-
 .result-next-button:hover {
   transform:
     translateY(-2px)
     scale(1.03);
 }
-
 
 .result-next-button:active {
   transform:
@@ -476,9 +430,7 @@
   background-repeat: no-repeat;
 }
 
-/* ======================================== */
-/* STEP 2 - MAP                             */
-/* ======================================== */
+/* STEP 2 - MAP */
 
 .result-map-step {
   position: relative;
@@ -496,7 +448,6 @@
     forwards;
 }
 
-
 @keyframes resultMapFadeIn {
 
   from {
@@ -508,12 +459,9 @@
     opacity: 1;
     transform: scale(1);
   }
-
 }
 
-/* ======================================== */
-/* MAP-STAGE                                */
-/* ======================================== */
+/* MAP-STAGE */
 
 .result-map-stage {
   position: relative;
@@ -521,9 +469,7 @@
   width: min(1050px, 82vw);
 }
 
-/* ======================================== */
-/* MAP                                      */
-/* ======================================== */
+/* MAP */
 
 .result-map {
   position: relative;
@@ -542,9 +488,7 @@
     );
 }
 
-/* ======================================== */
 /* KARTEN LINKS                             */
-/* ======================================== */
 
 .result-map-cards {
   position: absolute;
@@ -557,10 +501,7 @@
   z-index: 10;
 }
 
-
-/* ======================================== */
-/* NAMENSKARTE                              */
-/* ======================================== */
+/* NAMENSKARTE */
 
 .result-name-card {
   position: absolute;
@@ -572,7 +513,6 @@
 
   z-index: 2;
 }
-
 
 .result-name-card__image {
   display: block;
@@ -627,9 +567,7 @@
   z-index: 3;
 }
 
-/* ======================================== */
-/* PLANETENKARTE                            */
-/* ======================================== */
+/* PLANETENKARTE */
 
 .result-planet-card {
   position: absolute;
@@ -693,9 +631,7 @@
   transform: translateY(0) scale(0.98);
 }
 
-/* ======================================== */
-/* FRAGEKARTE                               */
-/* ======================================== */
+/* FRAGEKARTE */
 
 .result-question-card {
   position: absolute;
@@ -713,7 +649,6 @@
     questionCardAppear 0.6s ease-out 1s forwards;
 }
 
-
 .result-question-card__image {
   display: block;
 
@@ -730,7 +665,6 @@
       rgba(0, 0, 0, 0.45)
     );
 }
-
 
 /* Text auf der Karte */
 
@@ -779,10 +713,251 @@
   }
 }
 
+/* ROUTE AUF DER MAP */
 
-/* ======================================== */
-/* RESPONSIVE                               */
-/* ======================================== */
+.result-route {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 8;
+
+  pointer-events: none;
+
+  overflow: visible;
+}
+
+/* Sichtbare gepunktete Linie */
+
+.result-route__dots {
+  fill: none;
+
+  stroke: rgba(234, 14, 14, 0.9);
+
+  stroke-width: 4;
+
+  stroke-linecap: round;
+
+  stroke-dasharray: 8 9;
+}
+
+/* Unsichtbare "Wischlinie", die den Pfad freigibt */
+
+.result-route__reveal--1 {
+  fill: none;
+
+  stroke: white;
+
+  stroke-width: 14;
+
+  stroke-linecap: round;
+
+  stroke-dasharray: 100;
+
+  stroke-dashoffset: 100;
+
+  animation:
+    routeReveal
+    1.8s
+    ease-in-out
+    1.8s
+    forwards;
+}
+
+.result-route__reveal--2 {
+  fill: none;
+
+  stroke: white;
+
+  stroke-width: 14;
+
+  stroke-linecap: round;
+
+  stroke-dasharray: 100;
+
+  stroke-dashoffset: 100;
+
+  animation:
+    routeReveal
+    1.8s
+    ease-in-out
+    4.5s
+    forwards;
+}
+
+@keyframes routeReveal {
+
+  from {
+    stroke-dashoffset: 100;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* PLANETENSTUNDENKARTE */
+
+.result-planet-hour-card {
+  position: absolute;
+
+  left: 41%;
+  top: -7%;
+
+  width: 17%;
+
+  z-index: 12;
+
+  opacity: 0;
+
+  transform:
+    translateY(-10px)
+    scale(0.96);
+
+  animation:
+    planetHourCardAppear
+    0.6s
+    ease-out
+    3.7s
+    forwards;
+}
+
+.result-planet-hour-card__image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 7px 8px
+      rgba(0, 0, 0, 0.45)
+    );
+}
+
+.result-planet-hour-card__value {
+  position: absolute;
+
+  left: 50%;
+  top: 46%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 65%;
+
+  color: #392719;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    clamp(
+      1.5rem,
+      2.5vw,
+      2.5rem
+    );
+
+  font-weight: 700;
+
+  text-align: center;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+@keyframes planetHourCardAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-10px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* KÖNIGSKARTE */
+
+.result-king-card {
+  position: absolute;
+
+  right: 2%;
+  top: 10%;
+
+  width: 17%;
+
+  z-index: 12;
+
+  opacity: 0;
+
+  transform:
+    translateY(-10px)
+    scale(0.96);
+
+  animation:
+    kingCardAppear
+    0.6s
+    ease-out
+    6.4s
+    forwards;
+}
+
+.result-king-card__image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 7px 8px
+      rgba(0, 0, 0, 0.45)
+    );
+}
+
+@keyframes kingCardAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-10px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* RESPONSIVE */
 
 @media (max-width: 1000px) {
 
@@ -794,22 +969,18 @@
       18px;
   }
 
-
   .result-panel {
     padding:
       22px 16px;
   }
-
 
   .result-panel__title {
     font-size:
       0.75rem;
   }
 
-
   .result-planet {
     width:
       min(80%, 220px);
   }
-
 }

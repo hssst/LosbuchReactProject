@@ -3,6 +3,7 @@
 import "./ResultPage.css";
 
 import { planetLabels } from "../../data/planets/planetLabels";
+import { kings } from "../../data/kings/kings";
 
 import jupiter from "../../assets/ResultPage/jupiter.png";
 import mars from "../../assets/ResultPage/mars.png";
@@ -14,6 +15,8 @@ import mond from "../../assets/ResultPage/mond.png";
 
 import nameKarte from "../../assets/Tarotkarten/nameKarte.png";
 import frageKarte from "../../assets/Tarotkarten/frageKarte.png";
+import planetenStundeKarte
+  from "../../assets/Tarotkarten/planetenStundeKarte.png";
 
 import jupiterKarte from "../../assets/PlanetKarten/jupiterKarte.png";
 import marsKarte from "../../assets/PlanetKarten/marsKarte.png";
@@ -22,6 +25,23 @@ import mondKarte from "../../assets/PlanetKarten/mondKarte.png";
 import saturnKarte from "../../assets/PlanetKarten/saturnKarte.png";
 import sonneKarte from "../../assets/PlanetKarten/sonneKarte.png";
 import venusKarte from "../../assets/PlanetKarten/venusKarte.png";
+
+import armenienKing from "../../assets/KoenigKarten/armenienKing.png";
+import babylonKing from "../../assets/KoenigKarten/babylonKing.png";
+import deutschlandKing from "../../assets/KoenigKarten/deutschlandKing.png";
+import englandKing from "../../assets/KoenigKarten/englandKing.png";
+import frankreichKing from "../../assets/KoenigKarten/frankreichKing.png";
+import indienKing from "../../assets/KoenigKarten/indienKing.png";
+import kappadokienKing from "../../assets/KoenigKarten/kappadokienKing.png";
+import libyenKing from "../../assets/KoenigKarten/libyenKing.png";
+import nubienKing from "../../assets/KoenigKarten/nubienKing.png";
+import polenKing from "../../assets/KoenigKarten/polenKing.png";
+import schottlandKing from "../../assets/KoenigKarten/schottlandKing.png";
+import schwedenKing from "../../assets/KoenigKarten/schwedenKing.png";
+import sizilienKing from "../../assets/KoenigKarten/sizilienKing.png";
+import tatarenKing from "../../assets/KoenigKarten/tatarenKing.png";
+import tuerkeiKing from "../../assets/KoenigKarten/tuerkeiKing.png";
+import zypernKing from "../../assets/KoenigKarten/zypernKing.png";
 
 import weiterButton from "../../assets/Buttons/weiterButton.png";
 import zurueckButton from "../../assets/Buttons/zurueckButton.png";
@@ -49,132 +69,163 @@ const planetCardImages = {
   Saturn: saturnKarte
 };
 
+const kingCardImages = {
+  turkish: tuerkeiKing,
+  polish: polenKing,
+  india: indienKing,
+  england: englandKing,
+  scotland: schottlandKing,
+  armenia: armenienKing,
+  nubia: nubienKing,
+  cyprus: zypernKing,
+  babylon: babylonKing,
+  libya: libyenKing,
+  france: frankreichKing,
+  tartars: tatarenKing,
+  sicily: sizilienKing,
+  cappadocia: kappadokienKing,
+  german: deutschlandKing,
+  sweden: schwedenKing
+};
+
 
 function ResultPage({
   losbuchResult,
   onRestart
 }) {
 
-  const [currentStep, setCurrentStep] = useState(0);
+const [currentStep, setCurrentStep] = useState(0);
 
-  const name =
-    losbuchResult?.name ?? "";
+const name =
+  losbuchResult?.name ?? "";
 
-  const planetKey =
-    losbuchResult?.planet ?? "";
+const planetKey =
+  losbuchResult?.planet ?? "";
 
-  const planetLabel =
-    planetLabels[planetKey] ?? planetKey;
+const planetLabel =
+  planetLabels[planetKey] ?? planetKey;
 
-  const resultNumber =
-    losbuchResult?.resultNumber ?? "";
+const resultNumber =
+  losbuchResult?.resultNumber ?? "";
 
-  const planetImage =
-    planetImages[planetKey];
+const planetImage =
+  planetImages[planetKey];
 
-  const planetCardImage =
-    planetCardImages[planetKey];
+const planetCardImage =
+  planetCardImages[planetKey];
 
-  const questionText =
-    losbuchResult?.question?.modernText ?? "";
+const questionText =
+  losbuchResult?.question?.modernText ?? "";
 
-    return (
-    <main
-      className={`result-page ${
-        currentStep === 1
-          ? "result-page--map"
-          : ""
-      }`}
-    >
+const kingId =
+  losbuchResult?.result?.route?.kingId ?? "";
 
-      {/* ============================== */}
-      {/* STEP 1                         */}
-      {/* ============================== */}
+const assignedKing =
+  kings.find((king) => king.id === kingId);
 
-      {currentStep === 0 && (
+const kingCardImage =
+  assignedKing
+    ? kingCardImages[assignedKing.id]
+    : null;
 
-        <section className="result-overview">
+console.log("KING DEBUG", {
+  kingId,
+  assignedKing,
+  kingCardImage,
+  result: losbuchResult?.result
+});
 
-          <div className="result-panel result-panel--name">
+return (
+  <main
+    className={`result-page ${
+    currentStep === 1
+    ? "result-page--map"
+    : ""
+    }`}
+  >
 
-            <span className="result-panel__title">
-              Dein Name
-            </span>
+  {/* STEP 1 */}
 
-            <div className="result-panel__content">
+    {currentStep === 0 && (
 
-              <span className="result-name">
-                {name}
-              </span>
+      <section className="result-overview">
 
-            </div>
+        <div className="result-panel result-panel--name">
 
-          </div>
+          <span className="result-panel__title">
+            Dein Name
+          </span>
 
+          <div className="result-panel__content">
 
-          <div className="result-panel result-panel--planet">
-
-            <span className="result-panel__title">
-              Dein Planet
-            </span>
-
-            <div className="result-panel__content">
-
-              {planetImage && (
-                <img
-                  className="result-planet"
-                  src={planetImage}
-                  alt={planetLabel}
-                />
-              )}
-
-            </div>
-
-            <span className="result-planet__name">
-              {planetLabel}
+            <span className="result-name">
+              {name}
             </span>
 
           </div>
 
+        </div>
 
-          <div className="result-panel result-panel--hour">
 
-            <span className="result-panel__title">
-              Deine Planetenstunde
+        <div className="result-panel result-panel--planet">
+
+          <span className="result-panel__title">
+            Dein Planet
+          </span>
+
+        <div className="result-panel__content">
+
+          {planetImage && (
+            <img
+              className="result-planet"
+              src={planetImage}
+              alt={planetLabel}
+            />
+          )}
+
+        </div>
+
+          <span className="result-planet__name">
+            {planetLabel}
+          </span>
+
+        </div>
+
+
+        <div className="result-panel result-panel--hour">
+
+          <span className="result-panel__title">
+            Deine Planetenstunde
+          </span>
+
+          <div className="result-panel__content">
+
+            <span className="result-hour">
+              {resultNumber}
             </span>
-
-            <div className="result-panel__content">
-
-              <span className="result-hour">
-                {resultNumber}
-              </span>
-
-            </div>
 
           </div>
 
+        </div>
 
-          <button
-            type="button"
-            className="result-next-button"
-            onClick={() => setCurrentStep(1)}
-            aria-label="Weiter"
-          >
+
+        <button
+          type="button"
+          className="result-next-button"
+          onClick={() => setCurrentStep(1)}
+          aria-label="Weiter"
+        >
           <img
             src={weiterButton}
             alt="Weiter-Button"
             className="result-next-button__image"
           />
-          </button>
+        </button>
 
-        </section>
-
+      </section>
       )}
 
-
-      {/* ============================== */}
-      {/* STEP 2                         */}
-      {/* ============================== */}
+      {/* STEP 2 */}
 
       {currentStep === 1 && (
 
@@ -189,7 +240,6 @@ function ResultPage({
               src={map}
               alt="Losbuch Karte"
             />
-
 
             {/* KARTEN LINKS */}
 
@@ -210,7 +260,6 @@ function ResultPage({
                 </span>
 
               </div>
-
 
               {/* PLANETENKARTE */}
 
@@ -242,8 +291,126 @@ function ResultPage({
 
             </div>
 
-          </div>
+             {/* PLANETENSTUNDENKARTE */}
 
+            <div className="result-planet-hour-card">
+
+              <img
+                src={planetenStundeKarte}
+                alt=""
+                className="result-planet-hour-card__image"
+              />
+
+              <span className="result-planet-hour-card__value">
+                {resultNumber}
+              </span>
+
+            </div>
+
+            {kingCardImage && (
+
+            <div className="result-king-card">
+
+              <img
+                src={kingCardImage}
+                alt={assignedKing?.modernName ?? "König"}
+                className="result-king-card__image"
+              />
+
+            </div>
+
+            )}
+
+            {/* animierter Pfad */}
+
+            <svg
+              className="result-route"
+              viewBox="0 0 1000 560"
+              aria-hidden="true"
+            >
+              <defs>
+
+                <mask id="routeMask1">
+
+                  <path
+                    className="result-route__reveal result-route__reveal--1"
+                    pathLength="100"
+                    d="
+                      M 155 305
+                      C 175 315,
+                        205 315,
+                        250 296
+                      C 300 280,
+                        335 250,
+                        395 220
+                      C 430 212,
+                        455 215,
+                        475 215
+                    "
+                  />
+
+                </mask>
+
+                <mask id="routeMask2">
+
+                  <path
+                    className="result-route__reveal result-route__reveal--2"
+                    pathLength="100"
+                    d="
+                      M 535 215
+                      C 565 215,
+                        615 235,
+                        665 270
+                      C 710 305,
+                        730 330,
+                        785 338
+                      C 825 344,
+                        865 340,
+                        865 338
+                    "
+                  />
+
+                </mask>
+
+              </defs>
+
+              <path
+                className="result-route__dots"
+                mask="url(#routeMask1)"
+                d="
+                  M 155 305
+                  C 175 315,
+                    205 315,
+                    250 296
+                  C 300 280,
+                    335 250,
+                    395 220
+                  C 430 212,
+                    455 215,
+                    475 215
+                "
+              />
+
+               <path
+                className="result-route__dots"
+                mask="url(#routeMask2)"
+                d="
+                  M 500 215
+                  C 565 215,
+                    615 235,
+                    665 270
+                  C 710 305,
+                    730 330,
+                    785 338
+                  C 825 344,
+                    865 340,
+                    900 328
+                "
+              />
+
+            </svg>
+
+          </div>
 
           <button
             type="button"
