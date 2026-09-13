@@ -312,106 +312,64 @@
 /* ======================================== */
 
 .result-next-button {
-  position:
-    absolute;
+  position: absolute;
 
-  right:
-    0;
+  right: 0;
+  bottom: -70px;
 
-  bottom:
-    -70px;
+  width: 180px;
 
-  padding:
-    10px 28px;
+  padding: 0;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(92, 59, 31, 0.9),
-      rgba(54, 33, 19, 0.94)
-    );
+  background: none;
+  border: none;
 
-  border:
-    1px solid
-    rgba(157, 112, 65, 0.85);
+  cursor: pointer;
 
-  border-radius:
-    3px;
-
-  color:
-    #f1dfbe;
-
-  font-family:
-    "PT Serif",
-    serif;
-
-  font-size:
-    1rem;
-
-  letter-spacing:
-    0.03em;
-
-  cursor:
-    pointer;
-
-  opacity:
-    0;
+  opacity: 0;
 
   animation:
     resultButtonFadeIn
     0.7s ease
     2s forwards;
 
-  box-shadow:
-    0 3px 8px
-    rgba(0, 0, 0, 0.3),
-
-    inset 0 0 8px
-    rgba(255, 230, 180, 0.08);
-
   transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.2s ease;
 }
 
 
-@keyframes resultButtonFadeIn {
+.result-next-button__image {
+  display: block;
 
-  from {
-    opacity:
-      0;
-  }
+  width: 100%;
+  height: auto;
 
-  to {
-    opacity:
-      1;
-  }
-
+  pointer-events: none;
 }
 
 
 .result-next-button:hover {
   transform:
-    translateY(-2px);
-
-  border-color:
-    rgba(205, 157, 96, 0.95);
-
-  box-shadow:
-    0 5px 10px
-    rgba(0, 0, 0, 0.35),
-
-    0 0 9px
-    rgba(220, 170, 95, 0.2);
+    translateY(-2px)
+    scale(1.03);
 }
 
 
 .result-next-button:active {
   transform:
-    translateY(0);
+    translateY(0)
+    scale(0.98);
 }
 
+@keyframes resultButtonFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 
 /* ======================================== */
 /* ZURÜCK ZUM LOSBUCH                       */
@@ -553,20 +511,29 @@
 
 }
 
+/* ======================================== */
+/* MAP-STAGE                                */
+/* ======================================== */
+
+.result-map-stage {
+  position: relative;
+
+  width: min(1050px, 82vw);
+}
 
 /* ======================================== */
 /* MAP                                      */
 /* ======================================== */
 
 .result-map {
+  position: relative;
+
   display: block;
 
-  width: min(900px, 72vw);
+  width: 100%;
   height: auto;
 
-  max-height: 76vh;
-
-  object-fit: contain;
+  z-index: 1;
 
   filter:
     drop-shadow(
@@ -575,62 +542,241 @@
     );
 }
 
-.result-map-back-button {
+/* ======================================== */
+/* KARTEN LINKS                             */
+/* ======================================== */
+
+.result-map-cards {
   position: absolute;
 
-  left: 8%;
-  bottom: 8%;
+  left: -13%;
+  top: 21%;
 
-  padding: 10px 28px;
+  width: 17%;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(92, 59, 31, 0.9),
-      rgba(54, 33, 19, 0.94)
-    );
-
-  border:
-    1px solid
-    rgba(157, 112, 65, 0.85);
-
-  border-radius: 3px;
-
-  color: #f1dfbe;
-
-  font-family: "PT Serif", serif;
-  font-size: 1rem;
-
-  letter-spacing: 0.03em;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 3px 8px
-    rgba(0, 0, 0, 0.3),
-
-    inset 0 0 8px
-    rgba(255, 230, 180, 0.08);
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  z-index: 10;
 }
 
 
+/* ======================================== */
+/* NAMENSKARTE                              */
+/* ======================================== */
+
+.result-name-card {
+  position: absolute;
+
+  left: -45%;
+  top: -20px;
+
+  width: 100%;
+
+  z-index: 2;
+}
+
+
+.result-name-card__image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  user-select: none;
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 7px 8px
+      rgba(0, 0, 0, 0.45)
+    );
+}
+
+.result-name-card__name {
+  position: absolute;
+
+  left: 50%;
+  top: 35.5%;
+
+  transform:
+    translateX(-50%);
+
+  width: 72%;
+
+  color: #392719;
+
+  font-family:
+    "PT Serif",
+    serif;
+
+  font-size:
+    clamp(0.7rem, 1.1vw, 1rem);
+
+  font-weight: 700;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  z-index: 3;
+}
+
+/* ======================================== */
+/* PLANETENKARTE                            */
+/* ======================================== */
+
+.result-planet-card {
+  position: absolute;
+
+  width: 100%;
+
+  left: -45%;
+  top: 180px;
+ 
+
+  z-index: 3;
+
+  user-select: none;
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 7px 8px
+      rgba(0, 0, 0, 0.45)
+    );
+}
+
+.result-map-back-button {
+  position: absolute;
+
+  left: 4%;
+  bottom: 8%;
+
+  width: 180px;
+
+  padding: 0;
+  margin: 0;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+  z-index: 30;
+
+  transition: transform 0.2s ease;
+}
+
+.result-map-back-button__image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .result-map-back-button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
+}
 
-  border-color:
-    rgba(205, 157, 96, 0.95);
+.result-map-back-button:active {
+  transform: translateY(0) scale(0.98);
+}
 
-  box-shadow:
-    0 5px 10px
-    rgba(0, 0, 0, 0.35),
+/* ======================================== */
+/* FRAGEKARTE                               */
+/* ======================================== */
 
-    0 0 9px
-    rgba(220, 170, 95, 0.2);
+.result-question-card {
+  position: absolute;
+
+  left: 4%;
+  top: 7%;
+
+  width: 17%;
+
+  z-index: 12;
+
+  opacity: 0;
+
+  animation:
+    questionCardAppear 0.6s ease-out 1s forwards;
+}
+
+
+.result-question-card__image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 7px 8px
+      rgba(0, 0, 0, 0.45)
+    );
+}
+
+
+/* Text auf der Karte */
+
+.result-question-card__text {
+  position: absolute;
+
+  left: 50%;
+  top: 38.5%;
+
+  transform: translateX(-50%);
+
+  width: 65%;
+
+  color: #392719;
+
+  font-family: "PT Serif", serif;
+
+  font-size: clamp(
+    0.55rem,
+    0.8vw,
+    0.82rem
+  );
+
+  font-weight: 600;
+
+  line-height: 1.1;
+
+  text-align: center;
+
+  z-index: 2;
+}
+
+@keyframes questionCardAppear {
+  from {
+    opacity: 0;
+    transform:
+      translateY(-10px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
 }
 
 

@@ -116,6 +116,7 @@
     candleLight 3.2s ease-in-out infinite;
 }
 
+
 @keyframes candleLight {
 
   0% {
@@ -212,51 +213,44 @@
 .losbuch-page__next-button {
   display: block;
 
-  width: fit-content;
+  width: 180px;
 
-  /* Position auf der rechten Buchseite */
-  margin-top: 35px;
-  margin-left: 600px;
-  margin-right: 18%;
+  margin-top: 10%;
+  margin-left: auto;
+  right: 6%;
 
-  padding: 10px 28px;
+  padding: 0;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(92, 59, 31, 0.9),
-      rgba(54, 33, 19, 0.94)
-    );
-
-  border: 1px solid rgba(157, 112, 65, 0.85);
-  border-radius: 3px;
-
-  color: #f1dfbe;
-
-  font-family: "PT Serif", serif;
-  font-size: 1rem;
-  letter-spacing: 0.03em;
+  background: none;
+  border: none;
 
   cursor: pointer;
 
-  box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.3),
-    inset 0 0 8px rgba(255, 230, 180, 0.08);
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
+
+.losbuch-page__next-button-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+}
+
+
 .losbuch-page__next-button:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px)
+    scale(1.03);
+}
 
-  border-color: rgba(205, 157, 96, 0.95);
 
-  box-shadow:
-    0 5px 10px rgba(0, 0, 0, 0.35),
-    0 0 9px rgba(220, 170, 95, 0.2);
+.losbuch-page__next-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
 }
 
 /* ========================= */
@@ -266,53 +260,104 @@
 .losbuch-page__previous-button {
   position: absolute;
 
-  /* unterer Bereich der linken Buchseite */
-  left: 23%;
-  bottom: 24%;
+  left: 17%;
+  bottom: 24.5%;
 
-  transform: translateX(-50%);
+  width: 180px;
 
-  padding: 10px 28px;
+  padding: 0;
+  margin: 0;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(92, 59, 31, 0.9),
-      rgba(54, 33, 19, 0.94)
-    );
-
-  border:
-    1px solid rgba(157, 112, 65, 0.85);
-
-  border-radius: 3px;
-
-  color: #f1dfbe;
-
-  font-family: "PT Serif", serif;
-  font-size: 1rem;
-
-  letter-spacing: 0.03em;
+  background: none;
+  border: none;
 
   cursor: pointer;
 
-  box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.3),
-    inset 0 0 8px rgba(255, 230, 180, 0.08);
+  z-index: 10;
 
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
+}
+
+
+.losbuch-page__previous-button-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 
 .losbuch-page__previous-button:hover {
-  border-color:
-    rgba(205, 157, 96, 0.95);
-
-  box-shadow:
-    0 5px 10px rgba(0, 0, 0, 0.35),
-    0 0 9px rgba(220, 170, 95, 0.2);
+  transform:
+    translateY(-2px)
+    scale(1.03);
 }
+
+
+.losbuch-page__previous-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+
+/* ========================= */
+/* PLANETENSTUNDE BESTIMMEN  */
+/* ========================= */
+
+.losbuch-page__result-button {
+  position: absolute;
+
+  right: 6%;
+  bottom: -85%;
+
+  width: 200px;
+
+  padding: 0;
+  margin: 0;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  transition:
+    transform 0.2s ease;
+}
+
+
+.losbuch-page__result-button-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+
+.losbuch-page__result-button:hover {
+  transform:
+    translateY(-2px)
+    scale(1.03);
+}
+
+
+.losbuch-page__result-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
 
 /* ========================= */
 /* DETAILS                   */
@@ -390,79 +435,6 @@
 
   line-height:
     1.65;
-}
-
-/* ========================= */
-/* ERGEBNIS ANZEIGEN         */
-/* ========================= */
-
-.losbuch-page__button {
-  position: absolute;
-
-  /* unten rechts auf der rechten Buchseite */
-  right: 12%;
-  bottom: -86%;
-
-  width: fit-content;
-
-  padding: 10px 28px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(92, 59, 31, 0.9),
-      rgba(54, 33, 19, 0.94)
-    );
-
-  border:
-    1px solid rgba(157, 112, 65, 0.85);
-
-  border-radius: 3px;
-
-  color: #f1dfbe;
-
-  font-family: "PT Serif", serif;
-  font-size: 1rem;
-
-  letter-spacing: 0.03em;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.3),
-    inset 0 0 8px rgba(255, 230, 180, 0.08);
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-
-  z-index: 10;
-}
-
-
-/* ========================= */
-/* HOVER                     */
-/* ========================= */
-
-.losbuch-page__button:hover {
-  transform: translateY(-2px);
-
-  border-color:
-    rgba(205, 157, 96, 0.95);
-
-  box-shadow:
-    0 5px 10px rgba(0, 0, 0, 0.35),
-    0 0 9px rgba(220, 170, 95, 0.2);
-}
-
-
-/* ========================= */
-/* KLICK                     */
-/* ========================= */
-
-.losbuch-page__button:active {
-  transform: translateY(0);
 }
 
 
@@ -573,12 +545,14 @@
 
 }
 
+
 /* ======================================== */
 /* ATMOSPHÄRE: RAUCH / NEBEL                */
 /* ======================================== */
 
 .losbuch-page__smoke {
   position: absolute;
+
   inset: 0;
 
   overflow: hidden;
@@ -682,12 +656,14 @@
   }
 }
 
+
 /* ======================================== */
 /* RUSSPARTIKEL                             */
 /* ======================================== */
 
 .losbuch-page__particles {
   position: absolute;
+
   inset: 0;
 
   overflow: hidden;
@@ -708,9 +684,11 @@
 
   border-radius: 50%;
 
-  background: rgba(20, 17, 14, 0.7);
+  background:
+    rgba(20, 17, 14, 0.7);
 
-  filter: blur(0.4px);
+  filter:
+    blur(0.4px);
 
   opacity: 0;
 
@@ -760,78 +738,106 @@
   }
 }
 
+
 .soot--1 {
   top: 12%;
+
   animation-duration: 13s;
   animation-delay: -2s;
 }
 
+
 .soot--2 {
   top: 23%;
+
   width: 3px;
   height: 3px;
+
   animation-duration: 17s;
   animation-delay: -8s;
 }
 
+
 .soot--3 {
   top: 37%;
+
   width: 5px;
   height: 5px;
+
   animation-duration: 19s;
   animation-delay: -4s;
 }
 
+
 .soot--4 {
   top: 52%;
+
   width: 2px;
   height: 2px;
+
   animation-duration: 12s;
   animation-delay: -7s;
 }
 
+
 .soot--5 {
   top: 68%;
+
   animation-duration: 16s;
   animation-delay: -11s;
 }
 
+
 .soot--6 {
   top: 81%;
+
   width: 3px;
   height: 3px;
+
   animation-duration: 20s;
   animation-delay: -3s;
 }
 
+
 .soot--7 {
   top: 44%;
+
   width: 6px;
   height: 6px;
+
   animation-duration: 22s;
   animation-delay: -15s;
 }
 
+
 .soot--8 {
   top: 75%;
+
   width: 2px;
   height: 2px;
+
   animation-duration: 15s;
   animation-delay: -5s;
 }
 
+
 .soot--9 {
   top: 30%;
+
   width: 3px;
   height: 3px;
+
   animation-duration: 18s;
   animation-delay: -13s;
 }
 
+
 .soot--10 {
   top: 59%;
+
   width: 4px;
   height: 4px;
+
   animation-duration: 21s;
   animation-delay: -9s;
 }

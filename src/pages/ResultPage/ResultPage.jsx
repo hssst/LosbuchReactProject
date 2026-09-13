@@ -2,8 +2,6 @@
 
 import "./ResultPage.css";
 
-import ResultCard from "../../components/result/ResultCard/ResultCard";
-
 import { planetLabels } from "../../data/planets/planetLabels";
 
 import jupiter from "../../assets/ResultPage/jupiter.png";
@@ -13,6 +11,20 @@ import saturn from "../../assets/ResultPage/saturn.png";
 import sonne from "../../assets/ResultPage/sonne.png";
 import venus from "../../assets/ResultPage/venus.png";
 import mond from "../../assets/ResultPage/mond.png";
+
+import nameKarte from "../../assets/Tarotkarten/nameKarte.png";
+import frageKarte from "../../assets/Tarotkarten/frageKarte.png";
+
+import jupiterKarte from "../../assets/PlanetKarten/jupiterKarte.png";
+import marsKarte from "../../assets/PlanetKarten/marsKarte.png";
+import merkurKarte from "../../assets/PlanetKarten/merkurKarte.png";
+import mondKarte from "../../assets/PlanetKarten/mondKarte.png";
+import saturnKarte from "../../assets/PlanetKarten/saturnKarte.png";
+import sonneKarte from "../../assets/PlanetKarten/sonneKarte.png";
+import venusKarte from "../../assets/PlanetKarten/venusKarte.png";
+
+import weiterButton from "../../assets/Buttons/weiterButton.png";
+import zurueckButton from "../../assets/Buttons/zurueckButton.png";
 
 import map from "../../assets/ResultPage/map.svg";
 
@@ -25,6 +37,16 @@ const planetImages = {
   Mars: mars,
   Jupiter: jupiter,
   Saturn: saturn
+};
+
+const planetCardImages = {
+  Sun: sonneKarte,
+  Moon: mondKarte,
+  Mercury: merkurKarte,
+  Venus: venusKarte,
+  Mars: marsKarte,
+  Jupiter: jupiterKarte,
+  Saturn: saturnKarte
 };
 
 
@@ -50,6 +72,11 @@ function ResultPage({
   const planetImage =
     planetImages[planetKey];
 
+  const planetCardImage =
+    planetCardImages[planetKey];
+
+  const questionText =
+    losbuchResult?.question?.modernText ?? "";
 
     return (
     <main
@@ -131,8 +158,13 @@ function ResultPage({
             type="button"
             className="result-next-button"
             onClick={() => setCurrentStep(1)}
+            aria-label="Weiter"
           >
-            Weiter →
+          <img
+            src={weiterButton}
+            alt="Weiter-Button"
+            className="result-next-button__image"
+          />
           </button>
 
         </section>
@@ -148,33 +180,87 @@ function ResultPage({
 
         <section className="result-map-step">
 
-          <img
-            className="result-map"
-            src={map}
-            alt="Losbuch Karte"
-          />
+          <div className="result-map-stage">
+
+            {/* MAP */}
+
+            <img
+              className="result-map"
+              src={map}
+              alt="Losbuch Karte"
+            />
+
+
+            {/* KARTEN LINKS */}
+
+            <div className="result-map-cards">
+
+              {/* NAMENSKARTE */}
+
+              <div className="result-name-card">
+
+                <img
+                  src={nameKarte}
+                  alt=""
+                  className="result-name-card__image"
+                />
+
+                <span className="result-name-card__name">
+                  {name}
+                </span>
+
+              </div>
+
+
+              {/* PLANETENKARTE */}
+
+              {planetCardImage && (
+
+                <img
+                  src={planetCardImage}
+                  alt={planetLabel}
+                  className="result-planet-card"
+                />
+
+              )}
+
+            </div>
+
+            {/* FRAGEKARTE */}
+            
+             <div className="result-question-card">
+
+              <img
+                src={frageKarte}
+                alt=""
+                className="result-question-card__image"
+              />
+
+              <span className="result-question-card__text">
+                {questionText}
+              </span>
+
+            </div>
+
+          </div>
 
 
           <button
             type="button"
             className="result-map-back-button"
             onClick={() => setCurrentStep(0)}
+            aria-label="Zurück"
           >
-            ← Zurück
+            <img
+              src={zurueckButton}
+              alt="Zurück"
+              className="result-map-back-button__image"
+            />
           </button>
 
         </section>
 
       )}
-
-
-      <button
-        className="result-back-button"
-        type="button"
-        onClick={onRestart}
-      >
-        ← Zurück zum Losbuch
-      </button>
 
     </main>
   );

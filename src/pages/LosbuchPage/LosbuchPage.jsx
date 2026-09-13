@@ -7,6 +7,11 @@ import NameInput from "../../components/name/NameInput/NameInput";
 import PlanetHourSelect from "../../components/planet/PlanetHourSelect/PlanetHourSelect";
 import PageTurnAnimation from "../../components/PageTurnAnimation/PageTurnAnimation";
 
+import weiterButton from "../../assets/Buttons/weiterButton.png";
+import zurueckButton from "../../assets/Buttons/zurueckButton.png";
+import planetenstundeBestimmenButton
+  from "../../assets/Buttons/planetenstundeBestimmenButton.png";
+
 import book from "../../assets/LosbuchSeite/book.png";
 
 import { getLosbuchResult } from "../../logic/getLosbuchResult";
@@ -161,8 +166,13 @@ function LosbuchPage({ onFinish, onGoHome }) {
               type="button"
               className="losbuch-page__next-button"
               onClick={handleNextPage}
+            aria-label="Weiterblättern"
             >
-              Weiterblättern
+            <img
+              src={weiterButton}
+              alt="Weiter-Button"
+              className="losbuch-page__next-button-image"
+            />
             </button>
 
           </div>
@@ -210,9 +220,14 @@ function LosbuchPage({ onFinish, onGoHome }) {
               <button
                 type="button"
                 onClick={handleShowResult}
-                className="losbuch-page__button"
+                className="losbuch-page__result-button"
+                aria-label="Planetenstunde bestimmen"
               >
-                Ergebnis anzeigen
+                <img
+                  src={planetenstundeBestimmenButton}
+                  alt="Planetenstunde bestimmen"
+                  className="losbuch-page__result-button-image"
+                />
               </button>
 
             </div>
@@ -220,8 +235,13 @@ function LosbuchPage({ onFinish, onGoHome }) {
                 type="button"
                 className="losbuch-page__previous-button"
                 onClick={handlePreviousPage}
+                aria-label="Zurück"
               >
-              Zurückblättern
+                <img
+                  src={zurueckButton}
+                  alt="Zurück"
+                  className="losbuch-page__previous-button-image"
+                />
               </button>
           </div>
         )}
