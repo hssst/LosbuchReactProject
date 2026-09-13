@@ -17,6 +17,8 @@ import nameKarte from "../../assets/Tarotkarten/nameKarte.png";
 import frageKarte from "../../assets/Tarotkarten/frageKarte.png";
 import planetenStundeKarte
   from "../../assets/Tarotkarten/planetenStundeKarte.png";
+import nextQuestionButton
+  from "../../assets/Buttons/nextQuestionButton.png";
 
 import jupiterKarte from "../../assets/PlanetKarten/jupiterKarte.png";
 import marsKarte from "../../assets/PlanetKarten/marsKarte.png";
@@ -128,12 +130,11 @@ const kingCardImage =
     ? kingCardImages[assignedKing.id]
     : null;
 
-console.log("KING DEBUG", {
-  kingId,
-  assignedKing,
-  kingCardImage,
-  result: losbuchResult?.result
-});
+const historicalText =
+  losbuchResult?.result?.historical ?? "";
+
+const modernText =
+  losbuchResult?.result?.modern ?? "";
 
 return (
   <main
@@ -414,6 +415,19 @@ return (
 
           <button
             type="button"
+            className="result-map-next-button"
+            onClick={() => setCurrentStep(2)}
+            aria-label="Weiter"
+          >
+            <img
+              src={weiterButton}
+              alt="Weiter"
+              className="result-map-next-button__image"
+            />
+          </button>
+
+          <button
+            type="button"
             className="result-map-back-button"
             onClick={() => setCurrentStep(0)}
             aria-label="Zurück"
@@ -422,6 +436,135 @@ return (
               src={zurueckButton}
               alt="Zurück"
               className="result-map-back-button__image"
+            />
+          </button>
+
+        </section>
+
+      )}
+
+      {/* STEP 3 */}
+
+      {currentStep === 2 && (
+
+        <section className="result-summary">
+
+          {/* KÖNIG */}
+
+          <div className="result-summary__king">
+
+            {kingCardImage && (
+              <img
+                src={kingCardImage}
+                alt={assignedKing?.modernName ?? "König"}
+                className="result-summary__king-image"
+              />
+            )}
+
+          </div>
+
+          {/* TEXTE */}
+
+          <div className="result-summary__texts">
+
+            <div className="result-summary__text-box">
+
+              <span className="result-summary__label">
+                Dein historischer Lossspruch
+              </span>
+
+              <p className="result-summary__historical">
+                {historicalText}
+              </p>
+
+            </div>
+
+            <div className="result-summary__text-box">
+
+              <span className="result-summary__label">
+                Deine moderne Deutung
+              </span>
+
+              <p className="result-summary__modern">
+                {modernText}
+              </p>
+
+            </div>
+
+          </div>
+
+          {/* KLEINE KARTEN UNTEN */}
+
+          <div className="result-summary__cards">
+
+          {/* FRAGE */}
+
+            <div className="result-summary__small-card">
+
+              <img
+                src={frageKarte}
+                alt="Frage"
+              />
+
+              <span className="result-summary__question-text">
+                {questionText}
+              </span>
+
+            </div>
+
+          {/* PLANETENSTUNDE */}
+
+            <div className="result-summary__small-card">
+
+              <img
+                src={planetenStundeKarte}
+                alt="Planetenstunde"
+              />
+
+              <span className="result-summary__hour-value">
+                {resultNumber}
+              </span>
+
+            </div>
+
+          {/* PLANET */}
+
+            {planetCardImage && (
+              <img
+                src={planetCardImage}
+                alt={planetLabel}
+                className="result-summary__planet-card"
+              />
+            )}
+
+          </div>
+
+          {/* NEUE FRAGE */}
+
+          <button
+            type="button"
+            className="result-summary__restart"
+            onClick={onRestart}
+            aria-label="Stelle eine neue Frage"
+          >
+            <img
+              src={nextQuestionButton}
+              alt="Stelle eine neue Frage"
+              className="result-summary__restart-image"
+            />
+          </button>
+
+          {/* ZURÜCK ZUR MAP */}
+
+          <button
+            type="button"
+            className="result-summary__back"
+            onClick={() => setCurrentStep(1)}
+            aria-label="Zurück"
+          >
+            <img
+              src={zurueckButton}
+              alt="Zurück"
             />
           </button>
 
