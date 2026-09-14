@@ -384,63 +384,66 @@
     rgba(255, 231, 184, 0.32);
 }
 
-/* WEITER */
+/* WEITER / ZURÜCK - ALTES BUTTONDESIGN */
+
+.result-next-button,
+.result-step-one-back-button {
+  position: absolute;
+  bottom: -70px;
+  padding: 10px 24px;
+  min-width: 120px;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 31, 25, 0.92),
+    rgba(24, 18, 16, 0.95)
+  );
+  border: 1px solid rgba(201, 169, 112, 0.65);
+  border-radius: 4px;
+  color: #eadfca;
+  font-family: "PT Serif", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  z-index: 30;
+  opacity: 0;
+  animation: resultButtonFadeIn 0.7s ease 2s forwards;
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.45),
+    inset 0 0 8px rgba(255, 235, 190, 0.06);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
 
 .result-next-button {
-  position: absolute;
-
   right: 0;
-  bottom: -70px;
-
-  width: 180px;
-
-  padding: 0;
-
-  background: none;
-  border: none;
-
-  cursor: pointer;
-
-  opacity: 0;
-
-  animation:
-    resultButtonFadeIn
-    0.7s ease
-    2s forwards;
-
-  transition:
-    transform 0.2s ease;
 }
 
-.result-next-button__image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
+.result-step-one-back-button {
+  left: 0;
 }
 
-.result-next-button:hover {
-  transform:
-    translateY(-2px)
-    scale(1.03);
+.result-next-button:hover,
+.result-step-one-back-button:hover {
+  transform: translateY(-2px);
+  color: #fff3d8;
+  border-color: rgba(232, 204, 151, 0.95);
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(232, 204, 151, 0.18);
 }
 
-.result-next-button:active {
-  transform:
-    translateY(0)
-    scale(0.98);
+.result-next-button:active,
+.result-step-one-back-button:active {
+  transform: translateY(0);
 }
 
 @keyframes resultButtonFadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ZURÜCK ZUM LOSBUCH */
@@ -529,58 +532,6 @@
 .result-back-button:active {
   transform:
     translateY(0);
-}
-
-.result-step-one-back-button {
-  position: absolute;
-
-  left: 0;
-  bottom: -70px;
-
-  width: 180px;
-
-  padding: 0;
-  margin: 0;
-
-  background: none;
-  border: none;
-
-  cursor: pointer;
-
-  z-index: 30;
-
-  opacity: 0;
-
-  animation:
-    resultButtonFadeIn
-    0.7s ease
-    2s forwards;
-
-  transition:
-    transform 0.2s ease;
-}
-
-.result-step-one-back-button__image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.result-step-one-back-button:hover {
-  transform:
-    translateY(-2px)
-    scale(1.03);
-}
-
-.result-step-one-back-button:active {
-  transform:
-    translateY(0)
-    scale(0.98);
 }
 
 .result-page--map {
@@ -757,83 +708,57 @@
     );
 }
 
-.result-map-next-button {
+.result-map-next-button,
+.result-map-back-button {
   position: absolute;
-
-  right: 4%;
   bottom: 8%;
-
-  width: 180px;
-
-  padding: 0;
-  margin: 0;
-
-  background: none;
-  border: none;
-
+  padding: 10px 24px;
+  min-width: 120px;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 31, 25, 0.92),
+    rgba(24, 18, 16, 0.95)
+  );
+  border: 1px solid rgba(201, 169, 112, 0.65);
+  border-radius: 4px;
+  color: #eadfca;
+  font-family: "PT Serif", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   cursor: pointer;
-
   z-index: 30;
-
-  transition: transform 0.2s ease;
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.45),
+    inset 0 0 8px rgba(255, 235, 190, 0.06);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
 }
 
-.result-map-next-button__image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.result-map-next-button:hover {
-  transform: translateY(-2px) scale(1.03);
-}
-
-.result-map-next-button:active {
-  transform: translateY(0) scale(0.98);
+.result-map-next-button {
+  right: 4%;
 }
 
 .result-map-back-button {
-  position: absolute;
-
   left: 4%;
-  bottom: 8%;
-
-  width: 180px;
-
-  padding: 0;
-  margin: 0;
-
-  background: none;
-  border: none;
-
-  cursor: pointer;
-  z-index: 30;
-
-  transition: transform 0.2s ease;
 }
 
-.result-map-back-button__image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
+.result-map-next-button:hover,
 .result-map-back-button:hover {
-  transform: translateY(-2px) scale(1.03);
+  transform: translateY(-2px);
+  color: #fff3d8;
+  border-color: rgba(232, 204, 151, 0.95);
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(232, 204, 151, 0.18);
 }
 
+.result-map-next-button:active,
 .result-map-back-button:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0);
 }
 
 /* FRAGEKARTE */
@@ -877,7 +802,7 @@
   position: absolute;
 
   left: 50%;
-  top: 38.5%;
+  top: 41%;
 
   transform: translateX(-50%);
 
@@ -1361,7 +1286,7 @@
   position: absolute;
 
   left: 50%;
-  top: 41%;
+  top: 42%;
 
   transform:
     translateX(-50%);

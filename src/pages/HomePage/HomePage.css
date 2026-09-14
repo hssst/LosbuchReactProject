@@ -5,7 +5,7 @@
   min-height: 600px;
   overflow: hidden;
   background-image: url("../../assets/Homepage/background.svg");
-  background-color: #1A141F;
+  background-color: #1a141f;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,7 +19,7 @@
   transition: opacity 0.8s ease;
 }
 
-.home-page__intro--leaving{
+.home-page__intro--leaving {
   opacity: 0;
   pointer-events: none;
 }
@@ -35,41 +35,33 @@
 
 .startButton {
   position: absolute;
-
-  left: 8%;
-  bottom: 27%;
-
-  width: clamp(220px, 20vw, 300px);
-
+  left: 4%;
+  bottom: 13%;
+  width: clamp(290px, 30vw, 4000px);
   padding: 0;
-
   background: none;
   border: none;
-
   cursor: pointer;
-
   z-index: 10;
-
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.startButton__image {
+.text_openBook {
   display: block;
-
   width: 100%;
   height: auto;
-
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
 }
 
 .startButton:hover {
-  transform: translateY(-2px) scale(1.03);
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 12px rgba(255, 235, 190, 0.16));
 }
 
 .startButton:active {
-  transform: translateY(0) scale(0.98);
+  transform: scale(0.98);
 }
 
 .homepage_text {
@@ -90,17 +82,14 @@
   z-index: 1;
 }
 
-/* KLEINERE DESKTOP-FENSTER */
-
 @media (max-width: 1200px) {
-
   .title {
     left: 8%;
     top: 18%;
     width: 40vw;
   }
 
-  .text_openBook {
+  .startButton {
     left: 8%;
     width: 17vw;
     bottom: 28%;
@@ -119,18 +108,14 @@
   }
 }
 
-/* KLEINE FENSTER */
-
-
 @media (max-width: 800px) {
-
   .title {
     left: 7%;
     top: 14%;
     width: 55vw;
   }
 
-  .text_openBook {
+  .startButton {
     left: 7%;
     bottom: 27%;
     width: 24vw;

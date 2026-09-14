@@ -43,7 +43,6 @@ import tatarenKing from "../../assets/KoenigKarten/tatarenKing.png";
 import tuerkeiKing from "../../assets/KoenigKarten/tuerkeiKing.png";
 import zypernKing from "../../assets/KoenigKarten/zypernKing.png";
 
-import weiterButton from "../../assets/Buttons/weiterButton.png";
 import zurueckButton from "../../assets/Buttons/zurueckButton.png";
 import rechenwegButton from "../../assets/Buttons/rechenwegButton.png";
 import nextQuestionButton from "../../assets/Buttons/nextQuestionButton.png";
@@ -397,15 +396,8 @@ function ResultPage({
             type="button"
             className="result-step-one-back-button"
             onClick={onBackToInput}
-            aria-label="Zurück zur Namenseingabe"
           >
-
-            <img
-              src={zurueckButton}
-              alt="Zurück"
-              className="result-step-one-back-button__image"
-            />
-
+            Zurück
           </button>
 
           {/* WEITER */}
@@ -413,18 +405,9 @@ function ResultPage({
           <button
             type="button"
             className="result-next-button"
-            onClick={() =>
-              setCurrentStep(1)
-            }
-            aria-label="Weiter"
+            onClick={() => setCurrentStep(1)}
           >
-
-            <img
-              src={weiterButton}
-              alt="Weiter"
-              className="result-next-button__image"
-            />
-
+            Weiter
           </button>
 
         </section>
@@ -619,18 +602,9 @@ function ResultPage({
           <button
             type="button"
             className="result-map-next-button"
-            onClick={() =>
-              setCurrentStep(2)
-            }
-            aria-label="Weiter"
+            onClick={() => setCurrentStep(2)}
           >
-
-            <img
-              src={weiterButton}
-              alt="Weiter"
-              className="result-map-next-button__image"
-            />
-
+            Weiter
           </button>
 
           {/* ZURÜCK */}
@@ -638,18 +612,9 @@ function ResultPage({
           <button
             type="button"
             className="result-map-back-button"
-            onClick={() =>
-              setCurrentStep(0)
-            }
-            aria-label="Zurück"
+            onClick={() => setCurrentStep(0)}
           >
-
-            <img
-              src={zurueckButton}
-              alt="Zurück"
-              className="result-map-back-button__image"
-            />
-
+            Zurück
           </button>
 
         </section>

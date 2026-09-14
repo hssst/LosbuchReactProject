@@ -7,10 +7,6 @@ import NameInput from "../../components/name/NameInput/NameInput";
 import PlanetHourSelect from "../../components/planet/PlanetHourSelect/PlanetHourSelect";
 import PageTurnAnimation from "../../components/PageTurnAnimation/PageTurnAnimation";
 
-import weiterButton from "../../assets/Buttons/weiterButton.png";
-import zurueckButton from "../../assets/Buttons/zurueckButton.png";
-import planetenstundeBestimmenButton from "../../assets/Buttons/planetenstundeBestimmenButton.png";
-
 import book from "../../assets/LosbuchSeite/book.png";
 
 import { getLosbuchResult } from "../../logic/getLosbuchResult";
@@ -20,7 +16,6 @@ function LosbuchPage({
   onGoHome,
   initialStep = "question"
 }) {
-
   const [selectedQuestionId, setSelectedQuestionId] = useState("thoughts");
   const [name, setName] = useState("");
   const [weekday, setWeekday] = useState("Sonntag");
@@ -94,19 +89,13 @@ function LosbuchPage({
 
   return (
     <main className="losbuch-page">
-
-      {/* Rauch */}
-
       <div className="losbuch-page__smoke">
         <div className="smoke smoke--1"></div>
         <div className="smoke smoke--2"></div>
         <div className="smoke smoke--3"></div>
       </div>
 
-      {/* Rußpartikel */}
-
       <div className="losbuch-page__particles">
-
         <span className="soot soot--1"></span>
         <span className="soot soot--2"></span>
         <span className="soot soot--3"></span>
@@ -117,33 +106,20 @@ function LosbuchPage({
         <span className="soot soot--8"></span>
         <span className="soot soot--9"></span>
         <span className="soot soot--10"></span>
-
       </div>
 
       <div className="losbuch-page__book">
-
-        <img
-          className="book"
-          src={book}
-          alt="Losbuch"
-        />
-
+        <img className="book" src={book} alt="Losbuch" />
         <div className="losbuch-page__candle-light" />
 
-        {/* FRAGENAUSWAHL */}
-
         {step === "question" && (
-
           <div
-            className={
-              `losbuch-page__questions ${
-                isTurningPage
-                  ? "losbuch-page__content--turning"
-                  : ""
-              }`
-            }
+            className={`losbuch-page__questions ${
+              isTurningPage
+                ? "losbuch-page__content--turning"
+                : ""
+            }`}
           >
-
             <QuestionSelect
               selectedQuestionId={selectedQuestionId}
               onSelectQuestion={setSelectedQuestionId}
@@ -153,47 +129,25 @@ function LosbuchPage({
               type="button"
               className="losbuch-page__next-button"
               onClick={handleNextPage}
-              aria-label="Weiterblättern"
             >
-
-              <img
-                src={weiterButton}
-                alt="Weiter-Button"
-                className="losbuch-page__next-button-image"
-              />
-
+              Weiterblättern
             </button>
-
           </div>
-
         )}
 
-        {/* NAME + PLANETENSTUNDE */}
-
         {step === "details" && (
-
           <div className="losbuch-page__details">
-
             <div className="losbuch-page__details-left">
-
               <div className="losbuch-page__detail-intro">
-
-                <h2>
-                  Deine Weissagung
-                </h2>
-
+                <h2>Deine Weissagung</h2>
                 <p>
-                  Die Frage ist gewählt.
-                  Nun fehlen nur noch dein Name
+                  Die Frage ist gewählt. Nun fehlen nur noch dein Name
                   und die Stunde des Planeten.
                 </p>
-
               </div>
-
             </div>
 
             <div className="losbuch-page__details-right">
-
               <NameInput
                 name={name}
                 onNameChange={handleNameChange}
@@ -214,56 +168,35 @@ function LosbuchPage({
                 type="button"
                 onClick={handleShowResult}
                 className="losbuch-page__result-button"
-                aria-label="Planetenstunde bestimmen"
               >
-
-                <img
-                  src={planetenstundeBestimmenButton}
-                  alt="Planetenstunde bestimmen"
-                  className="losbuch-page__result-button-image"
-                />
-
+                Planetenstunde bestimmen
               </button>
-
             </div>
 
             <button
               type="button"
               className="losbuch-page__previous-button"
               onClick={handlePreviousPage}
-              aria-label="Zurück"
             >
-
-              <img
-                src={zurueckButton}
-                alt="Zurück"
-                className="losbuch-page__previous-button-image"
-              />
-
+              Zurück
             </button>
-
           </div>
-
         )}
 
-        {/* UMBLÄTTER-ANIMATION */}
-
         {isTurningPage && (
-
           <PageTurnAnimation
             onFinished={handlePageTurnFinished}
           />
         )}
-
       </div>
 
       <button
+        type="button"
         className="home-button"
         onClick={onGoHome}
       >
         ← Zur Startseite
       </button>
-
     </main>
   );
 }

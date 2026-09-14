@@ -192,140 +192,70 @@
   pointer-events: none;
 }
 
-/* WEITERBLÄTTERN */
+/* BUTTONS IM BUCH */
+
+.losbuch-page__next-button,
+.losbuch-page__previous-button,
+.losbuch-page__result-button {
+  padding: 10px 22px;
+  background: linear-gradient(
+    180deg,
+    rgba(70, 47, 31, 0.90),
+    rgba(43, 29, 21, 0.94)
+  );
+  border: 1px solid rgba(116, 76, 45, 0.72);
+  border-radius: 3px;
+  color: #ead8b9;
+  font-family: "PT Serif", serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  cursor: pointer;
+  box-shadow:
+    0 3px 8px rgba(45, 26, 15, 0.28),
+    inset 0 0 7px rgba(255, 232, 190, 0.05);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+  z-index: 10;
+}
+
+.losbuch-page__next-button:hover,
+.losbuch-page__previous-button:hover,
+.losbuch-page__result-button:hover {
+  transform: translateY(-2px);
+  color: #fff0d2;
+  border-color: rgba(151, 105, 65, 0.95);
+  box-shadow:
+    0 5px 12px rgba(45, 26, 15, 0.34),
+    0 0 8px rgba(151, 105, 65, 0.14);
+}
+
+.losbuch-page__next-button:active,
+.losbuch-page__previous-button:active,
+.losbuch-page__result-button:active {
+  transform: translateY(0);
+}
 
 .losbuch-page__next-button {
   display: block;
-
-  width: 180px;
-
-  margin-top: 10%;
+  margin-top: 12%;
   margin-left: auto;
-  right: 6%;
-
-  padding: 0;
-
-  background: none;
-  border: none;
-
-  cursor: pointer;
-
-  transition: transform 0.2s ease;
+  margin-right: 3%;
 }
-
-.losbuch-page__next-button-image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
-}
-
-.losbuch-page__next-button:hover {
-  transform:
-    translateY(-2px)
-    scale(1.03);
-}
-
-.losbuch-page__next-button:active {
-  transform:
-    translateY(0)
-    scale(0.98);
-}
-
-/* ZURÜCKBLÄTTERN */
 
 .losbuch-page__previous-button {
   position: absolute;
-
   left: 17%;
   bottom: 24.5%;
-
-  width: 180px;
-
-  padding: 0;
-  margin: 0;
-
-  background: none;
-  border: none;
-
-  cursor: pointer;
-
-  z-index: 10;
-
-  transition: transform 0.2s ease;
 }
-
-.losbuch-page__previous-button-image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.losbuch-page__previous-button:hover {
-  transform:
-    translateY(-2px)
-    scale(1.03);
-}
-
-.losbuch-page__previous-button:active {
-  transform:
-    translateY(0)
-    scale(0.98);
-}
-
-/* PLANETENSTUNDE BESTIMMEN */
 
 .losbuch-page__result-button {
   position: absolute;
-
   right: 6%;
   bottom: -85%;
-
-  width: 200px;
-
-  padding: 0;
-  margin: 0;
-
-  background: none;
-  border: none;
-
-  cursor: pointer;
-
-  z-index: 10;
-
-  transition:
-    transform 0.2s ease;
-}
-
-.losbuch-page__result-button-image {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  pointer-events: none;
-  user-select: none;
-
-  -webkit-user-drag: none;
-}
-
-.losbuch-page__result-button:hover {
-  transform:
-    translateY(-2px)
-    scale(1.03);
-}
-
-.losbuch-page__result-button:active {
-  transform:
-    translateY(0)
-    scale(0.98);
 }
 
 /* DETAILS */
