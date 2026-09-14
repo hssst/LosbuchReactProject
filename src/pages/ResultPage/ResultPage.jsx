@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 
 import "./ResultPage.css";
 
@@ -15,8 +15,10 @@ import mond from "../../assets/ResultPage/mond.png";
 
 import nameKarte from "../../assets/Tarotkarten/nameKarte.png";
 import frageKarte from "../../assets/Tarotkarten/frageKarte.png";
+
 import planetenStundeKarte
   from "../../assets/Tarotkarten/planetenStundeKarte.png";
+
 import nextQuestionButton
   from "../../assets/Buttons/nextQuestionButton.png";
 
@@ -49,7 +51,6 @@ import weiterButton from "../../assets/Buttons/weiterButton.png";
 import zurueckButton from "../../assets/Buttons/zurueckButton.png";
 
 import map from "../../assets/ResultPage/map.svg";
-
 
 const planetImages = {
   Sun: sonne,
@@ -90,143 +91,228 @@ const kingCardImages = {
   sweden: schwedenKing
 };
 
-
 function ResultPage({
   losbuchResult,
-  onRestart
+  onRestart,
+  onBackToInput
 }) {
 
-const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] =
+    useState(0);
+  const [displayedHour, setDisplayedHour] =
+    useState(0);
 
-const name =
-  losbuchResult?.name ?? "";
+  const resultNumber =
+    losbuchResult?.resultNumber ?? "";
 
-const planetKey =
-  losbuchResult?.planet ?? "";
+  useEffect(() => {
 
-const planetLabel =
-  planetLabels[planetKey] ?? planetKey;
+    if (currentStep !== 0) {
+      return;
+    }
 
-const resultNumber =
-  losbuchResult?.resultNumber ?? "";
+    const target =
+      Number(resultNumber);
 
-const planetImage =
-  planetImages[planetKey];
+    if (!Number.isFinite(target)) {
+      setDisplayedHour(resultNumber);
+      return;
+    }
 
-const planetCardImage =
-  planetCardImages[planetKey];
+    setDisplayedHour(0);
 
-const questionText =
-  losbuchResult?.question?.modernText ?? "";
+    let interval;
 
-const kingId =
-  losbuchResult?.result?.route?.kingId ?? "";
+    const timeout =
+      setTimeout(() => {
 
-const assignedKing =
-  kings.find((king) => king.id === kingId);
+        let current = 0;
 
-const kingCardImage =
-  assignedKing
-    ? kingCardImages[assignedKing.id]
-    : null;
+        interval =
+          setInterval(() => {
 
-const historicalText =
-  losbuchResult?.result?.historical ?? "";
+            current += 1;
 
-const modernText =
-  losbuchResult?.result?.modern ?? "";
+            setDisplayedHour(current);
 
-return (
-  <main
-    className={`result-page ${
-    currentStep === 1
-    ? "result-page--map"
-    : ""
-    }`}
-  >
+            if (current >= target) {
+              clearInterval(interval);
+            }
 
-  {/* STEP 1 */}
+          }, 250);
 
-    {currentStep === 0 && (
+      }, 1400);
 
-      <section className="result-overview">
+    return () => {
 
-        <div className="result-panel result-panel--name">
+      clearTimeout(timeout);
 
-          <span className="result-panel__title">
-            Dein Name
-          </span>
+      if (interval) {
+        clearInterval(interval);
+      }
 
-          <div className="result-panel__content">
+    };
 
-            <span className="result-name">
-              {name}
+  }, [
+    currentStep,
+    resultNumber
+  ]);
+
+  const name =
+    losbuchResult?.name ?? "";
+  const planetKey =
+    losbuchResult?.planet ?? "";
+  const planetLabel =
+    planetLabels[planetKey] ??
+    planetKey;
+  const planetImage =
+    planetImages[planetKey];
+  const planetCardImage =
+    planetCardImages[planetKey];
+  const questionText =
+    losbuchResult?.question
+      ?.modernText ?? "";
+  const kingId =
+    losbuchResult?.result
+      ?.route?.kingId ?? "";
+  const assignedKing =
+    kings.find(
+      (king) =>
+        king.id === kingId
+    );
+  const kingCardImage =
+    assignedKing
+      ? kingCardImages[
+          assignedKing.id
+        ]
+      : null;
+  const historicalText =
+    losbuchResult?.result
+      ?.historical ?? "";
+  const modernText =
+    losbuchResult?.result
+      ?.modern ?? "";
+
+  return (
+    <main
+      className={`result-page ${
+        currentStep === 1
+          ? "result-page--map"
+          : ""
+      }`}
+    >
+
+      {/* STEP 1 */}
+
+      {currentStep === 0 && (
+
+        <section className="result-overview">
+
+          {/* NAME */}
+
+          <div className="result-panel result-panel--name">
+
+            <span className="result-panel__title">
+              Dein Name
+            </span>
+
+            <div className="result-panel__content">
+
+              <span className="result-name">
+                {name}
+              </span>
+
+            </div>
+
+          </div>
+
+          {/* PLANET */}
+
+          <div className="result-panel result-panel--planet">
+
+            <span className="result-panel__title">
+              Dein Planet
+            </span>
+
+            <div className="result-panel__content">
+
+              {planetImage && (
+
+                <img
+                  className="result-planet"
+                  src={planetImage}
+                  alt={planetLabel}
+                />
+
+              )}
+
+            </div>
+
+            <span className="result-planet__name">
+              {planetLabel}
             </span>
 
           </div>
 
-        </div>
+          {/* PLANETENSTUNDE */}
 
+          <div className="result-panel result-panel--hour">
 
-        <div className="result-panel result-panel--planet">
+            <span className="result-panel__title">
+              Deine Planetenstunde
+            </span>
 
-          <span className="result-panel__title">
-            Dein Planet
-          </span>
+            <div className="result-panel__content">
 
-        <div className="result-panel__content">
+              <span className="result-hour">
+                {displayedHour}
+              </span>
 
-          {planetImage && (
+            </div>
+
+          </div>
+
+          {/* ZURÜCK ZUR NAMENSEINGABE */}
+
+          <button
+            type="button"
+            className="result-step-one-back-button"
+            onClick={onBackToInput}
+            aria-label="Zurück zur Namenseingabe"
+          >
+
             <img
-              className="result-planet"
-              src={planetImage}
-              alt={planetLabel}
+              src={zurueckButton}
+              alt="Zurück"
+              className="result-step-one-back-button__image"
             />
-          )}
 
-        </div>
+          </button>
 
-          <span className="result-planet__name">
-            {planetLabel}
-          </span>
+          {/* WEITER */}
 
-        </div>
+          <button
+            type="button"
+            className="result-next-button"
+            onClick={() =>
+              setCurrentStep(1)
+            }
+            aria-label="Weiter"
+          >
 
+            <img
+              src={weiterButton}
+              alt="Weiter"
+              className="result-next-button__image"
+            />
 
-        <div className="result-panel result-panel--hour">
+          </button>
 
-          <span className="result-panel__title">
-            Deine Planetenstunde
-          </span>
+        </section>
 
-          <div className="result-panel__content">
-
-            <span className="result-hour">
-              {resultNumber}
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <button
-          type="button"
-          className="result-next-button"
-          onClick={() => setCurrentStep(1)}
-          aria-label="Weiter"
-        >
-          <img
-            src={weiterButton}
-            alt="Weiter-Button"
-            className="result-next-button__image"
-          />
-        </button>
-
-      </section>
       )}
 
-      {/* STEP 2 */}
+      {/* STEP 2 - MAP */}
 
       {currentStep === 1 && (
 
@@ -234,19 +320,13 @@ return (
 
           <div className="result-map-stage">
 
-            {/* MAP */}
-
             <img
               className="result-map"
               src={map}
               alt="Losbuch Karte"
             />
 
-            {/* KARTEN LINKS */}
-
             <div className="result-map-cards">
-
-              {/* NAMENSKARTE */}
 
               <div className="result-name-card">
 
@@ -262,8 +342,6 @@ return (
 
               </div>
 
-              {/* PLANETENKARTE */}
-
               {planetCardImage && (
 
                 <img
@@ -276,9 +354,7 @@ return (
 
             </div>
 
-            {/* FRAGEKARTE */}
-            
-             <div className="result-question-card">
+            <div className="result-question-card">
 
               <img
                 src={frageKarte}
@@ -291,8 +367,6 @@ return (
               </span>
 
             </div>
-
-             {/* PLANETENSTUNDENKARTE */}
 
             <div className="result-planet-hour-card">
 
@@ -310,31 +384,36 @@ return (
 
             {kingCardImage && (
 
-            <div className="result-king-card">
+              <div className="result-king-card">
 
-              <img
-                src={kingCardImage}
-                alt={assignedKing?.modernName ?? "König"}
-                className="result-king-card__image"
-              />
+                <img
+                  src={kingCardImage}
+                  alt={
+                    assignedKing?.modernName ??
+                    "König"
+                  }
+                  className="result-king-card__image"
+                />
 
-            </div>
+              </div>
 
             )}
-
-            {/* animierter Pfad */}
 
             <svg
               className="result-route"
               viewBox="0 0 1000 560"
               aria-hidden="true"
             >
+
               <defs>
 
                 <mask id="routeMask1">
 
                   <path
-                    className="result-route__reveal result-route__reveal--1"
+                    className="
+                      result-route__reveal
+                      result-route__reveal--1
+                    "
                     pathLength="100"
                     d="
                       M 155 305
@@ -355,7 +434,10 @@ return (
                 <mask id="routeMask2">
 
                   <path
-                    className="result-route__reveal result-route__reveal--2"
+                    className="
+                      result-route__reveal
+                      result-route__reveal--2
+                    "
                     pathLength="100"
                     d="
                       M 535 215
@@ -367,7 +449,7 @@ return (
                         785 338
                       C 825 344,
                         865 340,
-                        865 338
+                        895 295
                     "
                   />
 
@@ -392,7 +474,7 @@ return (
                 "
               />
 
-               <path
+              <path
                 className="result-route__dots"
                 mask="url(#routeMask2)"
                 d="
@@ -405,7 +487,7 @@ return (
                     785 338
                   C 825 344,
                     865 340,
-                    900 328
+                    895 325
                 "
               />
 
@@ -413,57 +495,70 @@ return (
 
           </div>
 
+          {/* WEITER */}
+
           <button
             type="button"
             className="result-map-next-button"
-            onClick={() => setCurrentStep(2)}
+            onClick={() =>
+              setCurrentStep(2)
+            }
             aria-label="Weiter"
           >
+
             <img
               src={weiterButton}
               alt="Weiter"
               className="result-map-next-button__image"
             />
+
           </button>
+
+          {/* ZURÜCK */}
 
           <button
             type="button"
             className="result-map-back-button"
-            onClick={() => setCurrentStep(0)}
+            onClick={() =>
+              setCurrentStep(0)
+            }
             aria-label="Zurück"
           >
+
             <img
               src={zurueckButton}
               alt="Zurück"
               className="result-map-back-button__image"
             />
+
           </button>
 
         </section>
 
       )}
 
-      {/* STEP 3 */}
+      {/* STEP 3 - ZUSAMMENFASSUNG */}
 
       {currentStep === 2 && (
 
         <section className="result-summary">
 
-          {/* KÖNIG */}
-
           <div className="result-summary__king">
 
             {kingCardImage && (
+
               <img
                 src={kingCardImage}
-                alt={assignedKing?.modernName ?? "König"}
+                alt={
+                  assignedKing?.modernName ??
+                  "König"
+                }
                 className="result-summary__king-image"
               />
+
             )}
 
           </div>
-
-          {/* TEXTE */}
 
           <div className="result-summary__texts">
 
@@ -493,11 +588,7 @@ return (
 
           </div>
 
-          {/* KLEINE KARTEN UNTEN */}
-
           <div className="result-summary__cards">
-
-          {/* FRAGE */}
 
             <div className="result-summary__small-card">
 
@@ -512,8 +603,6 @@ return (
 
             </div>
 
-          {/* PLANETENSTUNDE */}
-
             <div className="result-summary__small-card">
 
               <img
@@ -527,14 +616,14 @@ return (
 
             </div>
 
-          {/* PLANET */}
-
             {planetCardImage && (
+
               <img
                 src={planetCardImage}
                 alt={planetLabel}
                 className="result-summary__planet-card"
               />
+
             )}
 
           </div>
@@ -547,11 +636,13 @@ return (
             onClick={onRestart}
             aria-label="Stelle eine neue Frage"
           >
+
             <img
               src={nextQuestionButton}
               alt="Stelle eine neue Frage"
               className="result-summary__restart-image"
             />
+
           </button>
 
           {/* ZURÜCK ZUR MAP */}
@@ -559,13 +650,17 @@ return (
           <button
             type="button"
             className="result-summary__back"
-            onClick={() => setCurrentStep(1)}
+            onClick={() =>
+              setCurrentStep(1)
+            }
             aria-label="Zurück"
           >
+
             <img
               src={zurueckButton}
               alt="Zurück"
             />
+
           </button>
 
         </section>

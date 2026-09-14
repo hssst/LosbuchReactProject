@@ -17,18 +17,25 @@ function App() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionOut, setTransitionOut] = useState(false);
   const [homeLeaving, setHomeLeaving] = useState(false);
+  const [losbuchStartStep, setLosbuchStartStep] =
+    useState("question");
 
   function handleFinish(result) {
     setLosbuchResult(result);
     setCurrentPage("result");
   }
-
   function handleRestart() {
     setLosbuchResult(null);
+    setLosbuchStartStep("question");
     setCurrentPage("losbuch");
   }
-
+  function handleBackToInput() {
+    setLosbuchStartStep("details");
+    setCurrentPage("losbuch");
+  }
   function goToLosbuch() {
+    setLosbuchStartStep("question");
+
     // 1. Homepage-Inhalt ausblenden
     setHomeLeaving(true);
 
@@ -54,6 +61,7 @@ function App() {
 
   return (
     <AppLayout>
+
       <Header />
 
       <Navigation
@@ -62,14 +70,19 @@ function App() {
         onGoLosbuch={goToLosbuch}
         onGoResult={() => setCurrentPage("result")}
       />
-      
+
       {isTransitioning && (
-        <TransitionPage transitionOut={transitionOut} />
-    )}
+        <TransitionPage
+          transitionOut={transitionOut}
+        />
+      )}
 
       {currentPage === "home" && (
         <HomePage
-          onStart={() => setCurrentPage("losbuch")}
+          onStart={() => {
+            setLosbuchStartStep("question");
+            setCurrentPage("losbuch");
+          }}
           onGoLosbuch={goToLosbuch}
           isLeaving={homeLeaving}
         />
@@ -79,6 +92,7 @@ function App() {
         <LosbuchPage
           onFinish={handleFinish}
           onGoHome={() => setCurrentPage("home")}
+          initialStep={losbuchStartStep}
         />
       )}
 
@@ -86,8 +100,10 @@ function App() {
         <ResultPage
           losbuchResult={losbuchResult}
           onRestart={handleRestart}
+          onBackToInput={handleBackToInput}
         />
       )}
+
     </AppLayout>
   );
 }
