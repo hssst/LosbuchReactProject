@@ -15,12 +15,8 @@ import mond from "../../assets/ResultPage/mond.png";
 
 import nameKarte from "../../assets/Tarotkarten/nameKarte.png";
 import frageKarte from "../../assets/Tarotkarten/frageKarte.png";
-
 import planetenStundeKarte
   from "../../assets/Tarotkarten/planetenStundeKarte.png";
-
-import nextQuestionButton
-  from "../../assets/Buttons/nextQuestionButton.png";
 
 import jupiterKarte from "../../assets/PlanetKarten/jupiterKarte.png";
 import marsKarte from "../../assets/PlanetKarten/marsKarte.png";
@@ -49,6 +45,17 @@ import zypernKing from "../../assets/KoenigKarten/zypernKing.png";
 
 import weiterButton from "../../assets/Buttons/weiterButton.png";
 import zurueckButton from "../../assets/Buttons/zurueckButton.png";
+import rechenwegButton
+  from "../../assets/Buttons/rechenwegButton.png";
+import nextQuestionButton
+  from "../../assets/Buttons/nextQuestionButton.png";
+
+import PlanetReveal
+  from "../../components/reveal/PlanetReveal/PlanetReveal";
+import JourneyReveal
+  from "../../components/reveal/JourneyReveal/JourneyReveal";
+import KingReveal
+  from "../../components/reveal/KingReveal/KingReveal";
 
 import map from "../../assets/ResultPage/map.svg";
 
@@ -101,6 +108,8 @@ function ResultPage({
     useState(0);
   const [displayedHour, setDisplayedHour] =
     useState(0);
+  const [showCalculation, setShowCalculation] =
+  useState(false);
 
   const resultNumber =
     losbuchResult?.resultNumber ?? "";
@@ -628,6 +637,64 @@ function ResultPage({
 
           </div>
 
+          {/* RECHENWEG */}
+
+          <button
+            type="button"
+            className="result-summary__calculation-button"
+            onClick={() =>
+              setShowCalculation((current) => !current)
+            }
+            aria-label="Rechenweg anzeigen"
+          >
+            <img
+              src={rechenwegButton}
+              alt="Rechenweg anzeigen"
+              className="result-summary__calculation-button-image"
+            />
+          </button>
+
+          {/* RECHENWEG-OVERLAY */}
+
+          {showCalculation && (
+            <div className="result-summary__calculation-overlay">
+
+              <div className="result-summary__calculation">
+
+                <button
+                  type="button"
+                  className="result-summary__calculation-close"
+                  onClick={() => setShowCalculation(false)}
+                  aria-label="Rechenweg schließen"
+                >
+                  ×
+                </button>
+
+                <h2 className="result-summary__calculation-title">
+                  Dein Weg durch das Losbuch
+                </h2>
+
+                <div className="result-summary__calculation-content">
+
+                  <PlanetReveal
+                    losbuchResult={losbuchResult}
+                  />
+
+                  <JourneyReveal
+                    losbuchResult={losbuchResult}
+                  />
+
+                  <KingReveal
+                    losbuchResult={losbuchResult}
+                  />
+
+                </div>
+
+              </div>
+
+            </div>
+          )}
+
           {/* NEUE FRAGE */}
 
           <button
@@ -645,7 +712,7 @@ function ResultPage({
 
           </button>
 
-          {/* ZURÜCK ZUR MAP */}
+          {/* ZURÜCK */}
 
           <button
             type="button"
