@@ -85,12 +85,10 @@
   animation-delay:
     0.2s;
 }
-
 .result-panel--planet {
   animation-delay:
     0.75s;
 }
-
 .result-panel--hour {
   animation-delay:
     1.3s;
@@ -177,68 +175,189 @@
 
 /* PLANET */
 
-.result-planet {
-  width:
-    min(78%, 270px);
+.result-planet-window {
+  position: relative;
 
-  height:
-    auto;
+  width: 100%;
+  height: 100%;
 
-  object-fit:
-    contain;
+  overflow: hidden;
+
+  -webkit-mask-image:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      black 18%,
+      black 82%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      black 18%,
+      black 82%,
+      transparent 100%
+    );
+}
+
+.result-planet-track {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 70px;
+
+  width: max-content;
+
+  will-change: transform;
+
+  animation:
+    planetTrackMove
+    4.2s
+    cubic-bezier(
+      0.12,
+      0.72,
+      0.16,
+      1
+    )
+    forwards;
+}
+
+.result-planet-track__item {
+  flex: 0 0 150px;
+
+  width: 150px;
+  height: 190px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-planet-track__image {
+  display: block;
+
+  width: 190px;
+  height: 250px;
+
+  object-fit: contain;
+
+  opacity: 0.72;
+
+  transform: scale(0.88);
 
   filter:
+    blur(0.8px)
     drop-shadow(
-      0 0 20px
-      rgba(225, 127, 78, 0.45)
+      0 0 12px
+      rgba(225, 127, 78, 0.28)
+    );
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease,
+    filter 0.65s ease;
+}
+
+.result-planet-track--finished
+.result-planet-track__item--final
+.result-planet-track__image {
+  opacity: 1;
+
+  transform: scale(1.08);
+
+  filter:
+    blur(0)
+    brightness(1.08)
+    drop-shadow(
+      0 0 28px
+      rgba(255, 212, 142, 0.72)
     );
 
   animation:
-    planetFloat
+    planetFinalFloat
     5s ease-in-out
-    infinite;
+    0.65s infinite;
 }
 
-@keyframes planetFloat {
+@keyframes planetTrackMove {
+  0% {
+    transform:
+      translate3d(
+        260px,
+        -50%,
+        0
+      );
+  }
 
+  100% {
+    transform:
+      translate3d(
+        calc(
+          -1 *
+          var(--planet-final-center)
+        ),
+        -50%,
+        0
+      );
+  }
+}
+
+@keyframes planetFinalFloat {
   0%,
   100% {
     transform:
+      scale(1.08)
       translateY(0);
   }
 
   50% {
     transform:
+      scale(1.08)
       translateY(-7px);
   }
 }
 
 .result-planet__name {
-  margin-bottom:
-    5px;
+  margin-bottom: 5px;
 
-  color:
-    #f4e8cc;
+  min-height: 1.7rem;
+
+  color: #f4e8cc;
 
   font-family:
     "PT Serif",
     serif;
 
-  font-size:
-    1.35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
 
-  font-weight:
-    700;
-
-  text-transform:
-    uppercase;
-
-  letter-spacing:
-    0.06em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 
   text-shadow:
     0 0 8px
     rgba(255, 228, 174, 0.28);
+
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.result-planet__name--visible {
+  opacity: 1;
+
+  transform: translateY(0);
 }
 
 /* ERGEBNISZAHL */
@@ -389,7 +508,6 @@
     color 0.2s ease;
 }
 
-
 .result-back-button:hover {
   transform:
     translateY(-2px);
@@ -407,7 +525,6 @@
     0 0 10px
     rgba(232, 204, 151, 0.18);
 }
-
 
 .result-back-button:active {
   transform:
@@ -443,7 +560,6 @@
     transform 0.2s ease;
 }
 
-
 .result-step-one-back-button__image {
   display: block;
 
@@ -455,13 +571,11 @@
   -webkit-user-drag: none;
 }
 
-
 .result-step-one-back-button:hover {
   transform:
     translateY(-2px)
     scale(1.03);
 }
-
 
 .result-step-one-back-button:active {
   transform:
@@ -482,9 +596,7 @@
   background-repeat: no-repeat;
 }
 
-/* ======================================== */
-/* STEP 2 - Map                             */
-/* ======================================== */
+/* STEP 2 - Map */
 
 .result-map-step {
   position: relative;
@@ -631,7 +743,6 @@
   left: -45%;
   top: 180px;
  
-
   z-index: 3;
 
   user-select: none;
@@ -839,7 +950,7 @@
   stroke-dasharray: 8 9;
 }
 
-/* Unsichtbare "Wischlinie", die den Pfad freigibt */
+/* Unsichtbare Linie, die den Pfad freigibt */
 
 .result-route__reveal--1 {
   fill: none;
@@ -1051,9 +1162,7 @@
   }
 }
 
-/* ======================================== */
-/* STEP 3 - ZUSAMMENFASSUNG                 */
-/* ======================================== */
+/* STEP 3 - ZUSAMMENFASSUNG */
 
 .result-summary {
   position: relative;
@@ -1150,7 +1259,6 @@
     rgba(255, 255, 255, 0.04);
 }
 
-
 .result-summary__label {
   margin-bottom: 14px;
 
@@ -1170,7 +1278,6 @@
   letter-spacing:
     0.08em;
 }
-
 
 .result-summary__historical,
 .result-summary__modern {
@@ -1230,7 +1337,6 @@
       rgba(0, 0, 0, 0.5)
     );
 }
-
 
 .result-summary__planet-card {
   display: block;
@@ -1389,7 +1495,6 @@
     transform 0.2s ease;
 }
 
-
 .result-summary__calculation-button-image {
   display: block;
 
@@ -1401,13 +1506,11 @@
   -webkit-user-drag: none;
 }
 
-
 .result-summary__calculation-button:hover {
   transform:
     translateY(-2px)
     scale(1.03);
 }
-
 
 .result-summary__calculation-button:active {
   transform:
@@ -1434,7 +1537,6 @@
 
   z-index: 100;
 }
-
 
 .result-summary__calculation {
   position: relative;
@@ -1466,7 +1568,6 @@
     0 25px 80px rgba(0, 0, 0, 0.7);
 }
 
-
 .result-summary__calculation-title {
   margin: 0 0 42px;
 
@@ -1485,7 +1586,6 @@
     0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-
 .result-summary__calculation-content {
   display: grid;
 
@@ -1496,7 +1596,6 @@
 
   align-items: stretch;
 }
-
 
 .result-summary__calculation-close {
   position: absolute;
@@ -1558,7 +1657,6 @@
   min-height: 300px;
 }
 
-
 .planet-reveal__eyebrow,
 .journey-reveal__eyebrow,
 .king-reveal__eyebrow {
@@ -1574,7 +1672,6 @@
   color:
     rgba(230, 211, 184, 0.65);
 }
-
 
 .planet-reveal h3,
 .journey-reveal h3,
@@ -1593,7 +1690,6 @@
     #f4e8cc;
 }
 
-
 .planet-reveal p,
 .journey-reveal p,
 .king-reveal p {
@@ -1604,7 +1700,6 @@
     rgba(239, 226, 205, 0.85);
 }
 
-
 .result-summary__calculation-close:hover {
   background:
     rgba(255, 255, 255, 0.08);
@@ -1612,7 +1707,6 @@
   transform:
     scale(1.06);
 }
-
 
 /* RESPONSIVE */
 
@@ -1636,8 +1730,13 @@
       0.75rem;
   }
 
-  .result-planet {
-    width:
-      min(80%, 220px);
+  .result-planet-track__item {
+    flex-basis: 135px;
+    width: 135px;
+  }
+
+  .result-planet-track__image {
+    width: 130px;
+    height: 130px;
   }
 }

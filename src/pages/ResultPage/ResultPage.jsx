@@ -45,17 +45,12 @@ import zypernKing from "../../assets/KoenigKarten/zypernKing.png";
 
 import weiterButton from "../../assets/Buttons/weiterButton.png";
 import zurueckButton from "../../assets/Buttons/zurueckButton.png";
-import rechenwegButton
-  from "../../assets/Buttons/rechenwegButton.png";
-import nextQuestionButton
-  from "../../assets/Buttons/nextQuestionButton.png";
+import rechenwegButton from "../../assets/Buttons/rechenwegButton.png";
+import nextQuestionButton from "../../assets/Buttons/nextQuestionButton.png";
 
-import PlanetReveal
-  from "../../components/reveal/PlanetReveal/PlanetReveal";
-import JourneyReveal
-  from "../../components/reveal/JourneyReveal/JourneyReveal";
-import KingReveal
-  from "../../components/reveal/KingReveal/KingReveal";
+import PlanetReveal from "../../components/reveal/PlanetReveal/PlanetReveal";
+import JourneyReveal from "../../components/reveal/JourneyReveal/JourneyReveal";
+import KingReveal from "../../components/reveal/KingReveal/KingReveal";
 
 import map from "../../assets/ResultPage/map.svg";
 
@@ -98,25 +93,133 @@ const kingCardImages = {
   sweden: schwedenKing
 };
 
+const planetKeys = [
+  "Sun",
+  "Moon",
+  "Mercury",
+  "Venus",
+  "Mars",
+  "Jupiter",
+  "Saturn"
+];
+
 function ResultPage({
   losbuchResult,
   onRestart,
   onBackToInput
 }) {
 
-  const [currentStep, setCurrentStep] =
-    useState(0);
-  const [displayedHour, setDisplayedHour] =
-    useState(0);
-  const [showCalculation, setShowCalculation] =
-  useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [displayedHour, setDisplayedHour] = useState(0);
+  const [showCalculation, setShowCalculation] = useState(false);
+  const [planetAnimationFinished, setPlanetAnimationFinished] = useState(false);
 
   const resultNumber =
     losbuchResult?.resultNumber ?? "";
 
+  const name =
+    losbuchResult?.name ?? "";
+
+  const planetKey =
+    losbuchResult?.planet ?? "";
+
+  const planetLabel =
+    planetLabels[planetKey] ??
+    planetKey;
+
+  const planetCardImage =
+    planetCardImages[planetKey];
+
+  const questionText =
+    losbuchResult?.question
+      ?.modernText ?? "";
+
+  const kingId =
+    losbuchResult?.result
+      ?.route?.kingId ?? "";
+
+  const assignedKing =
+    kings.find(
+      (king) =>
+        king.id === kingId
+    );
+
+  const kingCardImage =
+    assignedKing
+      ? kingCardImages[
+          assignedKing.id
+        ]
+      : null;
+
+  const historicalText =
+    losbuchResult?.result
+      ?.historical ?? "";
+
+  const modernText =
+    losbuchResult?.result
+      ?.modern ?? "";
+
+  const animatedPlanetSequence = planetKey
+    ? [
+        ...planetKeys,
+        ...planetKeys,
+        planetKey
+      ]
+    : [];
+
+  const PLANET_ITEM_WIDTH = 150;
+  const PLANET_GAP = 70;
+  const PLANET_STRIDE =
+    PLANET_ITEM_WIDTH +
+    PLANET_GAP;
+
+  const planetFinalIndex =
+    Math.max(
+      animatedPlanetSequence.length - 1,
+      0
+    );
+
+  const planetFinalCenter =
+    planetFinalIndex *
+      PLANET_STRIDE +
+    PLANET_ITEM_WIDTH / 2;
+
+  /* PLANETEN VORBEIZIEHEN */
+
   useEffect(() => {
 
-    if (currentStep !== 0) {
+    if (
+      currentStep !== 0 ||
+      !planetKey
+    ) {
+      return;
+    }
+
+    setPlanetAnimationFinished(false);
+
+    const timeout =
+      window.setTimeout(() => {
+        setPlanetAnimationFinished(true);
+      }, 4200);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+
+  }, [
+    currentStep,
+    planetKey
+  ]);
+
+  /* PLANETENSTUNDE HOCHZÄHLEN */
+
+  useEffect(() => {
+
+    if (
+      currentStep !== 0 ||
+      !planetAnimationFinished
+    ) {
+      setDisplayedHour(0);
       return;
     }
 
@@ -128,79 +231,52 @@ function ResultPage({
       return;
     }
 
+    if (target <= 0) {
+      setDisplayedHour(target);
+      return;
+    }
+
     setDisplayedHour(0);
 
     let interval;
 
     const timeout =
-      setTimeout(() => {
+      window.setTimeout(() => {
 
         let current = 0;
 
         interval =
-          setInterval(() => {
+          window.setInterval(() => {
 
             current += 1;
 
-            setDisplayedHour(current);
+            setDisplayedHour(
+              Math.min(current, target)
+            );
 
             if (current >= target) {
-              clearInterval(interval);
+              window.clearInterval(interval);
             }
 
           }, 250);
 
-      }, 1400);
+      }, 300);
 
     return () => {
 
-      clearTimeout(timeout);
+      window.clearTimeout(timeout);
 
       if (interval) {
-        clearInterval(interval);
+        window.clearInterval(interval);
       }
 
     };
 
   }, [
     currentStep,
-    resultNumber
+    resultNumber,
+    planetAnimationFinished
   ]);
-
-  const name =
-    losbuchResult?.name ?? "";
-  const planetKey =
-    losbuchResult?.planet ?? "";
-  const planetLabel =
-    planetLabels[planetKey] ??
-    planetKey;
-  const planetImage =
-    planetImages[planetKey];
-  const planetCardImage =
-    planetCardImages[planetKey];
-  const questionText =
-    losbuchResult?.question
-      ?.modernText ?? "";
-  const kingId =
-    losbuchResult?.result
-      ?.route?.kingId ?? "";
-  const assignedKing =
-    kings.find(
-      (king) =>
-        king.id === kingId
-    );
-  const kingCardImage =
-    assignedKing
-      ? kingCardImages[
-          assignedKing.id
-        ]
-      : null;
-  const historicalText =
-    losbuchResult?.result
-      ?.historical ?? "";
-  const modernText =
-    losbuchResult?.result
-      ?.modern ?? "";
 
   return (
     <main
@@ -243,22 +319,56 @@ function ResultPage({
               Dein Planet
             </span>
 
-            <div className="result-panel__content">
+            <div className="result-panel__content result-planet-window">
 
-              {planetImage && (
+              <div
+                className={`result-planet-track ${
+                  planetAnimationFinished
+                    ? "result-planet-track--finished"
+                    : ""
+                }`}
+                style={{
+                  "--planet-final-center": `${planetFinalCenter}px`
+                }}
+              >
 
-                <img
-                  className="result-planet"
-                  src={planetImage}
-                  alt={planetLabel}
-                />
+                {animatedPlanetSequence.map((planet, index) => (
+                  <div
+                    className={`result-planet-track__item ${
+                      index === animatedPlanetSequence.length - 1
+                        ? "result-planet-track__item--final"
+                        : ""
+                    }`}
+                    key={`${planet}-${index}`}
+                  >
 
-              )}
+                    <img
+                      src={planetImages[planet]}
+                      alt={
+                        index === animatedPlanetSequence.length - 1
+                          ? planetLabel
+                          : ""
+                      }
+                      className="result-planet-track__image"
+                    />
+
+                  </div>
+                ))}
+
+              </div>
 
             </div>
 
-            <span className="result-planet__name">
-              {planetLabel}
+            <span
+              className={`result-planet__name ${
+                planetAnimationFinished
+                  ? "result-planet__name--visible"
+                  : ""
+              }`}
+            >
+              {planetAnimationFinished
+                ? planetLabel
+                : ""}
             </span>
 
           </div>

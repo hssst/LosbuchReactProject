@@ -20,7 +20,6 @@
   font-family: "PT Serif", serif;
 }
 
-
 /* Hintergrund abdunkeln */
 
 .losbuch-page::before {
@@ -38,10 +37,7 @@
   z-index: 0;
 }
 
-
-/* ========================= */
-/* BUCH                      */
-/* ========================= */
+/* BUCH */
 
 .losbuch-page__book {
   position: relative;
@@ -52,7 +48,6 @@
 
   z-index: 1;
 }
-
 
 .book {
   position: relative;
@@ -74,10 +69,7 @@
     );
 }
 
-
-/* ========================= */
-/* KERZENLICHT               */
-/* ========================= */
+/* KERZENLICHT */
 
 .losbuch-page__candle-light {
   position: absolute;
@@ -115,7 +107,6 @@
   animation:
     candleLight 3.2s ease-in-out infinite;
 }
-
 
 @keyframes candleLight {
 
@@ -176,10 +167,7 @@
   }
 }
 
-
-/* ========================= */
-/* FRAGEN                    */
-/* ========================= */
+/* FRAGEN */
 
 .losbuch-page__questions {
   position: absolute;
@@ -198,17 +186,13 @@
     opacity 0.2s ease;
 }
 
-
 .losbuch-page__content--turning {
   opacity: 0;
 
   pointer-events: none;
 }
 
-
-/* ========================= */
-/* WEITERBLÄTTERN            */
-/* ========================= */
+/* WEITERBLÄTTERN */
 
 .losbuch-page__next-button {
   display: block;
@@ -229,7 +213,6 @@
   transition: transform 0.2s ease;
 }
 
-
 .losbuch-page__next-button-image {
   display: block;
 
@@ -239,13 +222,11 @@
   pointer-events: none;
 }
 
-
 .losbuch-page__next-button:hover {
   transform:
     translateY(-2px)
     scale(1.03);
 }
-
 
 .losbuch-page__next-button:active {
   transform:
@@ -253,9 +234,7 @@
     scale(0.98);
 }
 
-/* ========================= */
-/* ZURÜCKBLÄTTERN            */
-/* ========================= */
+/* ZURÜCKBLÄTTERN */
 
 .losbuch-page__previous-button {
   position: absolute;
@@ -278,7 +257,6 @@
   transition: transform 0.2s ease;
 }
 
-
 .losbuch-page__previous-button-image {
   display: block;
 
@@ -290,13 +268,11 @@
   -webkit-user-drag: none;
 }
 
-
 .losbuch-page__previous-button:hover {
   transform:
     translateY(-2px)
     scale(1.03);
 }
-
 
 .losbuch-page__previous-button:active {
   transform:
@@ -304,10 +280,7 @@
     scale(0.98);
 }
 
-
-/* ========================= */
-/* PLANETENSTUNDE BESTIMMEN  */
-/* ========================= */
+/* PLANETENSTUNDE BESTIMMEN */
 
 .losbuch-page__result-button {
   position: absolute;
@@ -331,7 +304,6 @@
     transform 0.2s ease;
 }
 
-
 .losbuch-page__result-button-image {
   display: block;
 
@@ -344,13 +316,11 @@
   -webkit-user-drag: none;
 }
 
-
 .losbuch-page__result-button:hover {
   transform:
     translateY(-2px)
     scale(1.03);
 }
-
 
 .losbuch-page__result-button:active {
   transform:
@@ -358,10 +328,7 @@
     scale(0.98);
 }
 
-
-/* ========================= */
-/* DETAILS                   */
-/* ========================= */
+/* DETAILS */
 
 .losbuch-page__details {
   position: absolute;
@@ -374,7 +341,6 @@
     detailsAppear 0.45s ease forwards;
 }
 
-
 @keyframes detailsAppear {
 
   from {
@@ -386,7 +352,6 @@
   }
 }
 
-
 .losbuch-page__details-left {
   position: absolute;
 
@@ -395,7 +360,6 @@
 
   width: 30%;
 }
-
 
 .losbuch-page__details-right {
   position: absolute;
@@ -406,15 +370,11 @@
   width: 29%;
 }
 
-
-/* ========================= */
-/* DETAIL-TEXT               */
-/* ========================= */
+/* DETAIL-TEXT */
 
 .losbuch-page__detail-intro {
   color: #362317;
 }
-
 
 .losbuch-page__detail-intro h2 {
   margin:
@@ -426,7 +386,6 @@
   font-weight: 700;
 }
 
-
 .losbuch-page__detail-intro p {
   margin: 0;
 
@@ -437,10 +396,7 @@
     1.65;
 }
 
-
-/* ========================= */
-/* STARTSEITE BUTTON         */
-/* ========================= */
+/* STARTSEITE BUTTON */
 
 .home-button {
   position: absolute;
@@ -504,7 +460,6 @@
   z-index: 30;
 }
 
-
 .home-button:hover {
   transform:
     translateY(-2px);
@@ -526,16 +481,12 @@
       rgba(255, 235, 190, 0.08);
 }
 
-
 .home-button:active {
   transform:
     translateY(0);
 }
 
-
-/* ========================= */
-/* KLEINERE BILDSCHIRME      */
-/* ========================= */
+/* KLEINERE BILDSCHIRME */
 
 @media (max-width: 1200px) {
 
@@ -545,10 +496,7 @@
 
 }
 
-
-/* ======================================== */
-/* ATMOSPHÄRE: RAUCH / NEBEL                */
-/* ======================================== */
+/* RAUCH / NEBEL */
 
 .losbuch-page__smoke {
   position: absolute;
@@ -561,7 +509,6 @@
 
   z-index: 20;
 }
-
 
 .smoke {
   position: absolute;
@@ -584,7 +531,6 @@
   opacity: 0;
 }
 
-
 /* Nebel 1 */
 
 .smoke--1 {
@@ -594,7 +540,6 @@
   animation:
     smokeDrift 18s linear infinite;
 }
-
 
 /* Nebel 2 */
 
@@ -606,7 +551,6 @@
     smokeDrift 24s linear 6s infinite;
 }
 
-
 /* Nebel 3 */
 
 .smoke--3 {
@@ -616,7 +560,6 @@
   animation:
     smokeDrift 21s linear 12s infinite;
 }
-
 
 @keyframes smokeDrift {
 
@@ -656,10 +599,7 @@
   }
 }
 
-
-/* ======================================== */
-/* RUSSPARTIKEL                             */
-/* ======================================== */
+/* RUSSPARTIKEL */
 
 .losbuch-page__particles {
   position: absolute;
@@ -672,7 +612,6 @@
 
   z-index: 21;
 }
-
 
 .soot {
   position: absolute;
@@ -695,7 +634,6 @@
   animation:
     sootDrift 14s linear infinite;
 }
-
 
 @keyframes sootDrift {
 
@@ -738,14 +676,12 @@
   }
 }
 
-
 .soot--1 {
   top: 12%;
 
   animation-duration: 13s;
   animation-delay: -2s;
 }
-
 
 .soot--2 {
   top: 23%;
@@ -757,7 +693,6 @@
   animation-delay: -8s;
 }
 
-
 .soot--3 {
   top: 37%;
 
@@ -767,7 +702,6 @@
   animation-duration: 19s;
   animation-delay: -4s;
 }
-
 
 .soot--4 {
   top: 52%;
@@ -779,14 +713,12 @@
   animation-delay: -7s;
 }
 
-
 .soot--5 {
   top: 68%;
 
   animation-duration: 16s;
   animation-delay: -11s;
 }
-
 
 .soot--6 {
   top: 81%;
@@ -798,7 +730,6 @@
   animation-delay: -3s;
 }
 
-
 .soot--7 {
   top: 44%;
 
@@ -808,7 +739,6 @@
   animation-duration: 22s;
   animation-delay: -15s;
 }
-
 
 .soot--8 {
   top: 75%;
@@ -820,7 +750,6 @@
   animation-delay: -5s;
 }
 
-
 .soot--9 {
   top: 30%;
 
@@ -830,7 +759,6 @@
   animation-duration: 18s;
   animation-delay: -13s;
 }
-
 
 .soot--10 {
   top: 59%;

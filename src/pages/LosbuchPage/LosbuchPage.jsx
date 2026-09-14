@@ -2,28 +2,18 @@
 
 import "./LosbuchPage.css";
 
-import QuestionSelect
-  from "../../components/question/QuestionSelect/QuestionSelect";
-import NameInput
-  from "../../components/name/NameInput/NameInput";
-import PlanetHourSelect
-  from "../../components/planet/PlanetHourSelect/PlanetHourSelect";
-import PageTurnAnimation
-  from "../../components/PageTurnAnimation/PageTurnAnimation";
+import QuestionSelect from "../../components/question/QuestionSelect/QuestionSelect";
+import NameInput from "../../components/name/NameInput/NameInput";
+import PlanetHourSelect from "../../components/planet/PlanetHourSelect/PlanetHourSelect";
+import PageTurnAnimation from "../../components/PageTurnAnimation/PageTurnAnimation";
 
-import weiterButton
-  from "../../assets/Buttons/weiterButton.png";
-import zurueckButton
-  from "../../assets/Buttons/zurueckButton.png";
-import planetenstundeBestimmenButton
-  from "../../assets/Buttons/planetenstundeBestimmenButton.png";
+import weiterButton from "../../assets/Buttons/weiterButton.png";
+import zurueckButton from "../../assets/Buttons/zurueckButton.png";
+import planetenstundeBestimmenButton from "../../assets/Buttons/planetenstundeBestimmenButton.png";
 
-import book
-  from "../../assets/LosbuchSeite/book.png";
+import book from "../../assets/LosbuchSeite/book.png";
 
-import { getLosbuchResult }
-  from "../../logic/getLosbuchResult";
-
+import { getLosbuchResult } from "../../logic/getLosbuchResult";
 
 function LosbuchPage({
   onFinish,
@@ -31,24 +21,15 @@ function LosbuchPage({
   initialStep = "question"
 }) {
 
-  const [selectedQuestionId, setSelectedQuestionId] =
-    useState("thoughts");
-  const [name, setName] =
-    useState("");
-  const [weekday, setWeekday] =
-    useState("Sonntag");
-  const [dayPhase, setDayPhase] =
-    useState("Tag");
-  const [hour, setHour] =
-    useState(1);
-  const [errorMessage, setErrorMessage] =
-    useState("");
-  const [step, setStep] =
-    useState(initialStep);
-  const [isTurningPage, setIsTurningPage] =
-    useState(false);
-  const errorMessageRef =
-    useRef(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState("thoughts");
+  const [name, setName] = useState("");
+  const [weekday, setWeekday] = useState("Sonntag");
+  const [dayPhase, setDayPhase] = useState("Tag");
+  const [hour, setHour] = useState(1);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [step, setStep] = useState(initialStep);
+  const [isTurningPage, setIsTurningPage] = useState(false);
+  const errorMessageRef = useRef(null);
 
   function scrollToErrorMessage() {
     setTimeout(() => {
@@ -114,7 +95,7 @@ function LosbuchPage({
   return (
     <main className="losbuch-page">
 
-      {/* Atmosphärischer Rauch */}
+      {/* Rauch */}
 
       <div className="losbuch-page__smoke">
         <div className="smoke smoke--1"></div>
