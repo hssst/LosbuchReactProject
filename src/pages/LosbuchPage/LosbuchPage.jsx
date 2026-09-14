@@ -11,6 +11,8 @@ import book from "../../assets/LosbuchSeite/book.png";
 
 import { getLosbuchResult } from "../../logic/getLosbuchResult";
 
+import { playSound } from "../../sounds";
+
 function LosbuchPage({
   onFinish,
   onGoHome,
@@ -53,6 +55,7 @@ function LosbuchPage({
     if (isTurningPage) {
       return;
     }
+    playSound("paper", { volume: 0.5 });
     setIsTurningPage(true);
   }
 
@@ -125,13 +128,16 @@ function LosbuchPage({
               onSelectQuestion={setSelectedQuestionId}
             />
 
-            <button
-              type="button"
-              className="losbuch-page__next-button"
-              onClick={handleNextPage}
-            >
-              Weiterblättern
-            </button>
+<button
+  type="button"
+  className="losbuch-page__next-button"
+  onClick={() => {
+    playSound("wood", { volume: 0.4 });
+    handleNextPage();
+  }}
+>
+  Weiterblättern
+</button>
           </div>
         )}
 
@@ -164,22 +170,28 @@ function LosbuchPage({
                 onHourChange={setHour}
               />
 
-              <button
-                type="button"
-                onClick={handleShowResult}
-                className="losbuch-page__result-button"
-              >
-                Planetenstunde bestimmen
-              </button>
+<button
+  type="button"
+  onClick={() => {
+    playSound("wood", { volume: 0.4 });
+    handleShowResult();
+  }}
+  className="losbuch-page__result-button"
+>
+  Planetenstunde bestimmen
+</button>
             </div>
 
             <button
-              type="button"
-              className="losbuch-page__previous-button"
-              onClick={handlePreviousPage}
-            >
-              Zurück
-            </button>
+  type="button"
+  className="losbuch-page__previous-button"
+  onClick={() => {
+    playSound("wood", { volume: 0.4 });
+    handlePreviousPage();
+  }}
+>
+  Zurück
+</button>
           </div>
         )}
 
@@ -191,12 +203,15 @@ function LosbuchPage({
       </div>
 
       <button
-        type="button"
-        className="home-button"
-        onClick={onGoHome}
-      >
-        ← Zur Startseite
-      </button>
+  type="button"
+  className="home-button"
+  onClick={() => {
+    playSound("wood", { volume: 0.4 });
+    onGoHome();
+  }}
+>
+  ← Zur Startseite
+</button>
     </main>
   );
 }

@@ -4,6 +4,7 @@ import title from "../../assets/Homepage/title.svg";
 import mond from "../../assets/Homepage/mond.png";
 import homepage_text from "../../assets/Homepage/homepage_text.svg";
 import text_openBook from "../../assets/Homepage/text_openBook.svg";
+import { playSound, startHover, stopHover } from "../../sounds";
 
 function HomePage({ onGoLosbuch, isLeaving }) {
   return (
@@ -18,7 +19,12 @@ function HomePage({ onGoLosbuch, isLeaving }) {
         <button
           type="button"
           className="startButton"
-          onClick={onGoLosbuch}
+          onClick={() => {
+            playSound("click", { volume: 0.1 });
+            onGoLosbuch();
+          }}
+          onMouseEnter={() => startHover(0.08)}
+          onMouseLeave={() => stopHover()}
           aria-label="Zum Losbuch"
         >
           <img

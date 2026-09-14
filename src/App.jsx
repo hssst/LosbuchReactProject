@@ -11,6 +11,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import LosbuchPage from "./pages/LosbuchPage/LosbuchPage";
 import ResultPage from "./pages/ResultPage/ResultPage";
 
+import { playSound, startWind } from "./sounds";
+
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [losbuchResult, setLosbuchResult] = useState(null);
@@ -34,6 +36,7 @@ function App() {
     setCurrentPage("losbuch");
   }
   function goToLosbuch() {
+    playSound("mystic", { volume: 0.25, fadeIn: 1500, fadeOut: 1500 });
     setLosbuchStartStep("question");
 
     // 1. Homepage-Inhalt ausblenden
@@ -44,6 +47,10 @@ function App() {
       setIsTransitioning(true);
       setTransitionOut(false);
     }, 800);
+
+    setTimeout(() => {
+      startWind({ target: 0.3, duration: 4000 });
+    }, 5000);
 
     // 3. Nach der Transition Losbuch anzeigen
     setTimeout(() => {

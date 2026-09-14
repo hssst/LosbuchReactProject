@@ -1,5 +1,7 @@
 import "./PlanetHourSelect.css";
 
+import { playSound } from "../../../sounds";
+
 function PlanetHourSelect({
   weekday,
   dayPhase,
@@ -29,9 +31,10 @@ function PlanetHourSelect({
           <select
             id="weekday"
             value={weekday}
-            onChange={(event) =>
-              onWeekdayChange(event.target.value)
-            }
+            onChange={(event) => {
+              playSound("wood", { volume: 0.25 });
+              onWeekdayChange(event.target.value);
+            }}
           >
             <option>Sonntag</option>
             <option>Montag</option>
@@ -60,9 +63,10 @@ function PlanetHourSelect({
           <select
             id="dayPhase"
             value={dayPhase}
-            onChange={(event) =>
-              onDayPhaseChange(event.target.value)
-            }
+            onChange={(event) => {
+              playSound("wood", { volume: 0.25 });
+              onDayPhaseChange(event.target.value);
+            }}
           >
             <option>Tag</option>
             <option>Nacht</option>
@@ -86,9 +90,10 @@ function PlanetHourSelect({
           <select
             id="hour"
             value={hour}
-            onChange={(event) =>
-              onHourChange(Number(event.target.value))
-            }
+            onChange={(event) => {
+              playSound("wood", { volume: 0.25 });
+              onHourChange(Number(event.target.value));
+            }}
           >
             <option value={1}>1. Stunde</option>
             <option value={2}>2. Stunde</option>
