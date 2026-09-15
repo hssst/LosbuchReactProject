@@ -43,6 +43,23 @@ import tatarenKing from "../../assets/KoenigKarten/tatarenKing.png";
 import tuerkeiKing from "../../assets/KoenigKarten/tuerkeiKing.png";
 import zypernKing from "../../assets/KoenigKarten/zypernKing.png";
 
+import armenienSprechblase from "../../assets/sprechblasenKoenig/armenienSprechblase.png";
+import babylonSprechblase from "../../assets/sprechblasenKoenig/babylonSprechblase.png";
+import indienSprechblase from "../../assets/sprechblasenKoenig/indienSprechblase.png";
+import frankreichSprechblase from "../../assets/sprechblasenKoenig/frankreichSprechblase.png";
+import libyenSprechblase from "../../assets/sprechblasenKoenig/libyenSprechblase.png";
+import schottlandSprechblase from "../../assets/sprechblasenKoenig/schottlandSprechblase.png";
+import deutschlandSprechblase from "../../assets/sprechblasenKoenig/deutschlandSprechblase.png";
+import tatarenSprechblase from "../../assets/sprechblasenKoenig/tatarenSprechblase.png";
+import schwedenSprechblase from "../../assets/sprechblasenKoenig/schwedenSprechblase.png";
+import nubienSprechblase from "../../assets/sprechblasenKoenig/nubienSprechblase.png";
+import kappadokienSprechblase from "../../assets/sprechblasenKoenig/kappadokienSprechblase.png";
+import englandSprechblase from "../../assets/sprechblasenKoenig/englandSprechblase.png";
+import tuerkeiSprechblase from "../../assets/sprechblasenKoenig/tuerkeiSprechblase.png";
+import polenSprechblase from "../../assets/sprechblasenKoenig/polenSprechblase.png";
+import sizilienSprechblase from "../../assets/sprechblasenKoenig/sizilienSprechblase.png";
+import zypernSprechblase from "../../assets/sprechblasenKoenig/zypernSprechblase.png";
+
 import zurueckButton from "../../assets/Buttons/zurueckButton.png";
 import rechenwegButton from "../../assets/Buttons/rechenwegButton.png";
 import nextQuestionButton from "../../assets/Buttons/nextQuestionButton.png";
@@ -90,6 +107,25 @@ const kingCardImages = {
   cappadocia: kappadokienKing,
   german: deutschlandKing,
   sweden: schwedenKing
+};
+
+const kingSpeechBubbleImages = {
+  turkish: tuerkeiSprechblase,
+  polish: polenSprechblase,
+  india: indienSprechblase,
+  england: englandSprechblase,
+  scotland: schottlandSprechblase,
+  armenia: armenienSprechblase,
+  nubia: nubienSprechblase,
+  cyprus: zypernSprechblase,
+  babylon: babylonSprechblase,
+  libya: libyenSprechblase,
+  france: frankreichSprechblase,
+  tartars: tatarenSprechblase,
+  sicily: sizilienSprechblase,
+  cappadocia: kappadokienSprechblase,
+  german: deutschlandSprechblase,
+  sweden: schwedenSprechblase
 };
 
 const planetKeys = [
@@ -149,6 +185,13 @@ function ResultPage({
           assignedKing.id
         ]
       : null;
+
+  const kingSpeechBubbleImage =
+    assignedKing
+      ? kingSpeechBubbleImages[
+          assignedKing.id
+        ]
+    : null;
 
   const historicalText =
     losbuchResult?.result
@@ -627,36 +670,28 @@ function ResultPage({
 
         <section className="result-summary">
 
-          <div className="result-summary__king">
+          <div className="result-summary__king-speech">
 
-            {kingCardImage && (
+            {kingSpeechBubbleImage && (
+              <>
+                <img
+                  src={kingSpeechBubbleImage}
+                  alt={
+                    assignedKing?.modernName ??
+                    "König"
+                  }
+                  className="result-summary__king-speech-image"
+                />
 
-              <img
-                src={kingCardImage}
-                alt={
-                  assignedKing?.modernName ??
-                  "König"
-                }
-                className="result-summary__king-image"
-              />
-
+                <div className="result-summary__king-speech-text">
+                  {historicalText}
+                </div>
+              </>
             )}
 
           </div>
 
           <div className="result-summary__texts">
-
-            <div className="result-summary__text-box">
-
-              <span className="result-summary__label">
-                Dein historischer Lossspruch
-              </span>
-
-              <p className="result-summary__historical">
-                {historicalText}
-              </p>
-
-            </div>
 
             <div className="result-summary__text-box">
 
