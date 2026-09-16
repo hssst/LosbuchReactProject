@@ -147,8 +147,10 @@ function LosbuchPage({
               <div className="losbuch-page__detail-intro">
                 <h2>Deine Weissagung</h2>
                 <p>
-                  Die Frage ist gewählt. Nun fehlen nur noch dein Name
-                  und die Stunde des Planeten.
+                So ist die Frage denn gewählt. Nenne nun deinen Namen, auf dass
+  seine verborgene Zahl gefunden werde, und bestimme die Stunde
+  deines Fragens. Aus beidem erwächst der Weg, den das Los durch
+  die Tafeln nimmt.
                 </p>
               </div>
             </div>

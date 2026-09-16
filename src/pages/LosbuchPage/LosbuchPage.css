@@ -161,6 +161,9 @@
 .losbuch-page__next-button,
 .losbuch-page__previous-button,
 .losbuch-page__result-button {
+  display: block;
+  margin: 24px auto 0;
+
   padding: 10px 22px;
   background: linear-gradient(
     180deg,
@@ -216,12 +219,6 @@
   bottom: 24.5%;
 }
 
-.losbuch-page__result-button {
-  position: absolute;
-  right: 6%;
-  bottom: -85%;
-}
-
 /* DETAILS */
 
 .losbuch-page__details {
@@ -249,7 +246,7 @@
 .losbuch-page__details-left {
   position: absolute;
 
-  left: 16%;
+  left: 17%;
   top: 16%;
 
   width: 30%;
@@ -258,7 +255,7 @@
 .losbuch-page__details-right {
   position: absolute;
 
-  left: 56%;
+  left: 53%;
   top: 14%;
 
   width: 29%;
@@ -268,26 +265,36 @@
 
 .losbuch-page__detail-intro {
   color: #362317;
+  text-align: center;
 }
 
 .losbuch-page__detail-intro h2 {
-  margin:
-    0 0 18px;
+  margin: 0 0 22px;
 
-  font-size:
-    1.7rem;
-
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
   font-weight: 700;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.losbuch-page__detail-intro h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  margin: 14px auto 0;
+  background: rgba(54, 35, 23, 0.45);
 }
 
 .losbuch-page__detail-intro p {
   margin: 0;
 
-  font-size:
-    1rem;
+  font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+  font-style: italic;
+  line-height: 1.75;
 
-  line-height:
-    1.65;
+  color: rgba(54, 35, 23, 0.85);
 }
 
 /* STARTSEITE BUTTON */

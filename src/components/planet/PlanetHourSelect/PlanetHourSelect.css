@@ -1,186 +1,166 @@
 .planet-hour-select {
-  width: 100%;
-
-  margin-top: 30px;
-
-  color: #342216;
-
-  font-family: "PT Serif", serif;
+  color: #362317;
 }
-
-
-/* ========================= */
-/* ÜBERSCHRIFT               */
-/* ========================= */
 
 .planet-hour-select__title {
-  margin: 0 0 22px 0;
-
-  color: #382519;
-
-  font-family: "PT Serif", serif;
-
-  font-size: 1.35rem;
+  margin: 0 0 16px;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
   font-weight: 700;
-
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
-
-
-/* ========================= */
-/* EINZELNE ZEILE            */
-/* ========================= */
 
 .planet-hour-select__field {
-  display: grid;
-
-  grid-template-columns: 95px 180px;
-
-  align-items: center;
-
-  column-gap: 16px;
-
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
+.planet-hour-select__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(54, 35, 23, 0.75);
+}
 
-/* ========================= */
-/* BESCHRIFTUNG              */
-/* ========================= */
+/* WOCHENTAGE */
 
-.planet-hour-select__field label {
-  color: #47301f;
+.weekday-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
 
+.weekday-grid__button {
+  padding: 6px 0;
+
+  background: rgba(54, 35, 23, 0.05);
+  border: 1px solid rgba(54, 35, 23, 0.25);
+  border-radius: 3px;
+
+  color: #4a3320;
   font-family: "PT Serif", serif;
-
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 600;
 
-  letter-spacing: 0.01em;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-
-/* ========================= */
-/* SELECT WRAPPER            */
-/* ========================= */
-
-.planet-hour-select__select-wrapper {
-  position: relative;
-
-  width: 180px;
+.weekday-grid__button:hover {
+  background: rgba(54, 35, 23, 0.1);
+  border-color: rgba(54, 35, 23, 0.45);
 }
 
+.weekday-grid__button--active {
+  background: rgba(88, 55, 30, 0.85);
+  border-color: rgba(88, 55, 30, 0.9);
+  color: #f2e3c8;
+}
 
-/* eigener Pfeil */
+/* TAGESZEIT */
 
-.planet-hour-select__select-wrapper::after {
-  content: "▼";
+.dayphase-select {
+  display: flex;
+  gap: 12px;
+}
 
-  position: absolute;
+.dayphase-select__option {
+  flex: 1;
 
-  right: 11px;
-  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
 
-  transform: translateY(-50%);
+  padding: 8px 0;
 
-  color: #604024;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 
-  font-size: 0.58rem;
+  color: rgba(54, 35, 23, 0.6);
+  font-family: "PT Serif", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
 
+  cursor: pointer;
+
+  opacity: 0.4;
+  filter: grayscale(0.6);
+
+  transition:
+    opacity 0.25s ease,
+    filter 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.dayphase-select__option img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
   pointer-events: none;
 }
 
+.dayphase-select__option:hover {
+  opacity: 0.7;
+}
 
-/* ========================= */
-/* SELECT                    */
-/* ========================= */
+.dayphase-select__option--active {
+  opacity: 1;
+  filter: grayscale(0);
+  border-color: rgba(54, 35, 23, 0.3);
+  color: #362317;
+}
 
-.planet-hour-select select {
-  box-sizing: border-box;
+/* STUNDE */
 
+.hour-slider {
   width: 100%;
-
-  padding:
-    8px 30px
-    8px 11px;
+  margin: 4px 0 2px;
 
   appearance: none;
   -webkit-appearance: none;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(241, 218, 174, 0.42),
-      rgba(189, 145, 88, 0.18)
-    );
-
-  border:
-    1px solid
-    rgba(83, 52, 29, 0.6);
-
+  height: 3px;
   border-radius: 2px;
 
-  outline: none;
-
-  color: #302016;
-
-  font-family: "PT Serif", serif;
-
-  font-size: 0.92rem;
+  background: rgba(54, 35, 23, 0.3);
 
   cursor: pointer;
-
-  box-shadow:
-    inset 0 0 8px
-    rgba(255, 241, 210, 0.15);
-
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
+.hour-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
 
-/* ========================= */
-/* HOVER                     */
-/* ========================= */
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
 
-.planet-hour-select select:hover {
-  border-color: #79502e;
+  background: #58371e;
+  border: 2px solid #f2e3c8;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(247, 225, 181, 0.52),
-      rgba(198, 153, 91, 0.24)
-    );
+  cursor: pointer;
 }
 
+.hour-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
 
-/* ========================= */
-/* FOKUS                     */
-/* ========================= */
+  background: #58371e;
+  border: 2px solid #f2e3c8;
 
-.planet-hour-select select:focus {
-  border-color: #4d2e1a;
-
-  box-shadow:
-    inset 0 0 8px
-    rgba(255, 241, 210, 0.16),
-
-    0 0 5px
-    rgba(91, 53, 27, 0.2);
+  cursor: pointer;
 }
 
+.hour-slider__scale {
+  display: flex;
+  justify-content: space-between;
 
-/* ========================= */
-/* DROPDOWN OPTIONEN         */
-/* ========================= */
-
-.planet-hour-select option {
-  background: #e3c995;
-
-  color: #302016;
-
-  font-family: "PT Serif", serif;
+  font-size: 0.7rem;
+  color: rgba(54, 35, 23, 0.55);
 }
