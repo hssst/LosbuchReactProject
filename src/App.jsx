@@ -11,7 +11,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LosbuchPage from "./pages/LosbuchPage/LosbuchPage";
 import ResultPage from "./pages/ResultPage/ResultPage";
 
-import { playSound, startWind } from "./sounds";
+import { playSound, startWind, stopAllSounds, fadeOutAudio } from "./sounds";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -27,6 +27,15 @@ function App() {
     setCurrentPage("result");
   }
   function handleRestart() {
+    stopAllSounds();
+
+    const m = playSound("mystic", { volume: 0.25, fadeIn: 400 });
+    setTimeout(() => fadeOutAudio(m, 800), 3000);
+
+    setTimeout(() => {
+      startWind({ target: 0.3, duration: 4000 });
+    }, 1000);
+
     setLosbuchResult(null);
     setLosbuchStartStep("question");
     setCurrentPage("losbuch");

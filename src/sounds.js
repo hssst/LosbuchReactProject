@@ -129,6 +129,43 @@ export function playFile(src, { volume = 0.5, times = 1 } = {}) {
     });
   }
 
+  running.add(audio);
   audio.play().catch(() => {});
   return audio;
+}
+
+const running = new Set();
+
+export function registerAudio(audio) {
+  if (audio) running.add(audio);
+  return audio;
+}
+
+export function stopAllSounds() {
+  running.forEach((a) => {
+    a.pause();
+    a.currentTime = 0;
+  });
+  running.clear();
+
+  wind.pause();
+  wind.currentTime = 0;
+  wind.volume = 0;
+  windStarted = false;
+}
+
+export function fadeOutAudio(audio, duration = 800) {
+  if (!audio) return;
+  const steps = 20;
+  let i = steps;
+  const startVol = audio.volume;
+
+  const t = setInterval(() => {
+    i--;
+    audio.volume = Math.max(0, (startVol * i) / steps);
+    if (i <= 0) {
+      clearInterval(t);
+      audio.pause();
+    }
+  }, duration / steps);
 }
