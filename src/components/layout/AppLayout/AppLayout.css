@@ -50,19 +50,35 @@
 /* WARP WÄHREND DER TRANSITION */
 
 .app-layout--warping::before {
-  animation-duration: 16s;
+  animation:
+    starDriftSlow 140s linear infinite,
+    starZoom 9s ease-in forwards;
 }
 
 .app-layout--warping::after {
-  animation-duration: 6s;
+  animation:
+    starDriftFast 70s linear infinite,
+    starZoomFast 9s ease-in forwards;
 }
 
-@keyframes starDriftSlow {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-420px, 210px, 0); }
+@keyframes starZoom {
+  from {
+    scale: 1;
+    opacity: 1;
+  }
+  to {
+    scale: 2.6;
+    opacity: 0.35;
+  }
 }
 
-@keyframes starDriftFast {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-260px, 130px, 0); }
+@keyframes starZoomFast {
+  from {
+    scale: 1;
+    opacity: 1;
+  }
+  to {
+    scale: 4.5;
+    opacity: 0.2;
+  }
 }

@@ -311,26 +311,21 @@ function ResultPage({
 
         let current = 0;
 
-        interval =
-          window.setInterval(() => {
+        interval = window.setInterval(() => {
+          current += 1;
 
-            current += 1;
+          const t = playSound("tick1", { volume: 0.6 });
+          if (t) {
+            t.preservesPitch = false;
+            t.playbackRate = 1 + (current - 1) * 0.04;
+          }
 
-            const tick = playSound("tumble", { volume: 0.35 });
-            if (tick) {
-              tick.preservesPitch = false;
-              tick.playbackRate = 1 + (current - 1) * 0.06;
-            }
+          setDisplayedHour(Math.min(current, target));
 
-            setDisplayedHour(
-              Math.min(current, target)
-            );
-
-            if (current >= target) {
-              window.clearInterval(interval);
-            }
-
-          }, 400);
+          if (current >= target) {
+            window.clearInterval(interval);
+          }
+        }, 400);
 
       }, 1200);
 
