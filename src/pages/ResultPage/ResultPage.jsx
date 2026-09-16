@@ -70,6 +70,9 @@ import KingReveal from "../../components/reveal/KingReveal/KingReveal";
 
 import map from "../../assets/ResultPage/map.svg";
 
+import { playSound, playFile, startHover, stopHover } from "../../sounds";
+
+
 const planetImages = {
   Sun: sonne,
   Moon: mond,
@@ -127,6 +130,22 @@ const kingSpeechBubbleImages = {
   german: deutschlandSprechblase,
   sweden: schwedenSprechblase
 };
+
+const kingSoundGroups = {
+  kingceltic: ["england", "scotland"],
+  kingeurope: ["france", "german", "sweden", "polish", "sicily"],
+  kingeast: ["turkish", "armenia", "cyprus", "cappadocia"],
+  kingorient: ["babylon", "tartars"],
+  kingafrica: ["nubia", "libya"],
+  kingindia: ["india"],
+};
+
+const kingSounds = {};
+Object.entries(kingSoundGroups).forEach(([sound, ids]) => {
+  ids.forEach((id) => {
+    kingSounds[id] = `/sounds/kings/${sound}.mp3`;
+  });
+});
 
 const planetKeys = [
   "Sun",
@@ -229,29 +248,34 @@ function ResultPage({
   /* PLANETEN VORBEIZIEHEN */
 
   useEffect(() => {
-
-    if (
-      currentStep !== 0 ||
-      !planetKey
-    ) {
+    if (currentStep !== 0 || !planetKey) {
       return;
     }
 
     setPlanetAnimationFinished(false);
 
-    const timeout =
-      window.setTimeout(() => {
-        setPlanetAnimationFinished(true);
-      }, 4200);
+    let rumble = null;
+
+    const rumbleStart = window.setTimeout(() => {
+      rumble = playSound("rumble", { volume: 0.6 });
+      if (rumble) {
+        rumble.playbackRate = 0.5;
+        rumble.preservesPitch = false;
+      }
+    }, 500);
+
+    const timeout = window.setTimeout(() => {
+      setPlanetAnimationFinished(true);
+      rumble?.pause();
+      playSound("gong", { volume: 0.8 }); 
+    }, 3700);
 
     return () => {
+      window.clearTimeout(rumbleStart);
       window.clearTimeout(timeout);
+      rumble?.pause();
     };
-
-  }, [
-    currentStep,
-    planetKey
-  ]);
+  }, [currentStep, planetKey]);
 
   /* PLANETENSTUNDE HOCHZÄHLEN */
 
@@ -292,6 +316,12 @@ function ResultPage({
 
             current += 1;
 
+            const tick = playSound("tumble", { volume: 0.35 });
+            if (tick) {
+              tick.preservesPitch = false;
+              tick.playbackRate = 1 + (current - 1) * 0.06;
+            }
+
             setDisplayedHour(
               Math.min(current, target)
             );
@@ -302,7 +332,7 @@ function ResultPage({
 
           }, 250);
 
-      }, 300);
+      }, 1200);
 
     return () => {
 
@@ -319,6 +349,34 @@ function ResultPage({
     resultNumber,
     planetAnimationFinished
   ]);
+
+    /* MAP-SOUNDS */
+
+    useEffect(() => {
+      if (currentStep !== 1) {
+        return;
+      }
+  
+      const kingSound = assignedKing
+        ? kingSounds[assignedKing.id]
+        : null;
+  
+        const timers = [
+          window.setTimeout(() => playSound("gong", { volume: 0.7 }), 1000),
+          window.setTimeout(() => playSound("rumble", { volume: 0.5 }), 1800),
+          window.setTimeout(() => playSound("gong", { volume: 0.7 }), 3900),
+          window.setTimeout(() => playSound("rumble", { volume: 0.5 }), 5200),
+          window.setTimeout(() => {
+            if (kingSound) {
+              kingAudio = playFile(kingSound, { volume: 0.6, times: 3 });
+            }
+          }, 7700),
+        ];
+  
+      return () => {
+        timers.forEach((t) => window.clearTimeout(t));
+      };
+    }, [currentStep, assignedKing]);
 
   return (
     <main
@@ -438,7 +496,10 @@ function ResultPage({
           <button
             type="button"
             className="result-step-one-back-button"
-            onClick={onBackToInput}
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              onBackToInput();
+            }}
           >
             Zurück
           </button>
@@ -448,7 +509,10 @@ function ResultPage({
           <button
             type="button"
             className="result-next-button"
-            onClick={() => setCurrentStep(1)}
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              setCurrentStep(1);
+            }}
           >
             Weiter
           </button>
@@ -645,9 +709,12 @@ function ResultPage({
           <button
             type="button"
             className="result-map-next-button"
-            onClick={() => setCurrentStep(2)}
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              setCurrentStep(2);
+            }}
           >
-            Weiter
+            DEIN LOSSPRUCH
           </button>
 
           {/* ZURÜCK */}
@@ -655,7 +722,10 @@ function ResultPage({
           <button
             type="button"
             className="result-map-back-button"
-            onClick={() => setCurrentStep(0)}
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              setCurrentStep(0);
+            }}
           >
             Zurück
           </button>
@@ -752,9 +822,10 @@ function ResultPage({
           <button
             type="button"
             className="result-summary__calculation-button"
-            onClick={() =>
-              setShowCalculation((current) => !current)
-            }
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              setShowCalculation((current) => !current);
+            }}
             aria-label="Rechenweg anzeigen"
           >
             <img
@@ -774,7 +845,10 @@ function ResultPage({
                 <button
                   type="button"
                   className="result-summary__calculation-close"
-                  onClick={() => setShowCalculation(false)}
+                  onClick={() => {
+                    playSound("wood", { volume: 0.4 });
+                    setShowCalculation(false);
+                  }}
                   aria-label="Rechenweg schließen"
                 >
                   ×
@@ -810,7 +884,10 @@ function ResultPage({
           <button
             type="button"
             className="result-summary__restart"
-            onClick={onRestart}
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              onRestart();
+            }}
             aria-label="Stelle eine neue Frage"
           >
 
@@ -827,9 +904,10 @@ function ResultPage({
           <button
             type="button"
             className="result-summary__back"
-            onClick={() =>
-              setCurrentStep(1)
-            }
+            onClick={() => {
+              playSound("wood", { volume: 0.4 });
+              setCurrentStep(1);
+            }}
             aria-label="Zurück"
           >
 

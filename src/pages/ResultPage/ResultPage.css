@@ -892,9 +892,9 @@
 
   animation:
     routeReveal
-    1.8s
+    2.4s
     ease-in-out
-    1.8s
+    1.6s
     forwards;
 }
 
@@ -912,11 +912,11 @@
   stroke-dashoffset: 100;
 
   animation:
-    routeReveal
-    1.8s
-    ease-in-out
-    4.5s
-    forwards;
+  routeReveal
+  2.4s
+  ease-in-out
+  5.2s
+  forwards;
 }
 
 @keyframes routeReveal {
@@ -952,7 +952,7 @@
     planetHourCardAppear
     0.6s
     ease-out
-    3.7s
+    4.1s
     forwards;
 }
 
@@ -1047,7 +1047,7 @@
     kingCardAppear
     0.6s
     ease-out
-    6.4s
+    7.7s
     forwards;
 }
 

@@ -4,6 +4,9 @@ const files = {
   mystic: "/sounds/mystic.mp3",
   wood: "/sounds/clickwood.mp3",
   paper: "/sounds/pageturn.mp3",
+  rumble: "/sounds/rumble.mp3",
+  gong: "/sounds/gong.mp3",
+  tumble: "/sounds/tumble.mp3",
 };
 
 const cache = {};
@@ -54,10 +57,11 @@ export function playSound(
 
 let hoverAudio = null;
 
-export function startHover(volume = 0.08) {
+export function startHover(volume = 0.08, loop = false) {
   if (hoverAudio) return;
   hoverAudio = cache.hover.cloneNode();
   hoverAudio.volume = volume;
+  hoverAudio.loop = loop;
   hoverAudio.play().catch(() => {});
 }
 
@@ -65,6 +69,11 @@ export function stopHover(fade = 200) {
   if (!hoverAudio) return;
   const audio = hoverAudio;
   hoverAudio = null;
+
+  if (fade <= 0) {
+    audio.pause();
+    return;
+  }
 
   const steps = 10;
   let i = steps;
@@ -103,4 +112,22 @@ export function startWind({ target = 0.3, duration = 4000 } = {}) {
     wind.volume = Math.min(target, (target * i) / steps);
     if (i >= steps) clearInterval(fade);
   }, stepTime);
+}
+export function playFile(src, { volume = 0.5, times = 1 } = {}) {
+  const audio = new Audio(src);
+  audio.volume = volume;
+
+  let played = 1;
+  if (times > 1) {
+    audio.addEventListener("ended", () => {
+      if (played < times) {
+        played++;
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
+    });
+  }
+
+  audio.play().catch(() => {});
+  return audio;
 }
