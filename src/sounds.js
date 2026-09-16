@@ -7,6 +7,7 @@ const files = {
   rumble: "/sounds/rumble.mp3",
   gong: "/sounds/gong.mp3",
   tumble: "/sounds/tumble.mp3",
+  fadein: "/sounds/fadein.mp3"
 };
 
 const cache = {};

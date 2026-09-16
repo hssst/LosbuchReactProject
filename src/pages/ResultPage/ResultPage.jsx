@@ -330,7 +330,7 @@ function ResultPage({
               window.clearInterval(interval);
             }
 
-          }, 250);
+          }, 400);
 
       }, 1200);
 
@@ -361,21 +361,38 @@ function ResultPage({
         ? kingSounds[assignedKing.id]
         : null;
   
+        let rumbleAudio = null;
+        let fadeAudio = null;
+        let kingAudio = null;
+        let rumbleAudio2 = null;
+    
         const timers = [
-          window.setTimeout(() => playSound("gong", { volume: 0.7 }), 1000),
-          window.setTimeout(() => playSound("rumble", { volume: 0.5 }), 1800),
-          window.setTimeout(() => playSound("gong", { volume: 0.7 }), 3900),
-          window.setTimeout(() => playSound("rumble", { volume: 0.5 }), 5200),
+          window.setTimeout(() => playSound("gong", { volume: 0.5 }), 900),
+          window.setTimeout(() => {
+            rumbleAudio = playSound("rumble", { volume: 0.3 });
+          }, 1600),
+          window.setTimeout(() => rumbleAudio?.pause(), 5400),
+          window.setTimeout(() => playSound("gong", { volume: 0.5 }), 4100),
+          window.setTimeout(() => {
+            fadeAudio = playSound("fadein", { volume: 0.4 });
+          }, 4900),
+          window.setTimeout(() => {
+            rumbleAudio2 = playSound("rumble", { volume: 0.3 });
+          }, 5400),
+          window.setTimeout(() => rumbleAudio2?.pause(), 8600),
           window.setTimeout(() => {
             if (kingSound) {
-              kingAudio = playFile(kingSound, { volume: 0.6, times: 3 });
+              kingAudio = playFile(kingSound, { volume: 0.5, times: 3 });
             }
-          }, 7700),
+          }, 8600),
         ];
-  
-      return () => {
-        timers.forEach((t) => window.clearTimeout(t));
-      };
+    
+        return () => {
+          timers.forEach((t) => window.clearTimeout(t));
+          rumbleAudio?.pause();
+          fadeAudio?.pause();
+          rumbleAudio2?.pause();
+        };  
     }, [currentStep, assignedKing]);
 
   return (

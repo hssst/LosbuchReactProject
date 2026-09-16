@@ -53,10 +53,10 @@ function App() {
     }, 5000);
 
     // 3. Nach der Transition Losbuch anzeigen
-    setTimeout(() => {
-      setCurrentPage("losbuch");
-      setTransitionOut(true);
-    }, 8800);
+      setTimeout(() => {
+    setCurrentPage("losbuch");
+    setTransitionOut(true);
+  }, 8800);
 
     // 4. Transition vollständig entfernen
     setTimeout(() => {
@@ -67,7 +67,7 @@ function App() {
   }
 
   return (
-    <AppLayout>
+    <AppLayout warping={isTransitioning}>
 
       <Header />
 
