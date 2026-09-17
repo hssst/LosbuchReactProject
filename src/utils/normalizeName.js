@@ -1,9 +1,9 @@
 export function normalizeName(name) {
   return name
     .toUpperCase()
-    .replaceAll("Ä", "A")
-    .replaceAll("Ö", "O")
-    .replaceAll("Ü", "U")
-    .replaceAll("ß", "S")
+    .replaceAll("ï¿½", "A")
+    .replaceAll("ï¿½", "O")
+    .replaceAll("ï¿½", "U")
+    .replaceAll("ï¿½", "S")
     .replace(/[^A-Z]/g, "");
 }
